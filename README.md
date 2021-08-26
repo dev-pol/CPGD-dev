@@ -1,6 +1,8 @@
 # CPGD
 
-Dependencies:
+Complexity-Progressive Gradient Descent algorithm
+
+## Dependencies:
 
 Hipparchus geometry package
 (Maven) org.hipparchus:hipparchus-geometry:1.8
