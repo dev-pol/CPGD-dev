@@ -8,18 +8,21 @@ import simulation.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 public class GradientSearch {
 
-    static final String START_DATE = "2020-03-20T11:00:00.000";
-    static final String SEARCH_DATE = "2020-03-21T11:00:00.000";
-    static final String END_DATE = "2020-03-21T11:00:00.000";
-    static final double TIME_STEP = 60D;
-    static final double VISIBILITY_THRESHOLD = 5;
+    static final Properties properties = Utils.loadProperties();
 
-    static final String FILE_PATH = "C:\\Users\\Santi\\Desktop\\STARS\\MatlabFiles\\";
+    static final String FILE_PATH = (String) properties.get("output_path");
+    static final String START_DATE = (String) properties.get("start_date");
+    static final String END_DATE = (String) properties.get("end_date");
+    static final String SEARCH_DATE = (String) properties.get("search_date");
+    static final double TIME_STEP = Double.parseDouble((String) properties.get("time_step"));
+    static final double VISIBILITY_THRESHOLD = Double.parseDouble((String) properties.get("visibility_threshold"));
+
     static final String CSV_EXTENSION = ".csv";
-    static final String LOG_EXTENSION = ".txt";
+    static final String LOG_EXTENSION = ".log";
 
     static List<String> statsLogger = new ArrayList<>();
 
@@ -128,6 +131,12 @@ public class GradientSearch {
             // Complexity increase algorithm
 
             int complexity = 0;
+
+            log("Analyzing " + currentPlanes + " planes with " + currentSatsInPlane
+                    + " satellites at " + currentInclination + " degrees. Complexity level: " + complexity
+                    + " > MCG: " + multiGatewayAnalysis.getMaxMCGMinutes() + " - computation time: "
+                    + multiGatewayAnalysis.getLastSimTime() + " ms.");
+
             List<Double> exploredLatitudes = new ArrayList<>();
 
             if (multiGatewayAnalysis.getMaxMCGMinutes() <= maxMCG) { // If the MCG requirement is met, increase complexity
@@ -149,7 +158,6 @@ public class GradientSearch {
                         firstStep = step;
                     }
 
-                    // Debug this
                     devices.clear();
 
                     // Generate list of devices
@@ -162,9 +170,6 @@ public class GradientSearch {
                             }
                         }
                     }
-
-                    // Debug
-                    Reports.saveDevicesInfo(devices, FILE_PATH + "complex" + complexity + CSV_EXTENSION);
 
                     // Set the list of devices in the analyzer
                     multiGatewayAnalysis.setDevices(devices);
@@ -190,7 +195,7 @@ public class GradientSearch {
 
             // Add solution found
             if (multiGatewayAnalysis.getMaxMCGMinutes() <= maxMCG) {
-                log("Solution> " + currentPlanes + " planes with " + currentSatsInPlane
+                log("SOLUTION! " + currentPlanes + " planes with " + currentSatsInPlane
                         + " satellites at " + currentInclination + " degrees. MCG: " + multiGatewayAnalysis.getMaxMCGMinutes());
 
                 solutionFound = true;
@@ -198,7 +203,7 @@ public class GradientSearch {
                         multiGatewayAnalysis.getMaxMCG(), devices, satellites, discarded));
 
             } else {
-                log("DISCARDED " + currentPlanes + " planes with " + currentSatsInPlane
+                log("Discarded " + currentPlanes + " planes with " + currentSatsInPlane
                         + " satellites at " + currentInclination + " degrees at complexity level: " + complexity
                         + " > MCG: " + multiGatewayAnalysis.getMaxMCGMinutes());
                 discarded[complexity] += 1;

@@ -27,38 +27,59 @@ public class Utils {
 
     }
 
+    public static Properties loadProperties() {
+
+        Properties prop = new Properties();
+
+        try (InputStream input = Utils.class.getClassLoader().getResourceAsStream("resources/config.properties")) {
+
+            if (input == null) {
+                System.out.println("Unable to find config.properties");
+                throw new FileNotFoundException();
+            }
+
+            prop.load(input);
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+        return prop;
+
+    }
+
     /**
      * Reads a properties file and loads it in a hashmap
      *
      * @return Map<String, String> a Map containing key-values for configurations
      */
-    public static Map<String, String> loadProperties(String file) throws IOException {
-
-        LinkedHashMap<String, String> hashMap;
-
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-
-            String temp;
-            hashMap = new LinkedHashMap<>();
-            temp = br.readLine();
-
-            while (temp != null) {
-                temp = temp.replace(" ", "").replace("\\t", "");
-
-                if (!(temp.startsWith("#") || temp.isEmpty()) && temp.contains("=")) {
-                    while (temp.contains("0x")) {
-                        char a = (char) Integer.parseInt(temp.substring(temp.indexOf("0x") + 2, temp.indexOf("0x") + 4), 16);
-                        temp = temp.substring(0, temp.indexOf("0x") + 2) + temp.substring(temp.indexOf("0x") + 4);
-                        temp = temp.replaceFirst("0x", String.valueOf(a));
-                    }
-                    hashMap.put(temp.substring(0, temp.indexOf("=")), temp.substring(temp.indexOf("=") + 1));
-                }
-                temp = br.readLine();
-            }
-        }
-
-        return hashMap;
-    }
+//    public static Map<String, String> loadProperties(String file) throws IOException {
+//
+//        LinkedHashMap<String, String> hashMap;
+//
+//        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+//
+//            String temp;
+//            hashMap = new LinkedHashMap<>();
+//            temp = br.readLine();
+//
+//            while (temp != null) {
+//                temp = temp.replace(" ", "").replace("\\t", "");
+//
+//                if (!(temp.startsWith("#") || temp.isEmpty()) && temp.contains("=")) {
+//                    while (temp.contains("0x")) {
+//                        char a = (char) Integer.parseInt(temp.substring(temp.indexOf("0x") + 2, temp.indexOf("0x") + 4), 16);
+//                        temp = temp.substring(0, temp.indexOf("0x") + 2) + temp.substring(temp.indexOf("0x") + 4);
+//                        temp = temp.replaceFirst("0x", String.valueOf(a));
+//                    }
+//                    hashMap.put(temp.substring(0, temp.indexOf("=")), temp.substring(temp.indexOf("=") + 1));
+//                }
+//                temp = br.readLine();
+//            }
+//        }
+//
+//        return hashMap;
+//    }
 
     /**
      * Reads a file containing asset(s) parameter(s) and returns a list of objects accordingly
