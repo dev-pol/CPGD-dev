@@ -1,7 +1,5 @@
 package simulation.utils;
 
-import simulation.exceptions.SatElsetException;
-import simulation.structures.SatElset;
 import org.orekit.data.DataContext;
 import org.orekit.propagation.analytical.tle.TLE;
 import org.orekit.time.AbsoluteDate;
@@ -9,16 +7,15 @@ import org.orekit.time.TimeScale;
 import simulation.assets.Asset;
 import simulation.assets.objects.Device;
 import simulation.assets.objects.Satellite;
+import simulation.exceptions.SatElsetException;
 import simulation.structures.Ephemeris;
 import simulation.structures.OrbitalElements;
+import simulation.structures.SatElset;
 
 import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.TimeZone;
+import java.util.*;
 
 public class Utils {
 
@@ -28,6 +25,39 @@ public class Utils {
 
     private Utils() {
 
+    }
+
+    /**
+     * Reads a properties file and loads it in a hashmap
+     *
+     * @return Map<String, String> a Map containing key-values for configurations
+     */
+    public static Map<String, String> loadProperties(String file) throws IOException {
+
+        LinkedHashMap<String, String> hashMap;
+
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+
+            String temp;
+            hashMap = new LinkedHashMap<>();
+            temp = br.readLine();
+
+            while (temp != null) {
+                temp = temp.replace(" ", "").replace("\\t", "");
+
+                if (!(temp.startsWith("#") || temp.isEmpty()) && temp.contains("=")) {
+                    while (temp.contains("0x")) {
+                        char a = (char) Integer.parseInt(temp.substring(temp.indexOf("0x") + 2, temp.indexOf("0x") + 4), 16);
+                        temp = temp.substring(0, temp.indexOf("0x") + 2) + temp.substring(temp.indexOf("0x") + 4);
+                        temp = temp.replaceFirst("0x", String.valueOf(a));
+                    }
+                    hashMap.put(temp.substring(0, temp.indexOf("=")), temp.substring(temp.indexOf("=") + 1));
+                }
+                temp = br.readLine();
+            }
+        }
+
+        return hashMap;
     }
 
     /**
