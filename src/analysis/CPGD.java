@@ -1,5 +1,6 @@
 package analysis;
 
+import simulation.MultiGateway;
 import simulation.assets.objects.Device;
 import simulation.assets.objects.Satellite;
 import simulation.structures.Solution;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-public class GradientSearch {
+public class CPGD {
 
     static final Properties properties = Utils.loadProperties();
 

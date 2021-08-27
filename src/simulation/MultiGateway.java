@@ -1,6 +1,5 @@
-package analysis;
+package simulation;
 
-import simulation.Simulation;
 import simulation.assets.objects.Device;
 import simulation.assets.objects.Satellite;
 import simulation.structures.Event;
@@ -31,19 +30,19 @@ public class MultiGateway {
         this.simulation.setParams(dateStart, dateEnd, step, visibilityThreshold);
     }
 
-    public MultiGateway(List<Device> gateways, List<Satellite> satellites) {
-        this.devices = gateways;
+    public MultiGateway(List<Device> devices, List<Satellite> satellites) {
+        this.devices = devices;
         this.satellites = satellites;
     }
 
-    public MultiGateway(List<Device> gateways, List<Satellite> satellites, String dateStart, String dateEnd, double step, double visibilityThreshold) {
-        this.devices = gateways;
+    public MultiGateway(List<Device> devices, List<Satellite> satellites, String dateStart, String dateEnd, double step, double visibilityThreshold) {
+        this.devices = devices;
         this.satellites = satellites;
         this.simulation.setParams(dateStart, dateEnd, step, visibilityThreshold);
     }
 
-    public MultiGateway(String gatewaysFile, String satellitesFile, String dateStart, String dateEnd, double step, double visibilityThreshold) {
-        this(Utils.devicesFromFile(gatewaysFile), Utils.satellitesFromFile(satellitesFile), dateStart, dateEnd, step, visibilityThreshold);
+    public MultiGateway(String devicesFile, String satellitesFile, String dateStart, String dateEnd, double step, double visibilityThreshold) {
+        this(Utils.devicesFromFile(devicesFile), Utils.satellitesFromFile(satellitesFile), dateStart, dateEnd, step, visibilityThreshold);
     }
 
     public void setPovOption(int povOption) {
@@ -58,8 +57,8 @@ public class MultiGateway {
         this.currentIntervals = currentIntervals;
     }
 
-    public void setAssets(List<Device> gateways, List<Satellite> satellites) {
-        this.devices = gateways;
+    public void setAssets(List<Device> devices, List<Satellite> satellites) {
+        this.devices = devices;
         this.satellites = satellites;
     }
 
@@ -311,7 +310,7 @@ public class MultiGateway {
 
     /**
      * Returns a new filtered List containing only intervals that include contacts from/to at least N devices to
-     * a single gateway
+     * a single device
      **/
     public List<Interval> filterAtLeastNDevices(List<Interval> list, int n) {
 
@@ -327,7 +326,7 @@ public class MultiGateway {
 
     /**
      * Returns a new filtered List containing only intervals that include contacts from/to at least N devices to
-     * a single gateway
+     * a single device
      **/
     public List<Interval> filterGetGaps(List<Interval> list) {
 
