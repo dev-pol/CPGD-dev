@@ -58,8 +58,8 @@ public class GradientSearch {
         statsLogger.add("Minimum sats per plane: " + minSatsInPlane + " - Maximum sats per planes: " + maxSatsInPlane);
         statsLogger.add("Minimum inclination: " + minInclination + " - Maximum inclination: " + maxInclination);
         statsLogger.add("Inclination step: " + inclinationStep + " Degrees");
-        statsLogger.add("========================================================================= PROGRESS " +
-                "=========================================================================");
+        statsLogger.add("====================================================================== PROGRESS " +
+                "======================================================================");
 
         // Amount of discarded solutions at each complexity step
         int[] discarded = new int[5];
@@ -132,7 +132,7 @@ public class GradientSearch {
 
             int complexity = 0;
 
-            log("Analyzing " + currentPlanes + " planes with " + currentSatsInPlane
+            log("Analyzing: " + currentPlanes + " planes with " + currentSatsInPlane
                     + " satellites at " + currentInclination + " degrees. Complexity level: " + complexity
                     + " > MCG: " + multiGatewayAnalysis.getMaxMCGMinutes() + " - computation time: "
                     + multiGatewayAnalysis.getLastSimTime() + " ms.");
@@ -180,7 +180,7 @@ public class GradientSearch {
                     // Compute MCG
                     multiGatewayAnalysis.computeMaxMCG();
 
-                    log("Analyzing " + currentPlanes + " planes with " + currentSatsInPlane
+                    log("Analyzing: " + currentPlanes + " planes with " + currentSatsInPlane
                             + " satellites at " + currentInclination + " degrees. Complexity level: " + complexity
                             + " > MCG: " + multiGatewayAnalysis.getMaxMCGMinutes() + " - computation time: "
                             + multiGatewayAnalysis.getLastSimTime() + " ms.");
@@ -195,16 +195,16 @@ public class GradientSearch {
 
             // Add solution found
             if (multiGatewayAnalysis.getMaxMCGMinutes() <= maxMCG) {
-                log("SOLUTION! " + currentPlanes + " planes with " + currentSatsInPlane
+                log("SOLUTION!: " + currentPlanes + " planes with " + currentSatsInPlane
                         + " satellites at " + currentInclination + " degrees. MCG: " + multiGatewayAnalysis.getMaxMCGMinutes());
 
                 solutionFound = true;
                 solutions.add(new Solution(currentPlanes, currentSatsInPlane, currentInclination,
-                        multiGatewayAnalysis.getMaxMCG(), devices, satellites, discarded));
+                        multiGatewayAnalysis.getMaxMCGMinutes(), devices, satellites, discarded));
 
             } else {
-                log("Discarded " + currentPlanes + " planes with " + currentSatsInPlane
-                        + " satellites at " + currentInclination + " degrees at complexity level: " + complexity
+                log("Discarded: " + currentPlanes + " planes with " + currentSatsInPlane
+                        + " satellites at " + currentInclination + " degrees. Complexity level: " + complexity
                         + " > MCG: " + multiGatewayAnalysis.getMaxMCGMinutes());
                 discarded[complexity] += 1;
             }
@@ -231,8 +231,8 @@ public class GradientSearch {
             }
         }
 
-        statsLogger.add("========================================================================= SOLUTIONS " +
-                "=========================================================================");
+        statsLogger.add("====================================================================== SOLUTIONS " +
+                "======================================================================");
         statsLogger.add("Planes,SatsPerPlane,inclination,MCG,Rejected0,Rejected1,Rejected2,Rejected3,Rejected4");
 
         for (Solution solution : solutions) {

@@ -100,7 +100,7 @@ public class MultiGateway {
     }
 
     public double getMaxMCGMinutes() {
-        return this.maxMCG / (60.0 * 1000.0);
+        return Math.round((this.maxMCG / (60.0 * 1000.0)) * 100000.0) / 100000.0;
     }
 
     public long getLastSimTime() {

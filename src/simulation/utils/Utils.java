@@ -27,6 +27,11 @@ public class Utils {
 
     }
 
+    /**
+     * Reads a properties file and loads it into a Properties class
+     *
+     * @return Properties containing key-values for configurations
+     */
     public static Properties loadProperties() {
 
         Properties prop = new Properties();

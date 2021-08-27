@@ -64,7 +64,7 @@ public class Solution {
         StringBuilder sb = new StringBuilder(nOfPlanes + "," +
                 nOfSatsPerPlane + "," +
                 inclination + "," +
-                mcg / (60.0 * 1000.0));
+                mcg);
 
         for (int discarded : discardedSolutions) {
             sb.append(",");
