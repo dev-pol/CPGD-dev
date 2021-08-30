@@ -225,10 +225,9 @@ public class Reports {
     }
 
     /**
-     * Saves the solutions report for a given simulation
+     * Saves a String List to a new file, each entry as a line
      */
     public static void saveLog(List<String> log, String path) {
-
         try (FileWriter writer = new FileWriter(path)) {
             for (String entry : log) {
                 writer.write(entry + "\n");
@@ -236,7 +235,19 @@ public class Reports {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
+    /**
+     * Appends a String List to a file, each entry as a line
+     */
+    public static void appendLog(List<String> log, String path) {
+        try (FileWriter writer = new FileWriter(path,true)) {
+            for (String entry : log) {
+                writer.write(entry + "\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

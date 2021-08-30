@@ -13,8 +13,8 @@ import java.util.Properties;
 
 public class CPGD {
 
+    static final String RUN_DATE = Utils.unix2stamp(System.currentTimeMillis()).replace(":","-");
     static final Properties properties = Utils.loadProperties();
-
     static final String FILE_PATH = (String) properties.get("output_path");
     static final String START_DATE = (String) properties.get("start_date");
     static final String END_DATE = (String) properties.get("end_date");
@@ -32,11 +32,11 @@ public class CPGD {
     static final double SEMI_MAJOR_AXIS = Double.parseDouble((String) properties.get("semi_major_axis"));
     static final double ECCENTRICITY = Double.parseDouble((String) properties.get("eccentricity"));
     static final double PERIGEE_ARGUMENT = Double.parseDouble((String) properties.get("perigee_argument"));
-
     static final String CSV_EXTENSION = ".csv";
     static final String LOG_EXTENSION = ".log";
 
-    static List<String> statsLogger = new ArrayList<>();
+    static List<String> pendingLog = new ArrayList<>();
+    static double minInclination;
 
     public static void main(String[] args) {
 
@@ -44,19 +44,10 @@ public class CPGD {
 
         multiGatewayAnalysis.setIncludeCoverageGaps(true);
 
-        double minInclination = getInclination(SEMI_MAJOR_AXIS, ECCENTRICITY, VISIBILITY_THRESHOLD, MAX_LAT);
+        minInclination = getInclination(SEMI_MAJOR_AXIS, ECCENTRICITY, VISIBILITY_THRESHOLD, MAX_LAT);
         minInclination = Math.round(minInclination * 100.0) / 100.0;
 
-        statsLogger.add("Starting analysis at " + Utils.unix2stamp(System.currentTimeMillis()));
-        statsLogger.add("Scenario start: " + START_DATE + " - Scenario end: " + END_DATE);
-        statsLogger.add("Target MCG: " + MAX_MCG + " - Maximum latitude band: " + MAX_LAT
-                + " Degrees - complexity 0 search date " + SEARCH_DATE);
-        statsLogger.add("Minimum number of planes: " + MIN_PLANES + " - Maximum number of planes: " + MAX_PLANES);
-        statsLogger.add("Minimum sats per plane: " + MIN_SATS_IN_PLANE + " - Maximum sats per planes: " + MAX_SATS_IN_PLANE);
-        statsLogger.add("Minimum inclination: " + minInclination + " - Maximum inclination: " + MAX_INCLINATION);
-        statsLogger.add("Inclination step: " + INCLINATION_STEP + " Degrees");
-        statsLogger.add("====================================================================== PROGRESS " +
-                "======================================================================");
+        startLog();
 
         // Amount of discarded solutions at each complexity step
         int[] discarded = new int[5];
@@ -116,94 +107,61 @@ public class CPGD {
                 }
             }
 
-            // Set assets (list of devices + constellation) in the analyzer
-            multiGatewayAnalysis.setAssets(devices, satellites);
 
-            // Compute access intervals
-            multiGatewayAnalysis.computeDevicesPOV();
-
-            // Compute MCG
-            multiGatewayAnalysis.computeMaxMCG();
+            multiGatewayAnalysis.setAssets(devices, satellites); // Set assets (list of devices + constellation) in the analyzer
+            multiGatewayAnalysis.computeDevicesPOV(); // Compute access intervals
+            multiGatewayAnalysis.computeMaxMCG(); // Compute MCG
 
             // Complexity increase algorithm
 
             int complexity = 0;
 
-            log("Analyzing: " + currentPlanes + " planes with " + currentSatsInPlane
-                    + " satellites at " + currentInclination + " degrees. Complexity level: " + complexity
-                    + " > MCG: " + multiGatewayAnalysis.getMaxMCGMinutes() + " - computation time: "
-                    + multiGatewayAnalysis.getLastSimTime() + " ms.");
+            logAnalysis(currentPlanes, currentSatsInPlane, currentInclination, complexity,
+                    multiGatewayAnalysis.getMaxMCGMinutes(), multiGatewayAnalysis.getLastSimTime());
 
             List<Double> exploredLatitudes = new ArrayList<>();
 
-            if (multiGatewayAnalysis.getMaxMCGMinutes() <= MAX_MCG) { // If the MCG requirement is met, increase complexity
+            if (multiGatewayAnalysis.getMaxMCGMinutes() <= MAX_MCG) { // If the MCG requirement is met at complexity 0, increase complexity
 
                 // Increase scenario time
                 multiGatewayAnalysis.setScenarioParams(START_DATE, END_DATE, TIME_STEP, VISIBILITY_THRESHOLD);
 
                 for (complexity = 1; complexity <= 4; complexity++) {
 
-                    double latitudeResolution = Math.pow(2, complexity);
-                    double step = MAX_LAT / latitudeResolution;
-                    double lastStep = MAX_LAT - step;
-                    double firstStep;
+                    populateDeviceList(devices, exploredLatitudes, nFacilities, longitudeResolution, complexity);
 
-                    if (complexity == 1) {
-                        firstStep = 0;
-                        lastStep = MAX_LAT;
-                    } else {
-                        firstStep = step;
-                    }
-
-                    devices.clear();
-
-                    // Generate list of devices
-                    facId = 0;
-                    for (double lat = firstStep; lat <= lastStep; lat += step) {
-                        if (!exploredLatitudes.contains(lat)) {
-                            exploredLatitudes.add(lat);
-                            for (int fac = 0; fac < nFacilities; fac++) {
-                                devices.add(new Device(facId++, lat, fac * longitudeResolution, 0.0));
-                            }
-                        }
-                    }
-
-                    // Set the list of devices in the analyzer
+                    // Set the list of devices in the analyzer, compute accesses and MCG
                     multiGatewayAnalysis.setDevices(devices);
-
-                    // Compute Accesses
                     multiGatewayAnalysis.computeDevicesPOV();
-
-                    // Compute MCG
                     multiGatewayAnalysis.computeMaxMCG();
 
-                    log("Analyzing: " + currentPlanes + " planes with " + currentSatsInPlane
-                            + " satellites at " + currentInclination + " degrees. Complexity level: " + complexity
-                            + " > MCG: " + multiGatewayAnalysis.getMaxMCGMinutes() + " - computation time: "
-                            + multiGatewayAnalysis.getLastSimTime() + " ms.");
+                    logAnalysis(currentPlanes, currentSatsInPlane, currentInclination, complexity,
+                            multiGatewayAnalysis.getMaxMCGMinutes(), multiGatewayAnalysis.getLastSimTime());
 
                     // If the requirement is not met after increasing complexity, break the loop
                     if (multiGatewayAnalysis.getMaxMCGMinutes() > MAX_MCG) {
                         break;
                     }
-
                 }
             }
 
             // Add solution found
             if (multiGatewayAnalysis.getMaxMCGMinutes() <= MAX_MCG) {
-                log("SOLUTION!: " + currentPlanes + " planes with " + currentSatsInPlane
-                        + " satellites at " + currentInclination + " degrees. MCG: " + multiGatewayAnalysis.getMaxMCGMinutes());
 
                 solutionFound = true;
                 solutions.add(new Solution(currentPlanes, currentSatsInPlane, currentInclination,
                         multiGatewayAnalysis.getMaxMCGMinutes(), devices, satellites, discarded));
 
+                log("SOLUTION!: " + currentPlanes + " planes with " + currentSatsInPlane
+                        + " satellites at " + currentInclination + " degrees. MCG: " + multiGatewayAnalysis.getMaxMCGMinutes());
+
             } else {
+
+                discarded[complexity] += 1;
+
                 log("Discarded: " + currentPlanes + " planes with " + currentSatsInPlane
                         + " satellites at " + currentInclination + " degrees. Complexity level: " + complexity
                         + " > MCG: " + multiGatewayAnalysis.getMaxMCGMinutes());
-                discarded[complexity] += 1;
             }
 
             // Here we perform the movement towards another solutions
@@ -224,26 +182,109 @@ public class CPGD {
                 if (currentPlanes > MAX_PLANES) {
                     go = false;
                 }
-
             }
         }
 
-        statsLogger.add("====================================================================== SOLUTIONS " +
-                "======================================================================");
-        statsLogger.add("Planes,SatsPerPlane,inclination,MCG,Rejected0,Rejected1,Rejected2,Rejected3,Rejected4");
-
-        for (Solution solution : solutions) {
-            statsLogger.add(solution.toString());
-        }
-
-        String fileName = Utils.unix2stamp(System.currentTimeMillis()).replace(":","-");
-        Reports.saveSolutionReport(solutions, FILE_PATH + fileName + CSV_EXTENSION);
-        Reports.saveLog(statsLogger, FILE_PATH + fileName + LOG_EXTENSION);
+        Reports.saveSolutionReport(solutions, FILE_PATH + RUN_DATE + CSV_EXTENSION);
+        endLog(solutions);
 
     }
 
+    /**
+     * This method populates the list of devices passed as a reference according to the indicated complexity and
+     * the algorithm variables
+     **/
+    private static void populateDeviceList(List<Device> devices, List<Double> exploredLatitudes,
+                                           int nFacilities, double longitudeResolution, int complexity) {
+
+        devices.clear();
+
+        double latitudeResolution = Math.pow(2, complexity);
+        double step = MAX_LAT / latitudeResolution;
+        double lastStep = MAX_LAT - step;
+        double firstStep;
+
+        if (complexity == 1) {
+            firstStep = 0;
+            lastStep = MAX_LAT;
+        } else {
+            firstStep = step;
+        }
+
+        // Generate list of devices
+        int facId = 0;
+        for (double lat = firstStep; lat <= lastStep; lat += step) {
+            if (!exploredLatitudes.contains(lat)) {
+                exploredLatitudes.add(lat);
+                for (int fac = 0; fac < nFacilities; fac++) {
+                    devices.add(new Device(facId++, lat, fac * longitudeResolution, 0.0));
+                }
+            }
+        }
+
+    }
+
+    /**
+     * This method starts the log file. It logs important run configurations in a header.
+     **/
+    private static void startLog() {
+
+        pendingLog.add("Starting analysis at " + RUN_DATE);
+        pendingLog.add("Scenario start: " + START_DATE + " - Scenario end: " + END_DATE);
+        pendingLog.add("Target MCG: " + MAX_MCG + " - Maximum latitude band: " + MAX_LAT
+                + " Degrees - complexity 0 search date " + SEARCH_DATE);
+        pendingLog.add("Minimum number of planes: " + MIN_PLANES + " - Maximum number of planes: " + MAX_PLANES);
+        pendingLog.add("Minimum sats per plane: " + MIN_SATS_IN_PLANE + " - Maximum sats per planes: " + MAX_SATS_IN_PLANE);
+        pendingLog.add("Minimum inclination: " + minInclination + " - Maximum inclination: " + MAX_INCLINATION);
+        pendingLog.add("Inclination step: " + INCLINATION_STEP + " Degrees");
+        pendingLog.add("====================================================================== PROGRESS " +
+                "======================================================================");
+
+        Reports.saveLog(pendingLog, FILE_PATH + RUN_DATE + LOG_EXTENSION);
+        pendingLog.clear();
+    }
+
+    /**
+     * This method ends the log file. It logs the solutions.
+     **/
+    private static void endLog(List<Solution> solutions) {
+
+        pendingLog.add("====================================================================== SOLUTIONS " +
+                "======================================================================");
+        pendingLog.add("Planes,SatsPerPlane,inclination,MCG,Rejected0,Rejected1,Rejected2,Rejected3,Rejected4");
+
+        for (Solution solution : solutions) {
+            pendingLog.add(solution.toString());
+        }
+        updateLog();
+        pendingLog.clear();
+    }
+
+    /**
+     * This method logs an iteration of the algorithm together with the relevant data
+     **/
+    private static void logAnalysis(int currentPlanes, int currentSatsInPlane, double currentInclination,
+                                    int complexity, double mcg, double simTime) {
+        log("Analyzing: " + currentPlanes + " planes with " + currentSatsInPlane
+                + " satellites at " + currentInclination + " degrees. Complexity level: " + complexity
+                + " > MCG: " + mcg + " - computation time: "
+                + simTime + " ms.");
+    }
+
+    /**
+     * This method appends a timestamp to a log entry and adds it to the List of pending log statements
+     **/
     private static void log(String entry) {
-        statsLogger.add(Utils.unix2stamp(System.currentTimeMillis()) + " >> " + entry);
+        pendingLog.add(Utils.unix2stamp(System.currentTimeMillis()) + " >> " + entry);
+        updateLog();
+    }
+
+    /**
+     * This method updates the log file with every pending log statement
+     **/
+    private static void updateLog() {
+        Reports.appendLog(pendingLog, FILE_PATH + RUN_DATE + LOG_EXTENSION);
+        pendingLog.clear();
     }
 
     /**
