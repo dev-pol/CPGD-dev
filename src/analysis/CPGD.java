@@ -68,6 +68,7 @@ public class CPGD {
         List<Solution> solutions = new ArrayList<>(); // Solution list
         List<Device> devices = new ArrayList<>(); // Devices list
         List<Satellite> satellites = new ArrayList<>(); // Satellites list
+        List<Double> exploredLatitudes = new ArrayList<>();
 
         // grid resolution longitude - wise
         double longitudeResolution = MAX_MCG * 0.25;
@@ -79,33 +80,25 @@ public class CPGD {
 
             System.out.println("Performing: " + currentPlanes + "-" + currentSatsInPlane + "-" + currentInclination);
 
+            int complexity = 0;
+
             // Set "first look" scenario time
             multiGatewayAnalysis.setScenarioParams(START_DATE, SEARCH_DATE, TIME_STEP, VISIBILITY_THRESHOLD);
 
+            // Populate the scenario
             populateConstellation(satellites, currentPlanes, currentSatsInPlane, currentInclination);
+            populateDeviceList(devices, exploredLatitudes, nFacilities, longitudeResolution, complexity);
 
-            devices.clear();
-
-            // Generate list of devices on the equator, maximum latitude band and at half-way in-between
-            int facId = 0;
-            for (int fac = 0; fac < nFacilities; fac++) {
-                devices.add(new Device(facId++, 0.0, fac * longitudeResolution, DEVICES_HEIGHT));
-                devices.add(new Device(facId++, MAX_LAT / 2, fac * longitudeResolution, DEVICES_HEIGHT));
-                devices.add(new Device(facId++, MAX_LAT, fac * longitudeResolution, DEVICES_HEIGHT));
-            }
-
+            // Simulate
             multiGatewayAnalysis.setAssets(devices, satellites); // Set assets (list of devices + constellation) in the analyzer
             multiGatewayAnalysis.computeDevicesPOV(); // Compute access intervals
             multiGatewayAnalysis.computeMaxMCG(); // Compute MCG
 
             // Complexity increase algorithm
-
-            int complexity = 0;
+            exploredLatitudes.clear();
 
             logAnalysis(currentPlanes, currentSatsInPlane, currentInclination, complexity,
                     multiGatewayAnalysis.getMaxMCGMinutes(), multiGatewayAnalysis.getLastSimTime());
-
-            List<Double> exploredLatitudes = new ArrayList<>();
 
             if (multiGatewayAnalysis.getMaxMCGMinutes() <= MAX_MCG) { // If the MCG requirement is met at complexity 0, increase complexity
 
@@ -133,18 +126,14 @@ public class CPGD {
 
             // Add solution found
             if (multiGatewayAnalysis.getMaxMCGMinutes() <= MAX_MCG) {
-
                 solutionFound = true;
                 solutions.add(new Solution(currentPlanes, currentSatsInPlane, currentInclination,
                         multiGatewayAnalysis.getMaxMCGMinutes(), devices, satellites, discarded));
-
                 log("SOLUTION!: " + currentPlanes + " planes with " + currentSatsInPlane
                         + " satellites at " + currentInclination + " degrees. MCG: " + multiGatewayAnalysis.getMaxMCGMinutes());
 
             } else {
-
                 discarded[complexity] += 1;
-
                 log("Discarded: " + currentPlanes + " planes with " + currentSatsInPlane
                         + " satellites at " + currentInclination + " degrees. Complexity level: " + complexity
                         + " > MCG: " + multiGatewayAnalysis.getMaxMCGMinutes());
@@ -176,6 +165,21 @@ public class CPGD {
     }
 
     /**
+     * Starts a clock to measure compute time
+     **/
+    private static void tic() {
+        lastComputeTime = System.currentTimeMillis();
+    }
+
+    /**
+     * Stops the clock and returns the measured time
+     **/
+    private static long toc() {
+        lastComputeTime = System.currentTimeMillis() - lastComputeTime;
+        return lastComputeTime;
+    }
+
+    /**
      * This method populates the constellation with satellites, according to the number of planes, sats per plane,
      * and plane inclination
      **/
@@ -198,21 +202,6 @@ public class CPGD {
     }
 
     /**
-     * Starts a clock to measure compute time
-     **/
-    private static void tic() {
-        lastComputeTime = System.currentTimeMillis();
-    }
-
-    /**
-     * Stops the clock and returns the measured time
-     **/
-    private static long toc() {
-        lastComputeTime = System.currentTimeMillis() - lastComputeTime;
-        return lastComputeTime;
-    }
-
-    /**
      * This method populates the list of devices passed as a reference according to the indicated complexity and
      * the algorithm variables
      **/
@@ -226,8 +215,9 @@ public class CPGD {
         double lastStep = MAX_LAT - step;
         double firstStep;
 
-        if (complexity == 1) {
+        if (complexity == 0 || complexity == 1) {
             firstStep = 0;
+            step = MAX_LAT / 2;
             lastStep = MAX_LAT;
         } else {
             firstStep = step;
@@ -243,7 +233,6 @@ public class CPGD {
                 }
             }
         }
-
     }
 
     /**
@@ -254,7 +243,7 @@ public class CPGD {
         pendingLog.add("Starting analysis at " + RUN_DATE);
         pendingLog.add("Scenario start: " + START_DATE + " - Scenario end: " + END_DATE);
         pendingLog.add("Target MCG: " + MAX_MCG + " - Maximum latitude band: " + MAX_LAT
-                + " Degrees - complexity 0 search date " + SEARCH_DATE);
+                + " Degrees - complexity 0 - Search date " + SEARCH_DATE);
         pendingLog.add("Minimum number of planes: " + MIN_PLANES + " - Maximum number of planes: " + MAX_PLANES);
         pendingLog.add("Minimum sats per plane: " + MIN_SATS_IN_PLANE + " - Maximum sats per planes: " + MAX_SATS_IN_PLANE);
         pendingLog.add("Minimum inclination: " + minInclination + " - Maximum inclination: " + MAX_INCLINATION);
@@ -271,15 +260,22 @@ public class CPGD {
      **/
     private static void endLog(List<Solution> solutions) {
 
-        pendingLog.add("=================================================================================" +
-                "======================================================================");
+        pendingLog.add("====================================================================== STATISTICS " +
+                "=====================================================================");
         pendingLog.add("Total compute time: " + toc() + " ms.");
+        pendingLog.add(solutions.size() + " Solutions found");
+        StringBuilder sb = new StringBuilder("Solutions rejected at each complexity step: ");
+        int complexity = 0;
+        for (int rejected : solutions.get(solutions.size() - 1).getDiscardedSolutions()) {
+            sb.append(rejected).append(": ").append(complexity++).append(" / ");
+        }
+        pendingLog.add(sb.toString());
         pendingLog.add("====================================================================== SOLUTIONS " +
                 "======================================================================");
-        pendingLog.add("Planes,SatsPerPlane,inclination,MCG,Rejected0,Rejected1,Rejected2,Rejected3,Rejected4");
 
         for (Solution solution : solutions) {
-            pendingLog.add(solution.toString());
+            pendingLog.add(solution.getnOfPlanes() + " planes with " + solution.getnOfSatsPerPlane() + " satellites each, at "
+                    + solution.getInclination() + " degrees of inclination. MCG: " + solution.getMcg());
         }
         updateLog();
         pendingLog.clear();
