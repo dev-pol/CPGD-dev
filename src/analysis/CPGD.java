@@ -40,8 +40,11 @@ public class CPGD {
 
     static List<String> pendingLog = new ArrayList<>();
     static double minInclination;
+    static long lastComputeTime;
 
     public static void main(String[] args) {
+
+        tic();
 
         var multiGatewayAnalysis = new MultiGateway(START_DATE, SEARCH_DATE, TIME_STEP, VISIBILITY_THRESHOLD);
 
@@ -195,6 +198,21 @@ public class CPGD {
     }
 
     /**
+     * Starts a clock to measure compute time
+     **/
+    private static void tic() {
+        lastComputeTime = System.currentTimeMillis();
+    }
+
+    /**
+     * Stops the clock and returns the measured time
+     **/
+    private static long toc() {
+        lastComputeTime = System.currentTimeMillis() - lastComputeTime;
+        return lastComputeTime;
+    }
+
+    /**
      * This method populates the list of devices passed as a reference according to the indicated complexity and
      * the algorithm variables
      **/
@@ -253,6 +271,9 @@ public class CPGD {
      **/
     private static void endLog(List<Solution> solutions) {
 
+        pendingLog.add("=================================================================================" +
+                "======================================================================");
+        pendingLog.add("Total compute time: " + toc() + " ms.");
         pendingLog.add("====================================================================== SOLUTIONS " +
                 "======================================================================");
         pendingLog.add("Planes,SatsPerPlane,inclination,MCG,Rejected0,Rejected1,Rejected2,Rejected3,Rejected4");
