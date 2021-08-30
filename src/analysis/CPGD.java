@@ -48,7 +48,6 @@ public class CPGD {
         multiGatewayAnalysis.setIncludeCoverageGaps(true);
 
         minInclination = getInclination(SEMI_MAJOR_AXIS, ECCENTRICITY, VISIBILITY_THRESHOLD, MAX_LAT);
-        minInclination = Math.round(minInclination * 100.0) / 100.0;
 
         startLog();
 
@@ -150,7 +149,6 @@ public class CPGD {
 
             // Here we perform the movement towards another solutions
             currentInclination += INCLINATION_STEP;
-            currentInclination = Math.round(currentInclination * 100.0) / 100.0;
 
             if (currentInclination > MAX_INCLINATION || solutionFound) {
 
@@ -348,8 +346,7 @@ public class CPGD {
             if (wdt > 1000) break;
 
         }
-
-        return Math.toDegrees(inc);
+        return Math.round(Math.toDegrees(inc) * 100.0) / 100.0;
     }
 
 }
