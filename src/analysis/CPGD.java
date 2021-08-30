@@ -15,7 +15,7 @@ public class CPGD {
 
     static final String RUN_DATE = Utils.unix2stamp(System.currentTimeMillis()).replace(":","-");
     static final Properties properties = Utils.loadProperties();
-    static final String FILE_PATH = (String) properties.get("output_path");
+    static final String OUTPUT_PATH = (String) properties.get("output_path");
     static final String START_DATE = (String) properties.get("start_date");
     static final String END_DATE = (String) properties.get("end_date");
     static final String SEARCH_DATE = (String) properties.get("search_date");
@@ -29,11 +29,14 @@ public class CPGD {
     static final int MAX_SATS_IN_PLANE = Integer.parseInt((String) properties.get("max_sats_in_plane"));
     static final double MAX_INCLINATION = Double.parseDouble((String) properties.get("max_inclination"));
     static final double INCLINATION_STEP = Double.parseDouble((String) properties.get("inclination_step"));
+    static final int COMPLEXITY_LEVELS = Integer.parseInt((String) properties.get("complexity_levels"));
     static final double SEMI_MAJOR_AXIS = Double.parseDouble((String) properties.get("semi_major_axis"));
     static final double ECCENTRICITY = Double.parseDouble((String) properties.get("eccentricity"));
     static final double PERIGEE_ARGUMENT = Double.parseDouble((String) properties.get("perigee_argument"));
+    static final double DEVICES_HEIGHT = Double.parseDouble((String) properties.get("devices_height"));
     static final String CSV_EXTENSION = ".csv";
     static final String LOG_EXTENSION = ".log";
+    static final String LOG_FILE_PATH = OUTPUT_PATH + RUN_DATE + LOG_EXTENSION;
 
     static List<String> pendingLog = new ArrayList<>();
     static double minInclination;
@@ -50,7 +53,7 @@ public class CPGD {
         startLog();
 
         // Amount of discarded solutions at each complexity step
-        int[] discarded = new int[5];
+        int[] discarded = new int[COMPLEXITY_LEVELS];
 
         // Initial solution
         int currentPlanes = MIN_PLANES;
@@ -60,14 +63,9 @@ public class CPGD {
         boolean go = true;
         boolean solutionFound = false;
 
-        // Solution list
-        List<Solution> solutions = new ArrayList<>();
-
-        // Devices list
-        List<Device> devices = new ArrayList<>();
-
-        // Satellites list
-        List<Satellite> satellites = new ArrayList<>();
+        List<Solution> solutions = new ArrayList<>(); // Solution list
+        List<Device> devices = new ArrayList<>(); // Devices list
+        List<Satellite> satellites = new ArrayList<>(); // Satellites list
 
         // grid resolution longitude - wise
         double longitudeResolution = MAX_MCG * 0.25;
@@ -82,31 +80,17 @@ public class CPGD {
             // Set "first look" scenario time
             multiGatewayAnalysis.setScenarioParams(START_DATE, SEARCH_DATE, TIME_STEP, VISIBILITY_THRESHOLD);
 
+            populateConstellation(satellites, currentPlanes, currentSatsInPlane, currentInclination);
+
             devices.clear();
 
             // Generate list of devices on the equator, maximum latitude band and at half-way in-between
             int facId = 0;
             for (int fac = 0; fac < nFacilities; fac++) {
-                devices.add(new Device(facId++, 0.0, fac * longitudeResolution, 0.0));
-                devices.add(new Device(facId++, MAX_LAT / 2, fac * longitudeResolution, 0.0));
-                devices.add(new Device(facId++, MAX_LAT, fac * longitudeResolution, 0.0));
+                devices.add(new Device(facId++, 0.0, fac * longitudeResolution, DEVICES_HEIGHT));
+                devices.add(new Device(facId++, MAX_LAT / 2, fac * longitudeResolution, DEVICES_HEIGHT));
+                devices.add(new Device(facId++, MAX_LAT, fac * longitudeResolution, DEVICES_HEIGHT));
             }
-
-            double planePhase = 360.0 / currentPlanes;
-            double satsPhase = 360.0 / currentSatsInPlane;
-
-            satellites.clear();
-
-            // Generate the constellation
-            int satId = 0;
-            for (int plane = 0; plane < currentPlanes; plane++) {   // Plane
-                for (int sat = 0; sat < currentSatsInPlane; sat++) {    // Satellites
-                    satellites.add(new Satellite(satId++, START_DATE, SEMI_MAJOR_AXIS,
-                            ECCENTRICITY, currentInclination, plane * planePhase, PERIGEE_ARGUMENT,
-                            sat * satsPhase));  // - plane * (planePhase / currentSatsInPlane)
-                }
-            }
-
 
             multiGatewayAnalysis.setAssets(devices, satellites); // Set assets (list of devices + constellation) in the analyzer
             multiGatewayAnalysis.computeDevicesPOV(); // Compute access intervals
@@ -126,7 +110,7 @@ public class CPGD {
                 // Increase scenario time
                 multiGatewayAnalysis.setScenarioParams(START_DATE, END_DATE, TIME_STEP, VISIBILITY_THRESHOLD);
 
-                for (complexity = 1; complexity <= 4; complexity++) {
+                for (complexity = 1; complexity < COMPLEXITY_LEVELS; complexity++) {
 
                     populateDeviceList(devices, exploredLatitudes, nFacilities, longitudeResolution, complexity);
 
@@ -185,9 +169,31 @@ public class CPGD {
             }
         }
 
-        Reports.saveSolutionReport(solutions, FILE_PATH + RUN_DATE + CSV_EXTENSION);
+        Reports.saveSolutionReport(solutions, OUTPUT_PATH + RUN_DATE + CSV_EXTENSION);
         endLog(solutions);
 
+    }
+
+    /**
+     * This method populates the constellation with satellites, according to the number of planes, sats per plane,
+     * and plane inclination
+     **/
+    private static void populateConstellation(List<Satellite> satellites, int planes, int satsPerPlane, double inclination) {
+
+        satellites.clear();
+
+        double planePhase = 360.0 / planes;
+        double satsPhase = 360.0 / satsPerPlane;
+
+        // Generate the constellation
+        int satId = 0;
+        for (int plane = 0; plane < planes; plane++) {   // Plane
+            for (int sat = 0; sat < satsPerPlane; sat++) {    // Satellites
+                satellites.add(new Satellite(satId++, START_DATE, SEMI_MAJOR_AXIS,
+                        ECCENTRICITY, inclination, plane * planePhase, PERIGEE_ARGUMENT,
+                        sat * satsPhase));  // - plane * (planePhase / currentSatsInPlane)
+            }
+        }
     }
 
     /**
@@ -217,7 +223,7 @@ public class CPGD {
             if (!exploredLatitudes.contains(lat)) {
                 exploredLatitudes.add(lat);
                 for (int fac = 0; fac < nFacilities; fac++) {
-                    devices.add(new Device(facId++, lat, fac * longitudeResolution, 0.0));
+                    devices.add(new Device(facId++, lat, fac * longitudeResolution, DEVICES_HEIGHT));
                 }
             }
         }
@@ -240,7 +246,7 @@ public class CPGD {
         pendingLog.add("====================================================================== PROGRESS " +
                 "======================================================================");
 
-        Reports.saveLog(pendingLog, FILE_PATH + RUN_DATE + LOG_EXTENSION);
+        Reports.saveLog(pendingLog, LOG_FILE_PATH);
         pendingLog.clear();
     }
 
@@ -283,7 +289,7 @@ public class CPGD {
      * This method updates the log file with every pending log statement
      **/
     private static void updateLog() {
-        Reports.appendLog(pendingLog, FILE_PATH + RUN_DATE + LOG_EXTENSION);
+        Reports.appendLog(pendingLog, LOG_FILE_PATH);
         pendingLog.clear();
     }
 
