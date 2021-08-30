@@ -211,7 +211,7 @@ public class Reports {
     /**
      * Saves the solutions report for a given simulation
      */
-    public static void saveSolutionReport(List<Solution> solutions, String path) {
+    public static void saveSolutionCSV(List<Solution> solutions, String path) {
 
         try (FileWriter writer = new FileWriter(path)) {
             writer.write("Planes,SatsPerPlane,inclination,MCG,Rejected0,Rejected1,Rejected2,Rejected3,Rejected4" + "\n");

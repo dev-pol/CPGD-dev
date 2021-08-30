@@ -68,7 +68,7 @@ public class CPGD {
         List<Solution> solutions = new ArrayList<>(); // Solution list
         List<Device> devices = new ArrayList<>(); // Devices list
         List<Satellite> satellites = new ArrayList<>(); // Satellites list
-        List<Double> exploredLatitudes = new ArrayList<>();
+        List<Double> exploredLatitudes = new ArrayList<>(); // Explored latitudes list
 
         // grid resolution longitude - wise
         double longitudeResolution = MAX_MCG * 0.25;
@@ -87,7 +87,17 @@ public class CPGD {
 
             // Populate the scenario
             populateConstellation(satellites, currentPlanes, currentSatsInPlane, currentInclination);
-            populateDeviceList(devices, exploredLatitudes, nFacilities, longitudeResolution, complexity);
+//            populateDeviceList(devices, exploredLatitudes, nFacilities, longitudeResolution, complexity);
+
+            devices.clear();
+
+            // Generate list of devices on the equator, maximum latitude band and at half-way in-between
+            int facId = 0;
+            for (int fac = 0; fac < nFacilities; fac++) {
+                devices.add(new Device(facId++, 0.0, fac * longitudeResolution, DEVICES_HEIGHT));
+                devices.add(new Device(facId++, MAX_LAT / 2, fac * longitudeResolution, DEVICES_HEIGHT));
+                devices.add(new Device(facId++, MAX_LAT, fac * longitudeResolution, DEVICES_HEIGHT));
+            }
 
             // Simulate
             multiGatewayAnalysis.setAssets(devices, satellites); // Set assets (list of devices + constellation) in the analyzer
@@ -159,7 +169,7 @@ public class CPGD {
             }
         }
 
-        Reports.saveSolutionReport(solutions, OUTPUT_PATH + RUN_DATE + CSV_EXTENSION);
+        Reports.saveSolutionCSV(solutions, OUTPUT_PATH + RUN_DATE + CSV_EXTENSION);
         endLog(solutions);
 
     }
@@ -264,10 +274,10 @@ public class CPGD {
                 "=====================================================================");
         pendingLog.add("Total compute time: " + toc() + " ms.");
         pendingLog.add(solutions.size() + " Solutions found");
-        StringBuilder sb = new StringBuilder("Solutions rejected at each complexity step: ");
+        StringBuilder sb = new StringBuilder("Solutions rejected at each complexity step: / ");
         int complexity = 0;
         for (int rejected : solutions.get(solutions.size() - 1).getDiscardedSolutions()) {
-            sb.append(rejected).append(": ").append(complexity++).append(" / ");
+            sb.append(complexity++).append(": ").append(rejected).append(" / ");
         }
         pendingLog.add(sb.toString());
         pendingLog.add("====================================================================== SOLUTIONS " +
