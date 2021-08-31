@@ -13,7 +13,7 @@ import java.util.Properties;
 
 public class CPGD {
 
-    static final String RUN_DATE = Utils.unix2stamp(System.currentTimeMillis()).replace(":","-");
+    static final String RUN_DATE = Utils.unix2stamp(System.currentTimeMillis()).replace(":", "-");
     static final Properties properties = Utils.loadProperties();
     static final String OUTPUT_PATH = (String) properties.get("output_path");
     static final String START_DATE = (String) properties.get("start_date");
@@ -72,51 +72,41 @@ public class CPGD {
         double longitudeResolution = MAX_MCG * 0.25; // grid resolution longitude - wise
         int nFacilities = (int) Math.round(360 / longitudeResolution); // Number of grid points according to the grid resolution
 
+        int complexity;
+
         while (go) {
 
             System.out.println("Performing: " + currentPlanes + "-" + currentSatsInPlane + "-" + currentInclination);
 
-            int complexity = 0;
-
             // Set "first look" scenario time
             multiGatewayAnalysis.setScenarioParams(START_DATE, SEARCH_DATE, TIME_STEP, VISIBILITY_THRESHOLD);
 
-            // Populate the scenario
+            // Populate the constellation
             populateConstellation(satellites, currentPlanes, currentSatsInPlane, currentInclination);
-            populateDeviceList(devices, nFacilities, longitudeResolution, complexity);
+            multiGatewayAnalysis.setSatellites(satellites);
 
-            Reports.saveDevicesInfo(devices,OUTPUT_PATH + "devices_complexity_" + complexity + CSV_EXTENSION);
+            for (complexity = 0; complexity < COMPLEXITY_LEVELS; complexity++) {
 
-            // Simulate
-            multiGatewayAnalysis.setAssets(devices, satellites); // Set assets (list of devices + constellation) in the analyzer
-            multiGatewayAnalysis.computeDevicesPOV(); // Compute access intervals
-            multiGatewayAnalysis.computeMaxMCG(); // Compute MCG
+                // If the MCG requirement is met at complexity 0, increase complexity
+                if (complexity > 1 && multiGatewayAnalysis.getMaxMCGMinutes() <= MAX_MCG) {
+                    // Increase scenario time
+                    multiGatewayAnalysis.setScenarioParams(START_DATE, END_DATE, TIME_STEP, VISIBILITY_THRESHOLD);
+                }
 
-            logProgress(currentPlanes, currentSatsInPlane, currentInclination, complexity,
-                    multiGatewayAnalysis.getMaxMCGMinutes(), multiGatewayAnalysis.getLastSimTime());
+                populateDeviceList(devices, nFacilities, longitudeResolution, complexity);
+                Reports.saveDevicesInfo(devices, OUTPUT_PATH + "devices_complexity_" + complexity + CSV_EXTENSION);
 
-            if (multiGatewayAnalysis.getMaxMCGMinutes() <= MAX_MCG) { // If the MCG requirement is met at complexity 0, increase complexity
+                // Set the list of devices in the analyzer, compute accesses and MCG
+                multiGatewayAnalysis.setDevices(devices);
+                multiGatewayAnalysis.computeDevicesPOV();
+                multiGatewayAnalysis.computeMaxMCG();
 
-                // Increase scenario time
-                multiGatewayAnalysis.setScenarioParams(START_DATE, END_DATE, TIME_STEP, VISIBILITY_THRESHOLD);
+                logProgress(currentPlanes, currentSatsInPlane, currentInclination, complexity,
+                        multiGatewayAnalysis.getMaxMCGMinutes(), multiGatewayAnalysis.getLastSimTime());
 
-                for (complexity = 1; complexity < COMPLEXITY_LEVELS; complexity++) {
-
-                    populateDeviceList(devices, nFacilities, longitudeResolution, complexity);
-                    Reports.saveDevicesInfo(devices,OUTPUT_PATH + "devices_complexity_" + complexity + CSV_EXTENSION);
-
-                    // Set the list of devices in the analyzer, compute accesses and MCG
-                    multiGatewayAnalysis.setDevices(devices);
-                    multiGatewayAnalysis.computeDevicesPOV();
-                    multiGatewayAnalysis.computeMaxMCG();
-
-                    logProgress(currentPlanes, currentSatsInPlane, currentInclination, complexity,
-                            multiGatewayAnalysis.getMaxMCGMinutes(), multiGatewayAnalysis.getLastSimTime());
-
-                    // If the requirement is not met after increasing complexity, break the loop
-                    if (multiGatewayAnalysis.getMaxMCGMinutes() > MAX_MCG) {
-                        break;
-                    }
+                // If the requirement is not met after increasing complexity, break the loop
+                if (multiGatewayAnalysis.getMaxMCGMinutes() > MAX_MCG) {
+                    break;
                 }
             }
 
@@ -221,9 +211,9 @@ public class CPGD {
         // Generate list of devices
         int facId = 0;
         for (double lat = firstStep; lat <= lastStep; lat += step) {
-                for (int fac = 0; fac < nFacilities; fac++) {
-                    devices.add(new Device(facId++, lat, fac * longitudeResolution, DEVICES_HEIGHT));
-                }
+            for (int fac = 0; fac < nFacilities; fac++) {
+                devices.add(new Device(facId++, lat, fac * longitudeResolution, DEVICES_HEIGHT));
+            }
         }
     }
 
@@ -240,7 +230,7 @@ public class CPGD {
         pendingLog.add("Minimum sats per plane: " + MIN_SATS_IN_PLANE + " - Maximum sats per planes: " + MAX_SATS_IN_PLANE);
         pendingLog.add("Minimum inclination: " + minInclination + " - Maximum inclination: " + MAX_INCLINATION);
         pendingLog.add("Inclination step: " + INCLINATION_STEP + " Degrees");
-        pendingLog.add( Reports.SEPARATOR_HALF + " PROGRESS " + Reports.SEPARATOR_HALF);
+        pendingLog.add(Reports.SEPARATOR_HALF + " PROGRESS " + Reports.SEPARATOR_HALF);
 
         Reports.saveLog(pendingLog, LOG_FILE_PATH);
         pendingLog.clear();
@@ -251,7 +241,7 @@ public class CPGD {
      **/
     private static void endLog(List<Solution> solutions) {
 
-        pendingLog.add( Reports.SEPARATOR_HALF + " STATISTICS " + Reports.SEPARATOR_HALF);
+        pendingLog.add(Reports.SEPARATOR_HALF + " STATISTICS " + Reports.SEPARATOR_HALF);
         pendingLog.add("Total compute time: " + toc() + " ms.");
         pendingLog.add(solutions.size() + " Solutions found");
         StringBuilder sb = new StringBuilder("Solutions rejected at each complexity step: / ");
@@ -260,7 +250,7 @@ public class CPGD {
             sb.append(complexity++).append(": ").append(rejected).append(" / ");
         }
         pendingLog.add(sb.toString());
-        pendingLog.add( Reports.SEPARATOR_HALF + " SOLUTIONS " + Reports.SEPARATOR_HALF);
+        pendingLog.add(Reports.SEPARATOR_HALF + " SOLUTIONS " + Reports.SEPARATOR_HALF);
 
         for (Solution solution : solutions) {
             pendingLog.add(solution.getnOfPlanes() + " planes with " + solution.getnOfSatsPerPlane() + " satellites each, at "
