@@ -65,16 +65,12 @@ public class CPGD {
         boolean go = true;
         boolean solutionFound = false;
 
-        List<Solution> solutions = new ArrayList<>(); // Solution list
+        List<Solution> solutions = new ArrayList<>(); // Solutions list
         List<Device> devices = new ArrayList<>(); // Devices list
         List<Satellite> satellites = new ArrayList<>(); // Satellites list
-        List<Double> exploredLatitudes = new ArrayList<>(); // Explored latitudes list
 
-        // grid resolution longitude - wise
-        double longitudeResolution = MAX_MCG * 0.25;
-
-        // Number of grid points according to the grid resolution
-        int nFacilities = (int) Math.round(360 / longitudeResolution);
+        double longitudeResolution = MAX_MCG * 0.25; // grid resolution longitude - wise
+        int nFacilities = (int) Math.round(360 / longitudeResolution); // Number of grid points according to the grid resolution
 
         while (go) {
 
@@ -87,27 +83,16 @@ public class CPGD {
 
             // Populate the scenario
             populateConstellation(satellites, currentPlanes, currentSatsInPlane, currentInclination);
-//            populateDeviceList(devices, exploredLatitudes, nFacilities, longitudeResolution, complexity);
+            populateDeviceList(devices, nFacilities, longitudeResolution, complexity);
 
-            devices.clear();
-
-            // Generate list of devices on the equator, maximum latitude band and at half-way in-between
-            int facId = 0;
-            for (int fac = 0; fac < nFacilities; fac++) {
-                devices.add(new Device(facId++, 0.0, fac * longitudeResolution, DEVICES_HEIGHT));
-                devices.add(new Device(facId++, MAX_LAT / 2, fac * longitudeResolution, DEVICES_HEIGHT));
-                devices.add(new Device(facId++, MAX_LAT, fac * longitudeResolution, DEVICES_HEIGHT));
-            }
+            Reports.saveDevicesInfo(devices,OUTPUT_PATH + "devices_complexity_" + complexity + CSV_EXTENSION);
 
             // Simulate
             multiGatewayAnalysis.setAssets(devices, satellites); // Set assets (list of devices + constellation) in the analyzer
             multiGatewayAnalysis.computeDevicesPOV(); // Compute access intervals
             multiGatewayAnalysis.computeMaxMCG(); // Compute MCG
 
-            // Complexity increase algorithm
-            exploredLatitudes.clear();
-
-            logAnalysis(currentPlanes, currentSatsInPlane, currentInclination, complexity,
+            logProgress(currentPlanes, currentSatsInPlane, currentInclination, complexity,
                     multiGatewayAnalysis.getMaxMCGMinutes(), multiGatewayAnalysis.getLastSimTime());
 
             if (multiGatewayAnalysis.getMaxMCGMinutes() <= MAX_MCG) { // If the MCG requirement is met at complexity 0, increase complexity
@@ -117,14 +102,15 @@ public class CPGD {
 
                 for (complexity = 1; complexity < COMPLEXITY_LEVELS; complexity++) {
 
-                    populateDeviceList(devices, exploredLatitudes, nFacilities, longitudeResolution, complexity);
+                    populateDeviceList(devices, nFacilities, longitudeResolution, complexity);
+                    Reports.saveDevicesInfo(devices,OUTPUT_PATH + "devices_complexity_" + complexity + CSV_EXTENSION);
 
                     // Set the list of devices in the analyzer, compute accesses and MCG
                     multiGatewayAnalysis.setDevices(devices);
                     multiGatewayAnalysis.computeDevicesPOV();
                     multiGatewayAnalysis.computeMaxMCG();
 
-                    logAnalysis(currentPlanes, currentSatsInPlane, currentInclination, complexity,
+                    logProgress(currentPlanes, currentSatsInPlane, currentInclination, complexity,
                             multiGatewayAnalysis.getMaxMCGMinutes(), multiGatewayAnalysis.getLastSimTime());
 
                     // If the requirement is not met after increasing complexity, break the loop
@@ -215,8 +201,7 @@ public class CPGD {
      * This method populates the list of devices passed as a reference according to the indicated complexity and
      * the algorithm variables
      **/
-    private static void populateDeviceList(List<Device> devices, List<Double> exploredLatitudes,
-                                           int nFacilities, double longitudeResolution, int complexity) {
+    private static void populateDeviceList(List<Device> devices, int nFacilities, double longitudeResolution, int complexity) {
 
         devices.clear();
 
@@ -236,12 +221,9 @@ public class CPGD {
         // Generate list of devices
         int facId = 0;
         for (double lat = firstStep; lat <= lastStep; lat += step) {
-            if (!exploredLatitudes.contains(lat)) {
-                exploredLatitudes.add(lat);
                 for (int fac = 0; fac < nFacilities; fac++) {
                     devices.add(new Device(facId++, lat, fac * longitudeResolution, DEVICES_HEIGHT));
                 }
-            }
         }
     }
 
@@ -258,8 +240,7 @@ public class CPGD {
         pendingLog.add("Minimum sats per plane: " + MIN_SATS_IN_PLANE + " - Maximum sats per planes: " + MAX_SATS_IN_PLANE);
         pendingLog.add("Minimum inclination: " + minInclination + " - Maximum inclination: " + MAX_INCLINATION);
         pendingLog.add("Inclination step: " + INCLINATION_STEP + " Degrees");
-        pendingLog.add("====================================================================== PROGRESS " +
-                "======================================================================");
+        pendingLog.add( Reports.SEPARATOR_HALF + " PROGRESS " + Reports.SEPARATOR_HALF);
 
         Reports.saveLog(pendingLog, LOG_FILE_PATH);
         pendingLog.clear();
@@ -270,8 +251,7 @@ public class CPGD {
      **/
     private static void endLog(List<Solution> solutions) {
 
-        pendingLog.add("====================================================================== STATISTICS " +
-                "=====================================================================");
+        pendingLog.add( Reports.SEPARATOR_HALF + " STATISTICS " + Reports.SEPARATOR_HALF);
         pendingLog.add("Total compute time: " + toc() + " ms.");
         pendingLog.add(solutions.size() + " Solutions found");
         StringBuilder sb = new StringBuilder("Solutions rejected at each complexity step: / ");
@@ -280,21 +260,19 @@ public class CPGD {
             sb.append(complexity++).append(": ").append(rejected).append(" / ");
         }
         pendingLog.add(sb.toString());
-        pendingLog.add("====================================================================== SOLUTIONS " +
-                "======================================================================");
+        pendingLog.add( Reports.SEPARATOR_HALF + " SOLUTIONS " + Reports.SEPARATOR_HALF);
 
         for (Solution solution : solutions) {
             pendingLog.add(solution.getnOfPlanes() + " planes with " + solution.getnOfSatsPerPlane() + " satellites each, at "
                     + solution.getInclination() + " degrees of inclination. MCG: " + solution.getMcg());
         }
         updateLog();
-        pendingLog.clear();
     }
 
     /**
      * This method logs an iteration of the algorithm together with the relevant data
      **/
-    private static void logAnalysis(int currentPlanes, int currentSatsInPlane, double currentInclination,
+    private static void logProgress(int currentPlanes, int currentSatsInPlane, double currentInclination,
                                     int complexity, double mcg, double simTime) {
         log("Analyzing: " + currentPlanes + " planes with " + currentSatsInPlane
                 + " satellites at " + currentInclination + " degrees. Complexity level: " + complexity

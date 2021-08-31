@@ -15,6 +15,8 @@ import java.util.List;
 
 public class Reports {
 
+    public static String SEPARATOR_HALF = "======================================================================";
+
     /**
      * Prints the access report for a given simulation
      */
