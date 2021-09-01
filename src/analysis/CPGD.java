@@ -244,18 +244,22 @@ public class CPGD {
         pendingLog.add(Reports.SEPARATOR_HALF + " STATISTICS " + Reports.SEPARATOR_HALF);
         pendingLog.add("Total compute time: " + toc() + " ms.");
         pendingLog.add(solutions.size() + " Solutions found");
-        StringBuilder sb = new StringBuilder("Solutions rejected at each complexity step: / ");
-        int complexity = 0;
-        for (int rejected : solutions.get(solutions.size() - 1).getDiscardedSolutions()) {
-            sb.append(complexity++).append(": ").append(rejected).append(" / ");
-        }
-        pendingLog.add(sb.toString());
-        pendingLog.add(Reports.SEPARATOR_HALF + " SOLUTIONS " + Reports.SEPARATOR_HALF);
 
-        for (Solution solution : solutions) {
-            pendingLog.add(solution.getnOfPlanes() + " planes with " + solution.getnOfSatsPerPlane() + " satellites each, at "
-                    + solution.getInclination() + " degrees of inclination. MCG: " + solution.getMcg());
+        if (!solutions.isEmpty()) {
+            StringBuilder sb = new StringBuilder("Solutions rejected at each complexity step: / ");
+            int complexity = 0;
+            for (int rejected : solutions.get(solutions.size() - 1).getDiscardedSolutions()) {
+                sb.append(complexity++).append(": ").append(rejected).append(" / ");
+            }
+            pendingLog.add(sb.toString());
+            pendingLog.add(Reports.SEPARATOR_HALF + " SOLUTIONS " + Reports.SEPARATOR_HALF);
+
+            for (Solution solution : solutions) {
+                pendingLog.add(solution.getnOfPlanes() + " planes with " + solution.getnOfSatsPerPlane() + " satellites each, at "
+                        + solution.getInclination() + " degrees of inclination. MCG: " + solution.getMcg());
+            }
         }
+
         updateLog();
     }
 
