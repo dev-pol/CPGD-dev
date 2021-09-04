@@ -4,6 +4,7 @@ import simulation.assets.objects.Device;
 import simulation.assets.objects.Satellite;
 import simulation.structures.Event;
 import simulation.structures.Interval;
+import simulation.utils.Reports;
 import simulation.utils.Utils;
 
 import java.util.*;
@@ -142,6 +143,8 @@ public class MultiGateway {
             allAccesses.addAll(computeDevices2Constellation());
 
         }
+
+        Reports.printAccessReport(allAccesses);
 
         lastSimTime = System.currentTimeMillis() - t0;
 
