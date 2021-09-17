@@ -10,7 +10,7 @@ import simulation.utils.Utils;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class MultiGateway {
+public class ConstellationAccess {
 
     private final Simulation simulation = new Simulation();
     private List<Device> devices;
@@ -23,26 +23,26 @@ public class MultiGateway {
     private double maxMCG = Double.MAX_VALUE;
     private long lastSimTime = 0;
 
-    public MultiGateway() {
+    public ConstellationAccess() {
 
     }
 
-    public MultiGateway(String dateStart, String dateEnd, double step, double visibilityThreshold) {
+    public ConstellationAccess(String dateStart, String dateEnd, double step, double visibilityThreshold) {
         this.simulation.setParams(dateStart, dateEnd, step, visibilityThreshold);
     }
 
-    public MultiGateway(List<Device> devices, List<Satellite> satellites) {
+    public ConstellationAccess(List<Device> devices, List<Satellite> satellites) {
         this.devices = devices;
         this.satellites = satellites;
     }
 
-    public MultiGateway(List<Device> devices, List<Satellite> satellites, String dateStart, String dateEnd, double step, double visibilityThreshold) {
+    public ConstellationAccess(List<Device> devices, List<Satellite> satellites, String dateStart, String dateEnd, double step, double visibilityThreshold) {
         this.devices = devices;
         this.satellites = satellites;
         this.simulation.setParams(dateStart, dateEnd, step, visibilityThreshold);
     }
 
-    public MultiGateway(String devicesFile, String satellitesFile, String dateStart, String dateEnd, double step, double visibilityThreshold) {
+    public ConstellationAccess(String devicesFile, String satellitesFile, String dateStart, String dateEnd, double step, double visibilityThreshold) {
         this(Utils.devicesFromFile(devicesFile), Utils.satellitesFromFile(satellitesFile), dateStart, dateEnd, step, visibilityThreshold);
     }
 
