@@ -1,6 +1,6 @@
 package analysis;
 
-import simulation.MultiGateway;
+import simulation.ConstellationAccess;
 import simulation.assets.objects.Device;
 import simulation.assets.objects.Satellite;
 import simulation.structures.Solution;
@@ -46,9 +46,9 @@ public class CPGD {
 
         tic();
 
-        var multiGatewayAnalysis = new MultiGateway(START_DATE, SEARCH_DATE, TIME_STEP, VISIBILITY_THRESHOLD);
+        var constellationAccess = new ConstellationAccess(START_DATE, SEARCH_DATE, TIME_STEP, VISIBILITY_THRESHOLD);
 
-        multiGatewayAnalysis.setIncludeCoverageGaps(true);
+        constellationAccess.setIncludeCoverageGaps(true);
 
         minInclination = getInclination(SEMI_MAJOR_AXIS, ECCENTRICITY, VISIBILITY_THRESHOLD, MAX_LAT);
 
@@ -79,50 +79,49 @@ public class CPGD {
             System.out.println("Performing: " + currentPlanes + "-" + currentSatsInPlane + "-" + currentInclination);
 
             // Set "first look" scenario time
-            multiGatewayAnalysis.setScenarioParams(START_DATE, SEARCH_DATE, TIME_STEP, VISIBILITY_THRESHOLD);
+            constellationAccess.setScenarioParams(START_DATE, SEARCH_DATE, TIME_STEP, VISIBILITY_THRESHOLD);
 
             // Populate the constellation
             populateConstellation(satellites, currentPlanes, currentSatsInPlane, currentInclination);
-            multiGatewayAnalysis.setSatellites(satellites);
+            constellationAccess.setSatellites(satellites);
 
             for (complexity = 0; complexity < COMPLEXITY_LEVELS; complexity++) {
 
                 // If the MCG requirement is met at complexity 0, increase complexity
-                if (complexity > 1 && multiGatewayAnalysis.getMaxMCGMinutes() <= MAX_MCG) {
+                if (complexity > 1 && constellationAccess.getMaxMCGMinutes() <= MAX_MCG) {
                     // Increase scenario time
-                    multiGatewayAnalysis.setScenarioParams(START_DATE, END_DATE, TIME_STEP, VISIBILITY_THRESHOLD);
+                    constellationAccess.setScenarioParams(START_DATE, END_DATE, TIME_STEP, VISIBILITY_THRESHOLD);
                 }
 
                 populateDeviceList(devices, nFacilities, longitudeResolution, complexity);
-                Reports.saveDevicesInfo(devices, OUTPUT_PATH + "devices_complexity_" + complexity + CSV_EXTENSION);
 
                 // Set the list of devices in the analyzer, compute accesses and MCG
-                multiGatewayAnalysis.setDevices(devices);
-                multiGatewayAnalysis.computeDevicesPOV();
-                multiGatewayAnalysis.computeMaxMCG();
+                constellationAccess.setDevices(devices);
+                constellationAccess.computeDevicesPOV();
+                constellationAccess.computeMaxMCG();
 
                 logProgress(currentPlanes, currentSatsInPlane, currentInclination, complexity,
-                        multiGatewayAnalysis.getMaxMCGMinutes(), multiGatewayAnalysis.getLastSimTime());
+                        constellationAccess.getMaxMCGMinutes(), constellationAccess.getLastSimTime());
 
                 // If the requirement is not met after increasing complexity, break the loop
-                if (multiGatewayAnalysis.getMaxMCGMinutes() > MAX_MCG) {
+                if (constellationAccess.getMaxMCGMinutes() > MAX_MCG) {
                     break;
                 }
             }
 
             // Add solution found
-            if (multiGatewayAnalysis.getMaxMCGMinutes() <= MAX_MCG) {
+            if (constellationAccess.getMaxMCGMinutes() <= MAX_MCG) {
                 solutionFound = true;
                 solutions.add(new Solution(currentPlanes, currentSatsInPlane, currentInclination,
-                        multiGatewayAnalysis.getMaxMCGMinutes(), devices, satellites, discarded));
+                        constellationAccess.getMaxMCGMinutes(), devices, satellites, discarded));
                 log("SOLUTION!: " + currentPlanes + " planes with " + currentSatsInPlane
-                        + " satellites at " + currentInclination + " degrees. MCG: " + multiGatewayAnalysis.getMaxMCGMinutes());
+                        + " satellites at " + currentInclination + " degrees. MCG: " + constellationAccess.getMaxMCGMinutes());
 
             } else {
                 discarded[complexity] += 1;
                 log("Discarded: " + currentPlanes + " planes with " + currentSatsInPlane
                         + " satellites at " + currentInclination + " degrees. Complexity level: " + complexity
-                        + " > MCG: " + multiGatewayAnalysis.getMaxMCGMinutes());
+                        + " > MCG: " + constellationAccess.getMaxMCGMinutes());
             }
 
             // Here we perform the movement towards another solutions
