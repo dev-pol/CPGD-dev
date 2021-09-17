@@ -37,6 +37,7 @@ public class CPGD {
     static final String CSV_EXTENSION = ".csv";
     static final String LOG_EXTENSION = ".log";
     static final String LOG_FILE_PATH = OUTPUT_PATH + RUN_DATE + LOG_EXTENSION;
+    static final boolean DEBUG_MODE = Boolean.parseBoolean((String) properties.get("debug_mode"));
 
     static List<String> pendingLog = new ArrayList<>();
     static double minInclination;
@@ -76,7 +77,7 @@ public class CPGD {
 
         while (go) {
 
-            System.out.println("Performing: " + currentPlanes + "-" + currentSatsInPlane + "-" + currentInclination);
+            if (DEBUG_MODE) System.out.println("Performing: " + currentPlanes + "-" + currentSatsInPlane + "-" + currentInclination);
 
             // Set "first look" scenario time
             constellationAccess.setScenarioParams(START_DATE, SEARCH_DATE, TIME_STEP, VISIBILITY_THRESHOLD);
