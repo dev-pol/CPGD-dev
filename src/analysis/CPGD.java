@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Properties;
 
 public class CPGD {
-
+    // Load configuration file
     static final String RUN_DATE = Utils.unix2stamp(System.currentTimeMillis()).replace(":", "-");
     static final Properties properties = Utils.loadProperties();
     static final String OUTPUT_PATH = (String) properties.get("output_path");
@@ -22,7 +22,6 @@ public class CPGD {
     static final double TIME_STEP = Double.parseDouble((String) properties.get("time_step"));
     static final double VISIBILITY_THRESHOLD = Double.parseDouble((String) properties.get("visibility_threshold"));
     static final double MAX_MCG = Double.parseDouble((String) properties.get("max_mcg"));
-    static final double MAX_LAT = Double.parseDouble((String) properties.get("max_lat"));
     static final int MIN_PLANES = Integer.parseInt((String) properties.get("min_planes"));
     static final int MAX_PLANES = Integer.parseInt((String) properties.get("max_planes"));
     static final int MIN_SATS_IN_PLANE = Integer.parseInt((String) properties.get("min_sats_in_plane"));
@@ -34,9 +33,12 @@ public class CPGD {
     static final double ECCENTRICITY = Double.parseDouble((String) properties.get("eccentricity"));
     static final double PERIGEE_ARGUMENT = Double.parseDouble((String) properties.get("perigee_argument"));
     static final double DEVICES_HEIGHT = Double.parseDouble((String) properties.get("devices_height"));
+    static final String CoverageGrid = (String) properties.get("CoverageGrid"); // ['Global', '*.csv', '*.shp']
+    static final String CheckDevices = (String) properties.get("CheckDevices"); // ['all', 'progressive-rect', 'progressive-mesh']
     static final String CSV_EXTENSION = ".csv";
     static final String LOG_EXTENSION = ".log";
     static final String LOG_FILE_PATH = OUTPUT_PATH + RUN_DATE + LOG_EXTENSION;
+    //  Check if we are running in debug mode
     static final boolean DEBUG_MODE = Boolean.parseBoolean((String) properties.get("debug_mode"));
 
     static List<String> pendingLog = new ArrayList<>();
@@ -44,24 +46,28 @@ public class CPGD {
     static long lastComputeTime;
 
     public static void main(String[] args) {
+        /*
+        TBD:
+        (1) Adaptive grid resolution longitude for 'Global' and 'progressive-rect' cases
+        (2) Parse .shp files to load arbitrary regions and shapes (src: GADM, European, OpenStreetMap) (GeoTools)
+        (3) Generate hexagonal meshes over regions to obtain grid centroids
+        (4) Populate a device list from grid centroids
+        (5) Adaptive number of mesh elements for progressive complexity
 
-        tic();
-
-        var constellationAccess = new ConstellationAccess(START_DATE, SEARCH_DATE, TIME_STEP, VISIBILITY_THRESHOLD);
-
-        constellationAccess.setIncludeCoverageGaps(true);
-
-        minInclination = getInclination(SEMI_MAJOR_AXIS, ECCENTRICITY, VISIBILITY_THRESHOLD, MAX_LAT);
-
-        startLog();
-
-        // Amount of discarded solutions at each complexity step
-        int[] discarded = new int[COMPLEXITY_LEVELS];
+        Three cases:
+        [0] (Global) + (.*csv, progressive-rect)
+        [1] (*.csv, all)
+        [2] (*.csv/.*shp, progressive-mesh)
+        */
+        int cases = 0; // The cases above define which algorithm is run inside the while loop
+        int[] discarded = new int[COMPLEXITY_LEVELS];         // Amount of discarded solutions at each complexity step
 
         // Initial solution
         int currentPlanes = MIN_PLANES;
         int currentSatsInPlane = MIN_SATS_IN_PLANE;
+        double MAX_LAT = 0, MIN_LAT = 0, MAX_LON = 0, MIN_LON = 0;
         double currentInclination = minInclination;
+        double longitudeResolution = MAX_MCG * 0.25; // grid resolution longitude
 
         boolean go = true;
         boolean solutionFound = false;
@@ -70,10 +76,82 @@ public class CPGD {
         List<Device> devices = new ArrayList<>(); // Devices list
         List<Satellite> satellites = new ArrayList<>(); // Satellites list
 
-        double longitudeResolution = MAX_MCG * 0.25; // grid resolution longitude - wise
-        int nFacilities = (int) Math.round(360 / longitudeResolution); // Number of grid points according to the grid resolution
+        // Parse scenario parameters and initialise values
+        if (CoverageGrid.equals("global")) { // Global simulation
+            System.out.println("Initialising Global Coverage Analysis");
+            MIN_LAT = 0; // Hemispherical symmetry
+            MAX_LAT = Double.parseDouble((String) properties.get("max_lat"));
+            MIN_LON = 0;
+            MAX_LON = 360;
+            cases = 0;
+        }
+        else if (CoverageGrid.endsWith(".csv")) { // CSV file provided
+            System.out.println("Initialising Grid Coverage Analysis (TBD).");
+            
+            devices = Utils.devicesFromFile(CoverageGrid); // load grid
+            if (CheckDevices.equals("progressive-rect")) { 
+                // Progressive complexity, search inside grid bounded by 
+                // [max(lat), min(lon)], [max(lat), max(lon)], [max(lat), min(lon)], [min(lat), min(lon)]
+                System.out.println("Progressive search using progressive rectangular grid:");
+                cases = 0;
+                int size = devices.size(); 
+                double current_lat, current_lon;
+                Device current_device;
+                // Find grid's maximum and minimum values
+                MAX_LAT = Double.MIN_VALUE; MIN_LAT = Double.MAX_VALUE; MIN_LON = Double.MAX_VALUE; MAX_LON = Double.MIN_VALUE; 
+                for (int device_id = 0; device_id < size; device_id++){
+                    current_device = devices.get(device_id);
+                    current_lat = current_device.getLat(); current_lon = current_device.getLon();
+                    if (current_lat > MAX_LAT) {
+                        MAX_LAT = current_lat;
+                    }
+                    if (current_lat < MIN_LAT) {
+                        MIN_LAT = current_lat;
+                    }
+                    if (current_lon > MAX_LON) {
+                        MAX_LON = current_lon;
+                    }
+                    if (current_lon < MIN_LON) {
+                        MIN_LON = current_lon;
+                    }
+                }
+                System.out.println("\n MAX_LAT: " + MAX_LAT + "\n MIN_LAT: " + MIN_LAT + "\n MAX_LON: " + MAX_LON + "\n MIN_LON: " + MIN_LON);
+            }
+            else if (CheckDevices.equals("all")) {
+                System.out.println("All grid points will be evaluated.");
+                cases = 1;
+            }
+            else if (CheckDevices.equals("progressive-mesh")) {
+                System.out.println("Progressive meshing will be used. (TBD)");
+                cases = 2;
+                System.exit(0);
+            }
+            else {
+                System.out.println("Missing or invalid CheckDevices parameter. Valid values: 'all', 'progressive-rect', 'progressive-mesh'");
+                System.exit(-1);
+            }
+        }
+        else if (CoverageGrid.endsWith(".shp")) { // Load shape file
+            cases = 2;
+            System.out.println("Initialising Regional Coverage Analysis (TBD). Exiting.");
+            System.exit(0);
+        }
+        else {
+            System.out.println("CoverageGrid Parameter:" + CoverageGrid);
+            System.out.println("Missing or invalid CoverageGrid parameter");
+            System.exit(-1);
+        }
+        
+        var constellationAccess = new ConstellationAccess(START_DATE, SEARCH_DATE, TIME_STEP, VISIBILITY_THRESHOLD);
 
-        int complexity;
+        constellationAccess.setIncludeCoverageGaps(true);
+
+        minInclination = getInclination(SEMI_MAJOR_AXIS, ECCENTRICITY, VISIBILITY_THRESHOLD, MAX_LAT);
+
+        int complexity; 
+        tic();
+
+        startLog(MAX_LAT);
 
         while (go) {
 
@@ -86,49 +164,68 @@ public class CPGD {
             populateConstellation(satellites, currentPlanes, currentSatsInPlane, currentInclination);
             constellationAccess.setSatellites(satellites);
 
-            for (complexity = 0; complexity < COMPLEXITY_LEVELS; complexity++) {
+            if (cases == 0) { // global || *.csv + progressive-rect
+                 for (complexity = 0; complexity < COMPLEXITY_LEVELS; complexity++) {
 
-                // If the MCG requirement is met at complexity 0, increase complexity
-                if (complexity > 1 && constellationAccess.getMaxMCGMinutes() <= MAX_MCG) {
-                    // Increase scenario time
-                    constellationAccess.setScenarioParams(START_DATE, END_DATE, TIME_STEP, VISIBILITY_THRESHOLD);
+                    // If the MCG requirement is met at complexity 0, increase complexity
+                    if (complexity > 1 && constellationAccess.getMaxMCGMinutes() <= MAX_MCG) {
+                        // Increase scenario time
+                        constellationAccess.setScenarioParams(START_DATE, END_DATE, TIME_STEP, VISIBILITY_THRESHOLD);
+                    }
+
+                    populateDeviceList(devices, longitudeResolution, complexity, MIN_LAT, MAX_LAT, MIN_LON, MAX_LON);
+
+                    // Set the list of devices in the analyzer, compute accesses and MCG
+                    constellationAccess.setDevices(devices);
+                    constellationAccess.computeDevicesPOV();
+                    constellationAccess.computeMaxMCG();
+
+                    logProgress(currentPlanes, currentSatsInPlane, currentInclination, complexity,
+                            constellationAccess.getMaxMCGMinutes(), constellationAccess.getLastSimTime());
+
+                    // If the requirement is not met after increasing complexity, break the loop and log the attempt
+                    if (constellationAccess.getMaxMCGMinutes() > MAX_MCG) {
+                        break;
+                    }
                 }
-
-                populateDeviceList(devices, nFacilities, longitudeResolution, complexity);
-
+                // If a solution is found, log it
+                if (constellationAccess.getMaxMCGMinutes() <= MAX_MCG) {
+                    solutionFound = true;
+                    solutions.add(new Solution(currentPlanes, currentSatsInPlane, currentInclination,
+                            constellationAccess.getMaxMCGMinutes(), devices, satellites, discarded));
+                    log("SOLUTION!: " + currentPlanes + " planes with " + currentSatsInPlane
+                            + " satellites at " + currentInclination + " degrees. MCG: " + constellationAccess.getMaxMCGMinutes());
+                } 
+                else {
+                    discarded[complexity] += 1;
+                    log("Discarded: " + currentPlanes + " planes with " + currentSatsInPlane
+                        + " satellites at " + currentInclination + " degrees. Complexity level: " + complexity
+                        + " > MCG: " + constellationAccess.getMaxMCGMinutes());
+                }
+            }
+            else if (cases == 1) { // *.csv + all
                 // Set the list of devices in the analyzer, compute accesses and MCG
                 constellationAccess.setDevices(devices);
                 constellationAccess.computeDevicesPOV();
                 constellationAccess.computeMaxMCG();
-
-                logProgress(currentPlanes, currentSatsInPlane, currentInclination, complexity,
-                        constellationAccess.getMaxMCGMinutes(), constellationAccess.getLastSimTime());
-
-                // If the requirement is not met after increasing complexity, break the loop
-                if (constellationAccess.getMaxMCGMinutes() > MAX_MCG) {
-                    break;
-                }
-            }
-
-            // Add solution found
-            if (constellationAccess.getMaxMCGMinutes() <= MAX_MCG) {
-                solutionFound = true;
-                solutions.add(new Solution(currentPlanes, currentSatsInPlane, currentInclination,
-                        constellationAccess.getMaxMCGMinutes(), devices, satellites, discarded));
-                log("SOLUTION!: " + currentPlanes + " planes with " + currentSatsInPlane
+                // If a solution is found, log it
+                if (constellationAccess.getMaxMCGMinutes() <= MAX_MCG) {
+                    solutionFound = true;
+                    solutions.add(new Solution(currentPlanes, currentSatsInPlane, currentInclination,
+                    constellationAccess.getMaxMCGMinutes(), devices, satellites, discarded));
+                    log("SOLUTION!: " + currentPlanes + " planes with " + currentSatsInPlane
                         + " satellites at " + currentInclination + " degrees. MCG: " + constellationAccess.getMaxMCGMinutes());
-
-            } else {
-                discarded[complexity] += 1;
-                log("Discarded: " + currentPlanes + " planes with " + currentSatsInPlane
-                        + " satellites at " + currentInclination + " degrees. Complexity level: " + complexity
-                        + " > MCG: " + constellationAccess.getMaxMCGMinutes());
+                    }
+            }
+            else if (cases == 2) { // *.csv/*.shp + progressive-mesh
+                System.out.println("Progressive mesh not implemented yet. Exiting.");
+                System.exit(0);
             }
 
             // Here we perform the movement towards another solutions
             currentInclination += INCLINATION_STEP;
 
-            if (currentInclination > MAX_INCLINATION || solutionFound) {
+            if ((currentInclination > MAX_INCLINATION) || (solutionFound)) {
 
                 solutionFound = false;
                 currentInclination = minInclination;
@@ -191,18 +288,20 @@ public class CPGD {
      * This method populates the list of devices passed as a reference according to the indicated complexity and
      * the algorithm variables
      **/
-    private static void populateDeviceList(List<Device> devices, int nFacilities, double longitudeResolution, int complexity) {
+    private static void populateDeviceList(List<Device> devices, double longitudeResolution, int complexity, double MIN_LAT, double MAX_LAT, 
+    double MIN_LON, double MAX_LON) {
 
         devices.clear();
-
+        // Compute grid extremes
+        int nFacilities = (int) Math.round((MAX_LON - MIN_LON) / longitudeResolution); // Number of grid points according to the grid resolution
         double latitudeResolution = Math.pow(2, complexity);
-        double step = MAX_LAT / latitudeResolution;
-        double lastStep = MAX_LAT - step;
+        double step = (MAX_LAT - MIN_LAT) / latitudeResolution;
+        double lastStep = (MAX_LAT - MIN_LAT) - step;
         double firstStep;
 
-        if (complexity == 0 || complexity == 1) {
-            firstStep = 0;
-            step = MAX_LAT / 2;
+        if ((complexity == 0) || (complexity == 1)) {
+            firstStep = MIN_LAT;
+            step = (MAX_LAT - MIN_LAT) / 2;
             lastStep = MAX_LAT;
         } else {
             firstStep = step;
@@ -212,7 +311,7 @@ public class CPGD {
         int facId = 0;
         for (double lat = firstStep; lat <= lastStep; lat += step) {
             for (int fac = 0; fac < nFacilities; fac++) {
-                devices.add(new Device(facId++, lat, fac * longitudeResolution, DEVICES_HEIGHT));
+                devices.add(new Device(facId++, lat, MIN_LON + fac * longitudeResolution, DEVICES_HEIGHT));  // Complexity reduction: all devices at the same height
             }
         }
     }
@@ -220,7 +319,7 @@ public class CPGD {
     /**
      * This method starts the log file. It logs important run configurations in a header.
      **/
-    private static void startLog() {
+    private static void startLog(double MAX_LAT) {
 
         pendingLog.add("Starting analysis at " + RUN_DATE);
         pendingLog.add("Scenario start: " + START_DATE + " - Scenario end: " + END_DATE);

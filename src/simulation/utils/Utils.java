@@ -55,7 +55,9 @@ public class Utils {
 
     /**
      * Reads a file containing asset(s) parameter(s) and returns a list of objects accordingly
-     *
+     * Latitude [-90, 90] [degrees]
+     * Longitude [-180, 180] [degrees]
+     * Height [m]
      * @return List<Asset>
      */
     public static List<Device> devicesFromFile(String fileName) {
@@ -68,7 +70,7 @@ public class Utils {
             while ((line = br.readLine()) != null) {
                 if (!line.startsWith("//") && line.length() > 0) {
                     var data = line.split(",");
-                    assetList.add(new Device(id++, data[0], Double.parseDouble(data[1]), Double.parseDouble(data[2]), Double.parseDouble(data[3])*1000));
+                    assetList.add(new Device(id++, data[0], Double.parseDouble(data[1]), Double.parseDouble(data[2]), Double.parseDouble(data[3])));
                 }
             }
         } catch (FileNotFoundException e) {
@@ -393,7 +395,7 @@ public class Utils {
 
         if (lat < 0) lat = Math.abs(lat);
 
-        double Hmax = 622000; // FIXME this is hardcoded, it should be (1 + e) * sem-maj axis
+        double Hmax = satellite.getElement("semmajaxis") * (1 + satellite.getElement("eccentricity")) ; 
 
         double etaMax = Math.asin((EARTH_RADIUS * Math.cos(Math.toRadians(th))) / (EARTH_RADIUS + Hmax));
         double lambdaMax = 90 - th - Math.toDegrees(etaMax);
