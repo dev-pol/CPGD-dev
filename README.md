@@ -19,3 +19,6 @@ https://mvnrepository.com/artifact/org.hipparchus/hipparchus-core/1.8
 Orbit Extrapolation Kit
 (Maven) org.orekit:orekit:10.3
 https://mvnrepository.com/artifact/org.orekit/orekit/10.3
+
+GeoTools 21.2
+https://mvnrepository.com/artifact/org.geotools
