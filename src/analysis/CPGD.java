@@ -53,11 +53,8 @@ public class CPGD {
     public static void main(String[] args) {
         /*
          * TBD: Optional: Adaptive grid resolution longitude for 'Global' and
-         * 'progressive-rect' cases (1) Populate a device list from grid centroids (2)
-         * Adaptive number of mesh elements for progressive complexity
-         * 
-         * Three cases: [0] (Global) + (.*csv, progressive-rect) [1] (*.csv, all) [2]
-         * (*.csv/.*shp, progressive-mesh)
+         * 'progressive-rect' cases Three cases: [0] (Global) + (.*csv,
+         * progressive-rect) [1] (*.csv, all) [2] (*.csv/.*shp, progressive-mesh)
          */
 
         int cases = 0; // The cases above define which algorithm is run inside the while loop
@@ -72,13 +69,14 @@ public class CPGD {
         double longitudeResolution = MAX_MCG * 0.25; // grid resolution longitude
         double meshResolution = StartingMeshGridResolution; // degrees
 
-        boolean go = true;
+        boolean allCandidatesTested = false;
         boolean solutionFound = false;
 
         List<Solution> solutions = new ArrayList<>(); // Solutions list
         List<Device> devices = new ArrayList<>(); // Devices list
         List<Satellite> satellites = new ArrayList<>(); // Satellites list
 
+        
         // Parse scenario parameters and initialise values
         if (CoverageGrid.equals("global")) { // Global simulation
             System.out.println("Initialising Global Coverage Analysis");
@@ -157,23 +155,23 @@ public class CPGD {
 
         startLog(MAX_LAT);
 
-        while (go) {
+        while (!allCandidatesTested) { // run for all candidates
 
             if (DEBUG_MODE)
                 System.out
                         .println("Performing: " + currentPlanes + "-" + currentSatsInPlane + "-" + currentInclination);
 
-            // Set "first look" scenario time
+            // Set initial (short-term / "first-look") scenario time
             constellationAccess.setScenarioParams(START_DATE, SEARCH_DATE, TIME_STEP, VISIBILITY_THRESHOLD);
 
-            // Populate the constellation
+            // Populate the candidate constellation
             populateConstellation(satellites, currentPlanes, currentSatsInPlane, currentInclination);
             constellationAccess.setSatellites(satellites);
 
             if (cases == 0) { // global || *.csv + progressive-rect
                 for (complexity = 0; complexity < COMPLEXITY_LEVELS; complexity++) {
 
-                    // If the MCG requirement is met at complexity 0, increase complexity
+                    // If the MCG requirement is met at complexity 0, increase simulation time
                     if (complexity > 1 && constellationAccess.getMaxMCGMinutes() <= MAX_MCG) {
                         // Increase scenario time
                         constellationAccess.setScenarioParams(START_DATE, END_DATE, TIME_STEP, VISIBILITY_THRESHOLD);
@@ -221,35 +219,72 @@ public class CPGD {
                     log("SOLUTION!: " + currentPlanes + " planes with " + currentSatsInPlane + " satellites at "
                             + currentInclination + " degrees. MCG: " + constellationAccess.getMaxMCGMinutes());
                 }
-            } else if (cases == 2) { // *.csv/*.shp + progressive-mesh
-                // Generate initial coverage mesh (hexagonal grid over region shape) and compute centroids
-                try {
-                    List<Double> MeshGrid = new ArrayList<>(); // Even indexes contain lat-coordinates, odd indexes contain
-                                                               // lon-coordinates
-                    MeshGrid = CoverageMesh.buildMesh(shpFile, meshResolution);
-                    int numCoordinates = MeshGrid.size();
-                    if (DEBUG_MODE) {
-                        for (int i = 0; i < numCoordinates / 2; i = i + 1) {
-                            System.out.println("Coordinate Pairs (Lat, Lon): (" + MeshGrid.get(2 * i) + ","
-                                    + MeshGrid.get(2 * i + 1) + ")");
+            } else if (cases == 2) { // *.csv||*.shp + progressive-mesh
+                for (complexity = 0; complexity < COMPLEXITY_LEVELS; complexity = complexity + 1) { 
+                    
+                    try {
+                        // 
+                        // If the MCG requirement is met at complexity < 1, increase scenario time
+                        if (complexity > 1 && constellationAccess.getMaxMCGMinutes() <= MAX_MCG) {
+                            constellationAccess.setScenarioParams(START_DATE, END_DATE, TIME_STEP,
+                                    VISIBILITY_THRESHOLD);
                         }
-                        System.out.println("Generated coordinates");
+                        // Generate initial coverage mesh (hexagonal grid over region shape) and compute
+                        // centroids
+                        List<Double> MeshGrid = new ArrayList<>(); // Even indexes contain lat-coordinates, odd indexes
+                                                                   // contain
+                                                                   // lon-coordinates
+                        MeshGrid = CoverageMesh.buildMesh(shpFile, meshResolution);
+                        int numCoordinates = MeshGrid.size();
+                        if (DEBUG_MODE) {
+                            for (int i = 0; i < numCoordinates / 2; i = i + 1) {
+                                System.out.println("Coordinate Pairs (Lat, Lon): (" + MeshGrid.get(2 * i) + ","
+                                        + MeshGrid.get(2 * i + 1) + ")");
+                            }
+                            System.out.println("Generated coordinates");
+                        }
+                        // Clear device list before populating it
+                        devices.clear();
+                        // Populate device list
+                        for (int i = 0; i < numCoordinates / 2; i = i + 1) {
+                            // id, lat, lon, altitude
+                            devices.add(new Device(i, MeshGrid.get(2 * i), MeshGrid.get(2 * i + 1), DEVICES_HEIGHT));
+                        }
+                        // Compute constellation accesses
+                        constellationAccess.setDevices(devices);
+                        constellationAccess.computeDevicesPOV();
+                        constellationAccess.computeMaxMCG();
+                        // Log Progress
+                        logProgress(currentPlanes, currentSatsInPlane, currentInclination, complexity,
+                                constellationAccess.getMaxMCGMinutes(), constellationAccess.getLastSimTime());
+                        // Early break if solution not satisfied
+                        if (constellationAccess.getMaxMCGMinutes() > MAX_MCG) {
+                            break;
+                        }
+                    } catch (Exception e) {
+                        System.out.println(
+                                "Failed to build mesh. Please ensure both .shp and .shx files are present in the same directory."
+                                        + "If so, try to reduce the initial grid resolution to be compatible with your .shp file.");
+                        System.exit(-1);
                     }
-                } catch (Exception e) {
-                    System.out.println(
-                            "Failed to build mesh. Please ensure both .shp and .shx files are present in the same directory."
-                                    + "If so, try to reduce the initial grid resolution to be compatible with your .shp file.");
-                    System.exit(-1);
                 }
-        
-                // ADD: (1) Populate device list
-                // ADD: (2) Check for solution
-                // ADD: (3) Increase complexity
-                System.out.println("Progressive mesh not implemented yet. Exiting.");
-                System.exit(0);
+                // Check if solution exists @ max complexity
+                if (constellationAccess.getMaxMCGMinutes() <= MAX_MCG) {
+                    solutionFound = true;
+                    solutions.add(new Solution(currentPlanes, currentSatsInPlane, currentInclination,
+                            constellationAccess.getMaxMCGMinutes(), devices, satellites, discarded));
+                    log("SOLUTION!: " + currentPlanes + " planes with " + currentSatsInPlane + " satellites at "
+                            + currentInclination + " degrees. MCG: " + constellationAccess.getMaxMCGMinutes());
+                } else {
+                    discarded[complexity] += 1;
+                    log("Discarded: " + currentPlanes + " planes with " + currentSatsInPlane + " satellites at "
+                            + currentInclination + " degrees. Complexity level: " + complexity + " > MCG: "
+                            + constellationAccess.getMaxMCGMinutes());
+                }
+                // Adapt mesh resolution (exponential rule, double the resolution every iteration)
+                meshResolution = meshResolution/2;
             }
-
-            // Here we perform the movement towards another solutions
+            // Move to next constellation candidate
             currentInclination += INCLINATION_STEP;
 
             if ((currentInclination > MAX_INCLINATION) || (solutionFound)) {
@@ -264,12 +299,13 @@ public class CPGD {
                 }
 
                 if (currentPlanes > MAX_PLANES) {
-                    go = false;
+                    allCandidatesTested = true;
                 }
             }
         }
-
+        // Produce report with constellation candidates that satisfy requirements
         Reports.saveSolutionCSV(solutions, OUTPUT_PATH + RUN_DATE + CSV_EXTENSION);
+
         endLog(solutions);
 
     }
