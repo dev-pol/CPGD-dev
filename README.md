@@ -20,5 +20,14 @@ Orbit Extrapolation Kit
 (Maven) org.orekit:orekit:10.3
 https://mvnrepository.com/artifact/org.orekit/orekit/10.3
 
-GeoTools 21.2
-https://mvnrepository.com/artifact/org.geotools
+GeoTools Main 21.2
+(Maven) org.geotools:gt-main:21.1
+https://mvnrepository.com/artifact/org.geotools/gt-main/21.1
+
+GeoTools OpenGIS 21.2
+(Maven) org.geotools:gt-opengis:21.2
+https://mvnrepository.com/artifact/org.geotools/gt-opengis/21.2
+
+GeoTools Vector Grid 21.2
+(Maven) org.geotools:gt-grid:21.2
+https://mvnrepository.com/artifact/org.geotools/gt-grid/21.2
