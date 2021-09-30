@@ -75,21 +75,21 @@ public class CPGD {
 
         // Parse scenario parameters and initialise values
         if (CoverageGrid.equals("global")) { // Global simulation
-            System.out.println("Initialising Global Coverage Analysis");
+            System.out.println("Initialising Global Coverage Analysis:");
             MIN_LAT = 0; // Hemispherical symmetry
             MAX_LAT = Double.parseDouble((String) properties.get("max_lat"));
             MIN_LON = 0;
             MAX_LON = 360;
             cases = 0;
         } else if (CoverageGrid.endsWith(".csv")) { // CSV file provided
-            System.out.println("Initialising Grid Coverage Analysis (TBD).");
+            System.out.println("Initialising Grid Coverage Analysis:");
 
             devices = Utils.devicesFromFile(CoverageGrid); // load grid
             if (CheckDevices.equals("progressive-rect")) {
                 // Progressive complexity, search inside grid bounded by
                 // [max(lat), min(lon)], [max(lat), max(lon)], [max(lat), min(lon)], [min(lat),
                 // min(lon)]
-                System.out.println("Progressive search using progressive rectangular grid:");
+                System.out.println("Progressive search using rectangular grid:");
                 cases = 0;
                 int size = devices.size();
                 double current_lat, current_lon;
@@ -122,7 +122,7 @@ public class CPGD {
                 System.out.println("All grid points will be evaluated.");
                 cases = 1;
             } else if (CheckDevices.equals("progressive-mesh")) {
-                System.out.println("Grid-based Progressive meshing will be used. (TBD)");
+                System.out.println("Grid-based progressive meshing TBD. Exiting.");
                 cases = 2;
                 System.exit(0);
             } else {
@@ -131,7 +131,7 @@ public class CPGD {
                 System.exit(-1);
             }
         } else if (CoverageGrid.endsWith(".shp")) { // Load shape file
-            System.out.println("Initialising Regional Coverage Analysis (TBD).");
+            System.out.println("Initialising Regional Coverage Analysis:");
             shpFile = CoverageGrid;
             cases = 2;
         } else {
