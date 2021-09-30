@@ -61,9 +61,10 @@ public class CPGD {
         int currentPlanes = MIN_PLANES;
         int currentSatsInPlane = MIN_SATS_IN_PLANE;
         double MAX_LAT = 0, MIN_LAT = 0, MAX_LON = 0, MIN_LON = 0;
-        double currentInclination = minInclination;
+        double currentInclination = 0;
         double longitudeResolution = MAX_MCG * 0.25; // grid resolution longitude
         double meshResolution = StartingMeshGridResolution; // degrees
+        double candidateMCG = Double.MIN_VALUE;
 
         boolean allCandidatesTested = false;
         boolean exceededMCG = false;
@@ -87,7 +88,7 @@ public class CPGD {
             devices = Utils.devicesFromFile(CoverageGrid); // load grid
             if (CheckDevices.equals("progressive-rect")) {
                 // Progressive complexity, search inside grid bounded by
-                // [max(lat), min(lon)], [max(lat), max(lon)], [max(lat), min(lon)], [min(lat),
+                // [max(lat), min(lon)], [max(lat), max(lon)], [min(lat), min(lon)], [min(lat),
                 // min(lon)]
                 System.out.println("Progressive search using rectangular grid:");
                 cases = 0;
@@ -127,7 +128,7 @@ public class CPGD {
                 System.exit(0);
             } else {
                 System.out.println(
-                        "Missing or invalid CheckDevices parameter. Valid values: 'all', 'progressive-rect', 'progressive-mesh'");
+                        "Missing or invalid CheckDevices parameter. Valid values: 'all', 'progressive-rect', 'progressive-mesh'.");
                 System.exit(-1);
             }
         } else if (CoverageGrid.endsWith(".shp")) { // Load shape file
@@ -136,7 +137,7 @@ public class CPGD {
             cases = 2;
         } else {
             System.out.println("CoverageGrid Parameter:" + CoverageGrid);
-            System.out.println("Missing or invalid CoverageGrid parameter");
+            System.out.println("Missing or invalid CoverageGrid parameter.");
             System.exit(-1);
         }
 
@@ -144,9 +145,15 @@ public class CPGD {
 
         constellationAccess.setIncludeCoverageGaps(true);
 
-        minInclination = getInclination(SEMI_MAJOR_AXIS, ECCENTRICITY, VISIBILITY_THRESHOLD, MAX_LAT);
-
         tic();
+
+        if ((cases == 0) || (cases == 1)) {
+            // If the maximum device latitude is known (global or progressive-rect methods),
+            // start from
+            // a minimum inclination
+            minInclination = getInclination(SEMI_MAJOR_AXIS, ECCENTRICITY, VISIBILITY_THRESHOLD, MAX_LAT);
+            currentInclination = minInclination;
+        }
 
         startLog(MAX_LAT);
 
@@ -166,6 +173,7 @@ public class CPGD {
             if (cases == 0) { // global || *.csv + progressive-rect
                 complexity = 0;
                 exceededMCG = false;
+                candidateMCG = Double.MIN_VALUE;
                 while ((!exceededMCG) && (complexity < COMPLEXITY_LEVELS)) {
                     if (complexity > 1) { // If the first candidate did not fail, increase scenario time
                         constellationAccess.setScenarioParams(START_DATE, END_DATE, TIME_STEP, VISIBILITY_THRESHOLD);
@@ -177,11 +185,12 @@ public class CPGD {
                     constellationAccess.setDevices(devices);
                     constellationAccess.computeDevicesPOV();
                     constellationAccess.computeMaxMCG();
-
+                    candidateMCG = constellationAccess.getMaxMCGMinutes();
+                    
                     logProgress(currentPlanes, currentSatsInPlane, currentInclination, complexity,
-                            constellationAccess.getMaxMCGMinutes(), constellationAccess.getLastSimTime());
+                            candidateMCG, constellationAccess.getLastSimTime());
 
-                    if (constellationAccess.getMaxMCGMinutes() > MAX_MCG) {
+                    if (candidateMCG > MAX_MCG) {
                         exceededMCG = true;
                     }
                     complexity = complexity + 1;
@@ -191,13 +200,13 @@ public class CPGD {
                     discarded[complexity] += 1;
                     log("Discarded: " + currentPlanes + " planes with " + currentSatsInPlane + " satellites at "
                             + currentInclination + " degrees. Complexity level: " + complexity + " > MCG: "
-                            + constellationAccess.getMaxMCGMinutes());
+                            + candidateMCG);
                 } else { // Satisfied MCG at maximum complexity
                     solutionFound = true;
                     solutions.add(new Solution(currentPlanes, currentSatsInPlane, currentInclination,
-                            constellationAccess.getMaxMCGMinutes(), devices, satellites, discarded));
+                            candidateMCG, devices, satellites, discarded));
                     log("SOLUTION!: " + currentPlanes + " planes with " + currentSatsInPlane + " satellites at "
-                            + currentInclination + " degrees. MCG: " + constellationAccess.getMaxMCGMinutes());
+                            + currentInclination + " degrees. MCG: " + candidateMCG);
                 }
 
             } else if (cases == 1) { // *.csv + all
@@ -205,17 +214,23 @@ public class CPGD {
                 constellationAccess.setDevices(devices);
                 constellationAccess.computeDevicesPOV();
                 constellationAccess.computeMaxMCG();
+                candidateMCG = constellationAccess.getMaxMCGMinutes();
+
                 // If a solution is found, log it
-                if (constellationAccess.getMaxMCGMinutes() <= MAX_MCG) {
+                if (candidateMCG <= MAX_MCG) {
                     solutionFound = true;
                     solutions.add(new Solution(currentPlanes, currentSatsInPlane, currentInclination,
-                            constellationAccess.getMaxMCGMinutes(), devices, satellites, discarded));
+                            candidateMCG, devices, satellites, discarded));
                     log("SOLUTION!: " + currentPlanes + " planes with " + currentSatsInPlane + " satellites at "
-                            + currentInclination + " degrees. MCG: " + constellationAccess.getMaxMCGMinutes());
+                            + currentInclination + " degrees. MCG: " + candidateMCG);
+                }
+                else {
+                    log("No solution found for the device grid.");
                 }
             } else if (cases == 2) { // *.csv||*.shp + progressive-mesh
                 complexity = 0;
                 exceededMCG = false;
+                candidateMCG = Double.MIN_VALUE;
                 meshResolution = StartingMeshGridResolution;
                 while ((!exceededMCG) && (complexity < COMPLEXITY_LEVELS)) {
                     if (complexity > 1) { // If the MCG requirement is met at complexity < 1, increase scenario time
@@ -253,13 +268,14 @@ public class CPGD {
                     constellationAccess.setDevices(devices);
                     constellationAccess.computeDevicesPOV();
                     constellationAccess.computeMaxMCG();
+                    candidateMCG = constellationAccess.getMaxMCGMinutes();
 
                     // Log Progress
                     logProgress(currentPlanes, currentSatsInPlane, currentInclination, complexity,
-                            constellationAccess.getMaxMCGMinutes(), constellationAccess.getLastSimTime());
+                            candidateMCG, constellationAccess.getLastSimTime());
 
                     // Break early if solution not satisfied
-                    if (constellationAccess.getMaxMCGMinutes() > MAX_MCG) {
+                    if (candidateMCG > MAX_MCG) {
                         exceededMCG = true;
                     }
 
@@ -273,13 +289,13 @@ public class CPGD {
                     discarded[complexity] += 1;
                     log("Discarded: " + currentPlanes + " planes with " + currentSatsInPlane + " satellites at "
                             + currentInclination + " degrees. Complexity level: " + complexity + " > MCG: "
-                            + constellationAccess.getMaxMCGMinutes());
+                            + candidateMCG);
                 } else { // Satisfied MCG at maximum complexity
                     solutionFound = true;
                     solutions.add(new Solution(currentPlanes, currentSatsInPlane, currentInclination,
-                            constellationAccess.getMaxMCGMinutes(), devices, satellites, discarded));
+                            candidateMCG, devices, satellites, discarded));
                     log("SOLUTION!: " + currentPlanes + " planes with " + currentSatsInPlane + " satellites at "
-                            + currentInclination + " degrees. MCG: " + constellationAccess.getMaxMCGMinutes());
+                            + currentInclination + " degrees. MCG: " + candidateMCG);
                 }
             }
             // Move to next constellation candidate
