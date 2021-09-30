@@ -24,6 +24,10 @@ GeoTools Main 21.2
 (Maven) org.geotools:gt-main:21.2
 https://mvnrepository.com/artifact/org.geotools/gt-main/21.2
 
+GeoTools MetaData
+(Maven) org.geotools:gt-metadata:21.2
+https://mvnrepository.com/artifact/org.geotools/gt-metadata/21.2
+
 GeoTools OpenGIS 21.2
 (Maven) org.geotools:gt-opengis:21.2
 https://mvnrepository.com/artifact/org.geotools/gt-opengis/21.2
@@ -31,6 +35,10 @@ https://mvnrepository.com/artifact/org.geotools/gt-opengis/21.2
 GeoTools Vector Grid 21.2
 (Maven) org.geotools:gt-grid:21.2
 https://mvnrepository.com/artifact/org.geotools/gt-grid/21.2
+
+GeoTools Referencing
+(Maven) org.geotools:gt-referencing:21.2
+https://mvnrepository.com/artifact/org.geotools/gt-referencing/21.2
 
 GeoTools Shape File
 (Maven) org.geotools:gt-shapefile:21.2
