@@ -246,7 +246,7 @@ public class CPGD {
                     } catch (Exception e) {
                         System.out.println(
                                 "Failed to build mesh. Please ensure both .shp and .shx files are present in the same directory."
-                                        + "If so, try to reduce the initial grid resolution to be compatible with your .shp file.");
+                                        + " If so, try to reduce the initial grid resolution to be compatible with your .shp file.");
                         System.exit(-1);
                     }
                     // Compute constellation accesses

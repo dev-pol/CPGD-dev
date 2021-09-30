@@ -31,3 +31,11 @@ https://mvnrepository.com/artifact/org.geotools/gt-opengis/21.2
 GeoTools Vector Grid 21.2
 (Maven) org.geotools:gt-grid:21.2
 https://mvnrepository.com/artifact/org.geotools/gt-grid/21.2
+
+GeoTools Shape File
+(Maven) org.geotools:gt-shapefile:21.2
+https://mvnrepository.com/artifact/org.geotools/gt-shapefile/21.2
+
+JTS Core
+(Maven) org.locationtech.jts:jts-core:1.16.0
+https://mvnrepository.com/artifact/org.locationtech.jts/jts-core/1.16.0
