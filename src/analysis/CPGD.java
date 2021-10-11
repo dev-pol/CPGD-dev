@@ -62,7 +62,7 @@ public class CPGD {
         int currentSatsInPlane = MIN_SATS_IN_PLANE;
         double MAX_LAT = 0, MIN_LAT = 0, MAX_LON = 0, MIN_LON = 0;
         double currentInclination = 0;
-        double longitudeResolution = MAX_MCG * 0.25; // grid resolution longitude
+        double longitudeResolution = MAX_MCG * 0.1; // grid resolution longitude
         double meshResolution = StartingMeshGridResolution; // degrees
         double candidateMCG = -Double.MAX_VALUE;
 
@@ -378,22 +378,13 @@ public class CPGD {
         int nFacilities = (int) Math.round((MAX_LON - MIN_LON) / longitudeResolution); // Number of grid points
                                                                                        // according to the grid
                                                                                        // resolution
-        double latitudeResolution = Math.pow(2, complexity);
+        double latitudeResolution = Math.pow(2, complexity + 1);
         double step = (MAX_LAT - MIN_LAT) / latitudeResolution;
         double lastStep = (MAX_LAT - MIN_LAT) - step;
-        double firstStep;
-
-        if ((complexity == 0) || (complexity == 1)) {
-            firstStep = MIN_LAT;
-            step = (MAX_LAT - MIN_LAT) / 2;
-            lastStep = MAX_LAT;
-        } else {
-            firstStep = step;
-        }
-
+        
         // Generate list of devices
         int facId = 0;
-        for (double lat = firstStep; lat <= lastStep; lat += step) {
+        for (double lat = MIN_LAT; lat <= lastStep; lat += step) {
             for (int fac = 0; fac < nFacilities; fac++) {
                 devices.add(new Device(facId++, lat, MIN_LON + fac * longitudeResolution, DEVICES_HEIGHT)); // Complexity
                                                                                                             // reduction:
