@@ -64,7 +64,7 @@ public class CPGD {
         double currentInclination = 0;
         double longitudeResolution = MAX_MCG * 0.25; // grid resolution longitude
         double meshResolution = StartingMeshGridResolution; // degrees
-        double candidateMCG = Double.MIN_VALUE;
+        double candidateMCG = -Double.MAX_VALUE;
 
         boolean allCandidatesTested = false;
         boolean exceededMCG = false;
@@ -96,10 +96,10 @@ public class CPGD {
                 double current_lat, current_lon;
                 Device current_device;
                 // Find grid's maximum and minimum values
-                MAX_LAT = Double.MIN_VALUE;
+                MAX_LAT = -Double.MAX_VALUE;
                 MIN_LAT = Double.MAX_VALUE;
                 MIN_LON = Double.MAX_VALUE;
-                MAX_LON = Double.MIN_VALUE;
+                MAX_LON = -Double.MAX_VALUE;
                 for (int device_id = 0; device_id < size; device_id++) {
                     current_device = devices.get(device_id);
                     current_lat = current_device.getLat();
@@ -173,7 +173,7 @@ public class CPGD {
             if (cases == 0) { // global || *.csv + progressive-rect
                 complexity = 0;
                 exceededMCG = false;
-                candidateMCG = Double.MIN_VALUE;
+                candidateMCG = -Double.MAX_VALUE;
                 while ((!exceededMCG) && (complexity < COMPLEXITY_LEVELS)) {
                     if (complexity > 1) { // If the first candidate did not fail, increase scenario time
                         constellationAccess.setScenarioParams(START_DATE, END_DATE, TIME_STEP, VISIBILITY_THRESHOLD);
@@ -186,25 +186,26 @@ public class CPGD {
                     constellationAccess.computeDevicesPOV();
                     constellationAccess.computeMaxMCG();
                     candidateMCG = constellationAccess.getMaxMCGMinutes();
-                    
-                    logProgress(currentPlanes, currentSatsInPlane, currentInclination, complexity,
-                            candidateMCG, constellationAccess.getLastSimTime());
 
                     if (candidateMCG > MAX_MCG) {
                         exceededMCG = true;
                     }
+                    logProgress(currentPlanes, currentSatsInPlane, currentInclination, complexity, candidateMCG,
+                    constellationAccess.getLastSimTime());
+
                     complexity = complexity + 1;
+
                 }
                 // Exceeded MCG or complexity
                 if (exceededMCG) { // Exceeded MCG at any complexity > log failed attempt
                     discarded[complexity] += 1;
                     log("Discarded: " + currentPlanes + " planes with " + currentSatsInPlane + " satellites at "
-                            + currentInclination + " degrees. Complexity level: " + complexity + " > MCG: "
+                            + currentInclination + " degrees. Complexity level: " + (complexity-1) + " > MCG: "
                             + candidateMCG);
                 } else { // Satisfied MCG at maximum complexity
                     solutionFound = true;
-                    solutions.add(new Solution(currentPlanes, currentSatsInPlane, currentInclination,
-                            candidateMCG, devices, satellites, discarded));
+                    solutions.add(new Solution(currentPlanes, currentSatsInPlane, currentInclination, candidateMCG,
+                            devices, satellites, discarded));
                     log("SOLUTION!: " + currentPlanes + " planes with " + currentSatsInPlane + " satellites at "
                             + currentInclination + " degrees. MCG: " + candidateMCG);
                 }
@@ -219,18 +220,19 @@ public class CPGD {
                 // If a solution is found, log it
                 if (candidateMCG <= MAX_MCG) {
                     solutionFound = true;
-                    solutions.add(new Solution(currentPlanes, currentSatsInPlane, currentInclination,
-                            candidateMCG, devices, satellites, discarded));
+                    solutions.add(new Solution(currentPlanes, currentSatsInPlane, currentInclination, candidateMCG,
+                            devices, satellites, discarded));
                     log("SOLUTION!: " + currentPlanes + " planes with " + currentSatsInPlane + " satellites at "
                             + currentInclination + " degrees. MCG: " + candidateMCG);
-                }
-                else {
-                    log("No solution found for the device grid.");
+                } else {
+                    log("Discarded: " + currentPlanes + " planes with " + currentSatsInPlane + " satellites at "
+                            + currentInclination + " degrees. Complexity level: N/A" + " > MCG: "
+                            + candidateMCG);
                 }
             } else if (cases == 2) { // *.csv||*.shp + progressive-mesh
                 complexity = 0;
                 exceededMCG = false;
-                candidateMCG = Double.MIN_VALUE;
+                candidateMCG = -Double.MAX_VALUE;
                 meshResolution = StartingMeshGridResolution;
                 while ((!exceededMCG) && (complexity < COMPLEXITY_LEVELS)) {
                     if (complexity > 1) { // If the MCG requirement is met at complexity < 1, increase scenario time
@@ -271,8 +273,8 @@ public class CPGD {
                     candidateMCG = constellationAccess.getMaxMCGMinutes();
 
                     // Log Progress
-                    logProgress(currentPlanes, currentSatsInPlane, currentInclination, complexity,
-                            candidateMCG, constellationAccess.getLastSimTime());
+                    logProgress(currentPlanes, currentSatsInPlane, currentInclination, complexity, candidateMCG,
+                            constellationAccess.getLastSimTime());
 
                     // Break early if solution not satisfied
                     if (candidateMCG > MAX_MCG) {
@@ -281,19 +283,21 @@ public class CPGD {
 
                     // Adapt mesh resolution (exponential rule, double the resolution every
                     // iteration)
+
                     complexity = complexity + 1;
                     meshResolution = meshResolution / 2;
+
                 }
                 // Exceeded MCG or complexity
                 if (exceededMCG) { // Exceeded MCG at any complexity > log failed attempt
                     discarded[complexity] += 1;
                     log("Discarded: " + currentPlanes + " planes with " + currentSatsInPlane + " satellites at "
-                            + currentInclination + " degrees. Complexity level: " + complexity + " > MCG: "
+                            + currentInclination + " degrees. Complexity level: " + (complexity - 1) + " > MCG: "
                             + candidateMCG);
                 } else { // Satisfied MCG at maximum complexity
                     solutionFound = true;
-                    solutions.add(new Solution(currentPlanes, currentSatsInPlane, currentInclination,
-                            candidateMCG, devices, satellites, discarded));
+                    solutions.add(new Solution(currentPlanes, currentSatsInPlane, currentInclination, candidateMCG,
+                            devices, satellites, discarded));
                     log("SOLUTION!: " + currentPlanes + " planes with " + currentSatsInPlane + " satellites at "
                             + currentInclination + " degrees. MCG: " + candidateMCG);
                 }
@@ -457,9 +461,12 @@ public class CPGD {
      **/
     private static void logProgress(int currentPlanes, int currentSatsInPlane, double currentInclination,
             int complexity, double mcg, double simTime) {
+        // Get runtime memory
+
         log("Analyzing: " + currentPlanes + " planes with " + currentSatsInPlane + " satellites at "
                 + currentInclination + " degrees. Complexity level: " + complexity + " > MCG: " + mcg
-                + " - computation time: " + simTime + " ms.");
+                + " - computation time: " + simTime + " ms, memory usage: "
+                + (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / (1024 * 1024) + " MB");
     }
 
     /**
