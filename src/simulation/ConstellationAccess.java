@@ -22,7 +22,7 @@ public class ConstellationAccess {
     private int povOption = 0;
     private double maxMCG = Double.MAX_VALUE;
     private long lastSimTime = 0;
-
+    public static boolean DEBUG_MODE = false;
     public ConstellationAccess() {
 
     }
@@ -107,6 +107,10 @@ public class ConstellationAccess {
         return this.lastSimTime;
     }
 
+    public static void setDebugMode(boolean set_debug) {
+        DEBUG_MODE = set_debug;
+    }
+
     public void computeDevicesPOV() {
 
         long t0 = System.currentTimeMillis();
@@ -143,8 +147,9 @@ public class ConstellationAccess {
             allAccesses.addAll(computeDevices2Constellation());
 
         }
-
-        Reports.printAccessReport(allAccesses);
+        if (DEBUG_MODE) {
+            Reports.printAccessReport(allAccesses);
+        }
 
         lastSimTime = System.currentTimeMillis() - t0;
 

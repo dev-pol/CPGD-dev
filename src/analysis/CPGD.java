@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+import org.apache.commons.lang3.ObjectUtils.Null;
+
 public class CPGD {
     // Load configuration file
     static final String RUN_DATE = Utils.unix2stamp(System.currentTimeMillis()).replace(":", "-");
@@ -86,6 +88,10 @@ public class CPGD {
             System.out.println("Initialising Grid Coverage Analysis:");
 
             devices = Utils.devicesFromFile(CoverageGrid); // load grid
+            if (devices.isEmpty()) {
+                System.out.println("Empty device list. Check file name.");
+                System.exit(-1);
+            }
             if (CheckDevices.equals("progressive-rect")) {
                 // Progressive complexity, search inside grid bounded by
                 // [max(lat), min(lon)], [max(lat), max(lon)], [min(lat), min(lon)], [min(lat),
@@ -142,7 +148,7 @@ public class CPGD {
         }
 
         var constellationAccess = new ConstellationAccess(START_DATE, SEARCH_DATE, TIME_STEP, VISIBILITY_THRESHOLD);
-
+        ConstellationAccess.setDebugMode(DEBUG_MODE);
         constellationAccess.setIncludeCoverageGaps(true);
 
         tic();
@@ -198,7 +204,7 @@ public class CPGD {
                 }
                 // Exceeded MCG or complexity
                 if (exceededMCG) { // Exceeded MCG at any complexity > log failed attempt
-                    discarded[complexity] += 1;
+                    discarded[complexity-1] += 1;
                     log("Discarded: " + currentPlanes + " planes with " + currentSatsInPlane + " satellites at "
                             + currentInclination + " degrees. Complexity level: " + (complexity-1) + " > MCG: "
                             + candidateMCG);
@@ -290,7 +296,7 @@ public class CPGD {
                 }
                 // Exceeded MCG or complexity
                 if (exceededMCG) { // Exceeded MCG at any complexity > log failed attempt
-                    discarded[complexity] += 1;
+                    discarded[complexity-1] += 1;
                     log("Discarded: " + currentPlanes + " planes with " + currentSatsInPlane + " satellites at "
                             + currentInclination + " degrees. Complexity level: " + (complexity - 1) + " > MCG: "
                             + candidateMCG);
@@ -380,11 +386,10 @@ public class CPGD {
                                                                                        // resolution
         double latitudeResolution = Math.pow(2, complexity + 1);
         double step = (MAX_LAT - MIN_LAT) / latitudeResolution;
-        double lastStep = (MAX_LAT - MIN_LAT) - step;
-        
+
         // Generate list of devices
         int facId = 0;
-        for (double lat = MIN_LAT; lat <= lastStep; lat += step) {
+        for (double lat = MIN_LAT; lat <= MAX_LAT; lat += step) {
             for (int fac = 0; fac < nFacilities; fac++) {
                 devices.add(new Device(facId++, lat, MIN_LON + fac * longitudeResolution, DEVICES_HEIGHT)); // Complexity
                                                                                                             // reduction:
