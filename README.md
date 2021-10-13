@@ -47,3 +47,8 @@ https://mvnrepository.com/artifact/org.geotools/gt-shapefile/21.2
 JTS Core
 (Maven) org.locationtech.jts:jts-core:1.16.0
 https://mvnrepository.com/artifact/org.locationtech.jts/jts-core/1.16.0
+
+## Shapefile sources:
+Simplified Europe: downloaded from http://tapiquen-sig.jimdofree.com. Carlos Efraín Porto Tapiquén. Geografía, SIG y Cartografía Digital. Valencia, Spain, 2020
+Europe Coastline: https://www.eea.europa.eu/data-and-maps/data/eea-coastline-for-analysis-1/gis-data/europe-coastline-shapefile
+Africa: https://open.africa/dataset/africa-shapefiles
