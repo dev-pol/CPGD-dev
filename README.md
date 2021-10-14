@@ -52,3 +52,6 @@ https://mvnrepository.com/artifact/org.locationtech.jts/jts-core/1.16.0
 Simplified Europe: downloaded from http://tapiquen-sig.jimdofree.com. Carlos Efraín Porto Tapiquén. Geografía, SIG y Cartografía Digital. Valencia, Spain, 2020
 Europe Coastline: https://www.eea.europa.eu/data-and-maps/data/eea-coastline-for-analysis-1/gis-data/europe-coastline-shapefile
 Africa: https://open.africa/dataset/africa-shapefiles
+Italy, Brazil, Australia, Lebanon, Israel, South Korea: https://geodata.mit.edu/?
+Alps, European Massifs: https://esdac.jrc.ec.europa.eu/projects/Alpsis/alpine_region_gis_data.html
+Worldwide (except Antarctica) Mountain Polygons: https://ilias.unibe.ch/goto.php?target=file_1047348
