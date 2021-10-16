@@ -1,0 +1,329 @@
+Starting analysis at 2021-10-15T05-53-47.708
+Scenario start: 2020-03-20T11:00:00.000 - Scenario end: 2020-03-27T11:00:00.000
+Target MCG: 120.0 - Maximum latitude band: 0.0 Degrees - complexity 0 - Search date 2020-03-21T11:00:00.000
+Minimum number of planes: 3 - Maximum number of planes: 6
+Minimum sats per plane: 3 - Maximum sats per planes: 6
+Minimum inclination: 0.0 - Maximum inclination: 90.0
+Inclination step: 5.0 Degrees
+====================================================================== PROGRESS ======================================================================
+2021-10-15T05:53:51.709 >> Analyzing: 3 planes with 3 satellites at 0.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 2100.0 ms, memory usage: 465 MB
+2021-10-15T05:53:51.710 >> Discarded: 3 planes with 3 satellites at 0.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T05:53:54.844 >> Analyzing: 3 planes with 3 satellites at 5.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 1757.0 ms, memory usage: 538 MB
+2021-10-15T05:53:54.844 >> Discarded: 3 planes with 3 satellites at 5.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T05:53:57.175 >> Analyzing: 3 planes with 3 satellites at 10.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 1549.0 ms, memory usage: 145 MB
+2021-10-15T05:53:57.176 >> Discarded: 3 planes with 3 satellites at 10.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T05:53:59.346 >> Analyzing: 3 planes with 3 satellites at 15.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 1393.0 ms, memory usage: 756 MB
+2021-10-15T05:53:59.346 >> Discarded: 3 planes with 3 satellites at 15.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T05:54:01.911 >> Analyzing: 3 planes with 3 satellites at 20.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 1795.0 ms, memory usage: 765 MB
+2021-10-15T05:54:01.912 >> Discarded: 3 planes with 3 satellites at 20.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T05:54:04.181 >> Analyzing: 3 planes with 3 satellites at 25.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 1466.0 ms, memory usage: 481 MB
+2021-10-15T05:54:04.182 >> Discarded: 3 planes with 3 satellites at 25.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T05:54:06.289 >> Analyzing: 3 planes with 3 satellites at 30.0 degrees. Complexity level: 0 > MCG: 243.92523 - computation time: 1324.0 ms, memory usage: 534 MB
+2021-10-15T05:54:06.290 >> Discarded: 3 planes with 3 satellites at 30.0 degrees. Complexity level: 0 > MCG: 243.92523
+2021-10-15T05:54:08.423 >> Analyzing: 3 planes with 3 satellites at 35.0 degrees. Complexity level: 0 > MCG: 108.34573 - computation time: 1494.0 ms, memory usage: 626 MB
+2021-10-15T05:54:17.445 >> Analyzing: 3 planes with 3 satellites at 35.0 degrees. Complexity level: 1 > MCG: 141.07105 - computation time: 6389.0 ms, memory usage: 695 MB
+2021-10-15T05:54:17.445 >> Discarded: 3 planes with 3 satellites at 35.0 degrees. Complexity level: 1 > MCG: 141.07105
+2021-10-15T05:54:19.560 >> Analyzing: 3 planes with 3 satellites at 40.0 degrees. Complexity level: 0 > MCG: 39.71698 - computation time: 1373.0 ms, memory usage: 827 MB
+2021-10-15T05:54:27.449 >> Analyzing: 3 planes with 3 satellites at 40.0 degrees. Complexity level: 1 > MCG: 40.18855 - computation time: 5586.0 ms, memory usage: 1107 MB
+2021-10-15T05:57:09.014 >> Analyzing: 3 planes with 3 satellites at 40.0 degrees. Complexity level: 2 > MCG: 40.63412 - computation time: 151974.0 ms, memory usage: 2569 MB
+2021-10-15T06:07:48.161 >> Analyzing: 3 planes with 3 satellites at 40.0 degrees. Complexity level: 3 > MCG: 40.674 - computation time: 601289.0 ms, memory usage: 3160 MB
+2021-10-15T06:07:48.163 >> SOLUTION!: 3 planes with 3 satellites at 40.0 degrees. MCG: 40.674
+2021-10-15T06:07:50.422 >> Analyzing: 3 planes with 4 satellites at 0.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 1660.0 ms, memory usage: 3275 MB
+2021-10-15T06:07:50.422 >> Discarded: 3 planes with 4 satellites at 0.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T06:07:52.707 >> Analyzing: 3 planes with 4 satellites at 5.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 1589.0 ms, memory usage: 2943 MB
+2021-10-15T06:07:52.708 >> Discarded: 3 planes with 4 satellites at 5.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T06:07:54.893 >> Analyzing: 3 planes with 4 satellites at 10.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 1593.0 ms, memory usage: 2971 MB
+2021-10-15T06:07:54.893 >> Discarded: 3 planes with 4 satellites at 10.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T06:07:57.183 >> Analyzing: 3 planes with 4 satellites at 15.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 1614.0 ms, memory usage: 2918 MB
+2021-10-15T06:07:57.184 >> Discarded: 3 planes with 4 satellites at 15.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T06:07:59.309 >> Analyzing: 3 planes with 4 satellites at 20.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 1547.0 ms, memory usage: 2863 MB
+2021-10-15T06:07:59.309 >> Discarded: 3 planes with 4 satellites at 20.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T06:08:01.721 >> Analyzing: 3 planes with 4 satellites at 25.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 1687.0 ms, memory usage: 2861 MB
+2021-10-15T06:08:01.722 >> Discarded: 3 planes with 4 satellites at 25.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T06:08:03.871 >> Analyzing: 3 planes with 4 satellites at 30.0 degrees. Complexity level: 0 > MCG: 227.71035 - computation time: 1570.0 ms, memory usage: 2857 MB
+2021-10-15T06:08:03.872 >> Discarded: 3 planes with 4 satellites at 30.0 degrees. Complexity level: 0 > MCG: 227.71035
+2021-10-15T06:08:06.173 >> Analyzing: 3 planes with 4 satellites at 35.0 degrees. Complexity level: 0 > MCG: 100.34507 - computation time: 1716.0 ms, memory usage: 2881 MB
+2021-10-15T06:08:15.739 >> Analyzing: 3 planes with 4 satellites at 35.0 degrees. Complexity level: 1 > MCG: 101.4055 - computation time: 7188.0 ms, memory usage: 3748 MB
+2021-10-15T06:11:40.041 >> Analyzing: 3 planes with 4 satellites at 35.0 degrees. Complexity level: 2 > MCG: 125.22988 - computation time: 194380.0 ms, memory usage: 4803 MB
+2021-10-15T06:11:40.042 >> Discarded: 3 planes with 4 satellites at 35.0 degrees. Complexity level: 2 > MCG: 125.22988
+2021-10-15T06:11:42.420 >> Analyzing: 3 planes with 4 satellites at 40.0 degrees. Complexity level: 0 > MCG: 23.73772 - computation time: 1695.0 ms, memory usage: 3556 MB
+2021-10-15T06:11:52.141 >> Analyzing: 3 planes with 4 satellites at 40.0 degrees. Complexity level: 1 > MCG: 24.42252 - computation time: 7366.0 ms, memory usage: 3515 MB
+2021-10-15T06:15:24.496 >> Analyzing: 3 planes with 4 satellites at 40.0 degrees. Complexity level: 2 > MCG: 25.02507 - computation time: 202579.0 ms, memory usage: 5170 MB
+2021-10-15T06:29:23.871 >> Analyzing: 3 planes with 4 satellites at 40.0 degrees. Complexity level: 3 > MCG: 25.0559 - computation time: 797017.0 ms, memory usage: 3780 MB
+2021-10-15T06:29:23.871 >> SOLUTION!: 3 planes with 4 satellites at 40.0 degrees. MCG: 25.0559
+2021-10-15T06:29:26.613 >> Analyzing: 3 planes with 5 satellites at 0.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 2052.0 ms, memory usage: 4828 MB
+2021-10-15T06:29:26.613 >> Discarded: 3 planes with 5 satellites at 0.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T06:29:29.222 >> Analyzing: 3 planes with 5 satellites at 5.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 1963.0 ms, memory usage: 3668 MB
+2021-10-15T06:29:29.222 >> Discarded: 3 planes with 5 satellites at 5.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T06:29:31.931 >> Analyzing: 3 planes with 5 satellites at 10.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 2061.0 ms, memory usage: 3712 MB
+2021-10-15T06:29:31.931 >> Discarded: 3 planes with 5 satellites at 10.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T06:29:34.499 >> Analyzing: 3 planes with 5 satellites at 15.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 1944.0 ms, memory usage: 3720 MB
+2021-10-15T06:29:34.499 >> Discarded: 3 planes with 5 satellites at 15.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T06:29:37.230 >> Analyzing: 3 planes with 5 satellites at 20.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 2104.0 ms, memory usage: 3730 MB
+2021-10-15T06:29:37.231 >> Discarded: 3 planes with 5 satellites at 20.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T06:29:39.814 >> Analyzing: 3 planes with 5 satellites at 25.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 1955.0 ms, memory usage: 3778 MB
+2021-10-15T06:29:39.814 >> Discarded: 3 planes with 5 satellites at 25.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T06:29:42.892 >> Analyzing: 3 planes with 5 satellites at 30.0 degrees. Complexity level: 0 > MCG: 218.308 - computation time: 2398.0 ms, memory usage: 3858 MB
+2021-10-15T06:29:42.892 >> Discarded: 3 planes with 5 satellites at 30.0 degrees. Complexity level: 0 > MCG: 218.308
+2021-10-15T06:29:45.547 >> Analyzing: 3 planes with 5 satellites at 35.0 degrees. Complexity level: 0 > MCG: 95.47668 - computation time: 2028.0 ms, memory usage: 3900 MB
+2021-10-15T06:29:57.414 >> Analyzing: 3 planes with 5 satellites at 35.0 degrees. Complexity level: 1 > MCG: 96.7951 - computation time: 9073.0 ms, memory usage: 4139 MB
+2021-10-15T06:34:09.736 >> Analyzing: 3 planes with 5 satellites at 35.0 degrees. Complexity level: 2 > MCG: 115.61947 - computation time: 242119.0 ms, memory usage: 5095 MB
+2021-10-15T06:51:22.713 >> Analyzing: 3 planes with 5 satellites at 35.0 degrees. Complexity level: 3 > MCG: 115.65443 - computation time: 991706.0 ms, memory usage: 993 MB
+2021-10-15T06:51:22.714 >> SOLUTION!: 3 planes with 5 satellites at 35.0 degrees. MCG: 115.65443
+2021-10-15T06:51:25.792 >> Analyzing: 3 planes with 6 satellites at 0.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 2468.0 ms, memory usage: 1347 MB
+2021-10-15T06:51:25.793 >> Discarded: 3 planes with 6 satellites at 0.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T06:51:28.690 >> Analyzing: 3 planes with 6 satellites at 5.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 2341.0 ms, memory usage: 1707 MB
+2021-10-15T06:51:28.690 >> Discarded: 3 planes with 6 satellites at 5.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T06:51:31.798 >> Analyzing: 3 planes with 6 satellites at 10.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 2457.0 ms, memory usage: 2069 MB
+2021-10-15T06:51:31.798 >> Discarded: 3 planes with 6 satellites at 10.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T06:51:34.778 >> Analyzing: 3 planes with 6 satellites at 15.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 2437.0 ms, memory usage: 2433 MB
+2021-10-15T06:51:34.779 >> Discarded: 3 planes with 6 satellites at 15.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T06:51:37.812 >> Analyzing: 3 planes with 6 satellites at 20.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 2379.0 ms, memory usage: 2864 MB
+2021-10-15T06:51:37.812 >> Discarded: 3 planes with 6 satellites at 20.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T06:51:40.869 >> Analyzing: 3 planes with 6 satellites at 25.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 2508.0 ms, memory usage: 3302 MB
+2021-10-15T06:51:40.870 >> Discarded: 3 planes with 6 satellites at 25.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T06:51:43.917 >> Analyzing: 3 planes with 6 satellites at 30.0 degrees. Complexity level: 0 > MCG: 227.56327 - computation time: 2461.0 ms, memory usage: 1238 MB
+2021-10-15T06:51:43.917 >> Discarded: 3 planes with 6 satellites at 30.0 degrees. Complexity level: 0 > MCG: 227.56327
+2021-10-15T06:51:47.096 >> Analyzing: 3 planes with 6 satellites at 35.0 degrees. Complexity level: 0 > MCG: 92.31168 - computation time: 2634.0 ms, memory usage: 1834 MB
+2021-10-15T06:52:00.256 >> Analyzing: 3 planes with 6 satellites at 35.0 degrees. Complexity level: 1 > MCG: 108.7881 - computation time: 10849.0 ms, memory usage: 2487 MB
+2021-10-15T06:57:08.556 >> Analyzing: 3 planes with 6 satellites at 35.0 degrees. Complexity level: 2 > MCG: 109.28495 - computation time: 299350.0 ms, memory usage: 3114 MB
+2021-10-15T07:17:26.958 >> Analyzing: 3 planes with 6 satellites at 35.0 degrees. Complexity level: 3 > MCG: 109.33752 - computation time: 1181459.0 ms, memory usage: 4921 MB
+2021-10-15T07:17:26.959 >> SOLUTION!: 3 planes with 6 satellites at 35.0 degrees. MCG: 109.33752
+2021-10-15T07:17:29.152 >> Analyzing: 4 planes with 3 satellites at 0.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 1560.0 ms, memory usage: 4528 MB
+2021-10-15T07:17:29.153 >> Discarded: 4 planes with 3 satellites at 0.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T07:17:31.328 >> Analyzing: 4 planes with 3 satellites at 5.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 1557.0 ms, memory usage: 4569 MB
+2021-10-15T07:17:31.329 >> Discarded: 4 planes with 3 satellites at 5.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T07:17:33.426 >> Analyzing: 4 planes with 3 satellites at 10.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 1528.0 ms, memory usage: 4143 MB
+2021-10-15T07:17:33.426 >> Discarded: 4 planes with 3 satellites at 10.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T07:17:35.504 >> Analyzing: 4 planes with 3 satellites at 15.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 1506.0 ms, memory usage: 3691 MB
+2021-10-15T07:17:35.504 >> Discarded: 4 planes with 3 satellites at 15.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T07:17:37.635 >> Analyzing: 4 planes with 3 satellites at 20.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 1562.0 ms, memory usage: 3411 MB
+2021-10-15T07:17:37.636 >> Discarded: 4 planes with 3 satellites at 20.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T07:17:39.782 >> Analyzing: 4 planes with 3 satellites at 25.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 1558.0 ms, memory usage: 3304 MB
+2021-10-15T07:17:39.783 >> Discarded: 4 planes with 3 satellites at 25.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T07:17:41.960 >> Analyzing: 4 planes with 3 satellites at 30.0 degrees. Complexity level: 0 > MCG: 114.87807 - computation time: 1598.0 ms, memory usage: 3296 MB
+2021-10-15T07:17:51.320 >> Analyzing: 4 planes with 3 satellites at 30.0 degrees. Complexity level: 1 > MCG: 147.95338 - computation time: 6895.0 ms, memory usage: 5276 MB
+2021-10-15T07:17:51.320 >> Discarded: 4 planes with 3 satellites at 30.0 degrees. Complexity level: 1 > MCG: 147.95338
+2021-10-15T07:17:53.489 >> Analyzing: 4 planes with 3 satellites at 35.0 degrees. Complexity level: 0 > MCG: 27.60263 - computation time: 1582.0 ms, memory usage: 3495 MB
+2021-10-15T07:18:02.965 >> Analyzing: 4 planes with 3 satellites at 35.0 degrees. Complexity level: 1 > MCG: 28.20737 - computation time: 7114.0 ms, memory usage: 3512 MB
+2021-10-15T07:21:22.842 >> Analyzing: 4 planes with 3 satellites at 35.0 degrees. Complexity level: 2 > MCG: 28.82155 - computation time: 190263.0 ms, memory usage: 6314 MB
+2021-10-15T07:36:01.102 >> Analyzing: 4 planes with 3 satellites at 35.0 degrees. Complexity level: 3 > MCG: 28.8899 - computation time: 841312.0 ms, memory usage: 4045 MB
+2021-10-15T07:36:01.102 >> SOLUTION!: 4 planes with 3 satellites at 35.0 degrees. MCG: 28.8899
+2021-10-15T07:36:05.493 >> Analyzing: 4 planes with 4 satellites at 0.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 2653.0 ms, memory usage: 3814 MB
+2021-10-15T07:36:05.494 >> Discarded: 4 planes with 4 satellites at 0.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T07:36:09.615 >> Analyzing: 4 planes with 4 satellites at 5.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 2651.0 ms, memory usage: 4086 MB
+2021-10-15T07:36:09.616 >> Discarded: 4 planes with 4 satellites at 5.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T07:36:13.698 >> Analyzing: 4 planes with 4 satellites at 10.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 2634.0 ms, memory usage: 3796 MB
+2021-10-15T07:36:13.698 >> Discarded: 4 planes with 4 satellites at 10.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T07:36:18.093 >> Analyzing: 4 planes with 4 satellites at 15.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 2926.0 ms, memory usage: 4034 MB
+2021-10-15T07:36:18.094 >> Discarded: 4 planes with 4 satellites at 15.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T07:36:22.488 >> Analyzing: 4 planes with 4 satellites at 20.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 2754.0 ms, memory usage: 3798 MB
+2021-10-15T07:36:22.488 >> Discarded: 4 planes with 4 satellites at 20.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T07:36:26.651 >> Analyzing: 4 planes with 4 satellites at 25.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 2826.0 ms, memory usage: 3744 MB
+2021-10-15T07:36:26.653 >> Discarded: 4 planes with 4 satellites at 25.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T07:36:30.590 >> Analyzing: 4 planes with 4 satellites at 30.0 degrees. Complexity level: 0 > MCG: 106.83552 - computation time: 2664.0 ms, memory usage: 4236 MB
+2021-10-15T07:36:48.482 >> Analyzing: 4 planes with 4 satellites at 30.0 degrees. Complexity level: 1 > MCG: 131.6057 - computation time: 12801.0 ms, memory usage: 6603 MB
+2021-10-15T07:36:48.483 >> Discarded: 4 planes with 4 satellites at 30.0 degrees. Complexity level: 1 > MCG: 131.6057
+2021-10-15T07:36:53.041 >> Analyzing: 4 planes with 4 satellites at 35.0 degrees. Complexity level: 0 > MCG: 19.36018 - computation time: 2972.0 ms, memory usage: 3890 MB
+2021-10-15T07:37:11.259 >> Analyzing: 4 planes with 4 satellites at 35.0 degrees. Complexity level: 1 > MCG: 19.54115 - computation time: 12469.0 ms, memory usage: 4084 MB
+2021-10-15T07:43:12.982 >> Analyzing: 4 planes with 4 satellites at 35.0 degrees. Complexity level: 2 > MCG: 20.6508 - computation time: 333262.0 ms, memory usage: 6169 MB
+2021-10-15T08:06:41.457 >> Analyzing: 4 planes with 4 satellites at 35.0 degrees. Complexity level: 3 > MCG: 20.67062 - computation time: 1291549.0 ms, memory usage: 1460 MB
+2021-10-15T08:06:41.458 >> SOLUTION!: 4 planes with 4 satellites at 35.0 degrees. MCG: 20.67062
+2021-10-15T08:06:44.685 >> Analyzing: 4 planes with 5 satellites at 0.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 2605.0 ms, memory usage: 1261 MB
+2021-10-15T08:06:44.685 >> Discarded: 4 planes with 5 satellites at 0.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T08:06:47.961 >> Analyzing: 4 planes with 5 satellites at 5.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 2705.0 ms, memory usage: 1090 MB
+2021-10-15T08:06:47.961 >> Discarded: 4 planes with 5 satellites at 5.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T08:06:51.257 >> Analyzing: 4 planes with 5 satellites at 10.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 2672.0 ms, memory usage: 694 MB
+2021-10-15T08:06:51.257 >> Discarded: 4 planes with 5 satellites at 10.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T08:06:54.665 >> Analyzing: 4 planes with 5 satellites at 15.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 2802.0 ms, memory usage: 1741 MB
+2021-10-15T08:06:54.666 >> Discarded: 4 planes with 5 satellites at 15.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T08:06:58.012 >> Analyzing: 4 planes with 5 satellites at 20.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 2737.0 ms, memory usage: 1073 MB
+2021-10-15T08:06:58.012 >> Discarded: 4 planes with 5 satellites at 20.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T08:07:01.306 >> Analyzing: 4 planes with 5 satellites at 25.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 2697.0 ms, memory usage: 2099 MB
+2021-10-15T08:07:01.306 >> Discarded: 4 planes with 5 satellites at 25.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T08:07:04.708 >> Analyzing: 4 planes with 5 satellites at 30.0 degrees. Complexity level: 0 > MCG: 101.82262 - computation time: 2848.0 ms, memory usage: 1473 MB
+2021-10-15T08:07:19.858 >> Analyzing: 4 planes with 5 satellites at 30.0 degrees. Complexity level: 1 > MCG: 121.88038 - computation time: 12613.0 ms, memory usage: 2529 MB
+2021-10-15T08:07:19.858 >> Discarded: 4 planes with 5 satellites at 30.0 degrees. Complexity level: 1 > MCG: 121.88038
+2021-10-15T08:07:23.288 >> Analyzing: 4 planes with 5 satellites at 35.0 degrees. Complexity level: 0 > MCG: 14.30672 - computation time: 2824.0 ms, memory usage: 796 MB
+2021-10-15T08:07:38.062 >> Analyzing: 4 planes with 5 satellites at 35.0 degrees. Complexity level: 1 > MCG: 15.1445 - computation time: 12284.0 ms, memory usage: 1018 MB
+2021-10-15T08:13:27.525 >> Analyzing: 4 planes with 5 satellites at 35.0 degrees. Complexity level: 2 > MCG: 15.7725 - computation time: 339721.0 ms, memory usage: 2068 MB
+2021-10-15T08:36:15.084 >> Analyzing: 4 planes with 5 satellites at 35.0 degrees. Complexity level: 3 > MCG: 15.79313 - computation time: 1328887.0 ms, memory usage: 5779 MB
+2021-10-15T08:36:15.085 >> SOLUTION!: 4 planes with 5 satellites at 35.0 degrees. MCG: 15.79313
+2021-10-15T08:36:19.082 >> Analyzing: 4 planes with 6 satellites at 0.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 3351.0 ms, memory usage: 4113 MB
+2021-10-15T08:36:19.082 >> Discarded: 4 planes with 6 satellites at 0.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T08:36:22.916 >> Analyzing: 4 planes with 6 satellites at 5.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 3215.0 ms, memory usage: 4037 MB
+2021-10-15T08:36:22.916 >> Discarded: 4 planes with 6 satellites at 5.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T08:36:26.742 >> Analyzing: 4 planes with 6 satellites at 10.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 3171.0 ms, memory usage: 4163 MB
+2021-10-15T08:36:26.743 >> Discarded: 4 planes with 6 satellites at 10.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T08:36:30.688 >> Analyzing: 4 planes with 6 satellites at 15.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 3238.0 ms, memory usage: 4281 MB
+2021-10-15T08:36:30.689 >> Discarded: 4 planes with 6 satellites at 15.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T08:36:34.580 >> Analyzing: 4 planes with 6 satellites at 20.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 3266.0 ms, memory usage: 4259 MB
+2021-10-15T08:36:34.581 >> Discarded: 4 planes with 6 satellites at 20.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T08:36:38.529 >> Analyzing: 4 planes with 6 satellites at 25.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 3319.0 ms, memory usage: 4229 MB
+2021-10-15T08:36:38.529 >> Discarded: 4 planes with 6 satellites at 25.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T08:36:42.718 >> Analyzing: 4 planes with 6 satellites at 30.0 degrees. Complexity level: 0 > MCG: 98.5292 - computation time: 3525.0 ms, memory usage: 4279 MB
+2021-10-15T08:36:59.933 >> Analyzing: 4 planes with 6 satellites at 30.0 degrees. Complexity level: 1 > MCG: 115.53588 - computation time: 14346.0 ms, memory usage: 3921 MB
+2021-10-15T08:43:33.717 >> Analyzing: 4 planes with 6 satellites at 30.0 degrees. Complexity level: 2 > MCG: 132.12357 - computation time: 383536.0 ms, memory usage: 3371 MB
+2021-10-15T08:43:33.718 >> Discarded: 4 planes with 6 satellites at 30.0 degrees. Complexity level: 2 > MCG: 132.12357
+2021-10-15T08:43:37.738 >> Analyzing: 4 planes with 6 satellites at 35.0 degrees. Complexity level: 0 > MCG: 11.28495 - computation time: 3424.0 ms, memory usage: 6023 MB
+2021-10-15T08:43:54.375 >> Analyzing: 4 planes with 6 satellites at 35.0 degrees. Complexity level: 1 > MCG: 11.7944 - computation time: 14227.0 ms, memory usage: 3045 MB
+2021-10-15T08:50:28.878 >> Analyzing: 4 planes with 6 satellites at 35.0 degrees. Complexity level: 2 > MCG: 12.15892 - computation time: 384592.0 ms, memory usage: 4007 MB
+2021-10-15T09:16:41.925 >> Analyzing: 4 planes with 6 satellites at 35.0 degrees. Complexity level: 3 > MCG: 12.18837 - computation time: 1536355.0 ms, memory usage: 1719 MB
+2021-10-15T09:16:41.925 >> SOLUTION!: 4 planes with 6 satellites at 35.0 degrees. MCG: 12.18837
+2021-10-15T09:16:44.531 >> Analyzing: 5 planes with 3 satellites at 0.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 2058.0 ms, memory usage: 950 MB
+2021-10-15T09:16:44.531 >> Discarded: 5 planes with 3 satellites at 0.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T09:16:46.984 >> Analyzing: 5 planes with 3 satellites at 5.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 1883.0 ms, memory usage: 2053 MB
+2021-10-15T09:16:46.984 >> Discarded: 5 planes with 3 satellites at 5.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T09:16:49.591 >> Analyzing: 5 planes with 3 satellites at 10.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 2068.0 ms, memory usage: 1287 MB
+2021-10-15T09:16:49.591 >> Discarded: 5 planes with 3 satellites at 10.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T09:16:52.113 >> Analyzing: 5 planes with 3 satellites at 15.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 1937.0 ms, memory usage: 2401 MB
+2021-10-15T09:16:52.113 >> Discarded: 5 planes with 3 satellites at 15.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T09:16:54.688 >> Analyzing: 5 planes with 3 satellites at 20.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 2052.0 ms, memory usage: 1631 MB
+2021-10-15T09:16:54.688 >> Discarded: 5 planes with 3 satellites at 20.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T09:16:57.245 >> Analyzing: 5 planes with 3 satellites at 25.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 1937.0 ms, memory usage: 928 MB
+2021-10-15T09:16:57.245 >> Discarded: 5 planes with 3 satellites at 25.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T09:16:59.930 >> Analyzing: 5 planes with 3 satellites at 30.0 degrees. Complexity level: 0 > MCG: 50.0368 - computation time: 2169.0 ms, memory usage: 2171 MB
+2021-10-15T09:17:10.929 >> Analyzing: 5 planes with 3 satellites at 30.0 degrees. Complexity level: 1 > MCG: 83.415 - computation time: 8740.0 ms, memory usage: 1153 MB
+2021-10-15T09:21:14.160 >> Analyzing: 5 planes with 3 satellites at 30.0 degrees. Complexity level: 2 > MCG: 83.8984 - computation time: 233949.0 ms, memory usage: 1263 MB
+2021-10-15T09:37:44.382 >> Analyzing: 5 planes with 3 satellites at 30.0 degrees. Complexity level: 3 > MCG: 83.93967 - computation time: 954252.0 ms, memory usage: 232 MB
+2021-10-15T09:37:44.382 >> SOLUTION!: 5 planes with 3 satellites at 30.0 degrees. MCG: 83.93967
+2021-10-15T09:37:47.767 >> Analyzing: 5 planes with 4 satellites at 0.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 2789.0 ms, memory usage: 309 MB
+2021-10-15T09:37:47.767 >> Discarded: 5 planes with 4 satellites at 0.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T09:37:51.160 >> Analyzing: 5 planes with 4 satellites at 5.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 2808.0 ms, memory usage: 735 MB
+2021-10-15T09:37:51.160 >> Discarded: 5 planes with 4 satellites at 5.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T09:37:54.469 >> Analyzing: 5 planes with 4 satellites at 10.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 2655.0 ms, memory usage: 306 MB
+2021-10-15T09:37:54.469 >> Discarded: 5 planes with 4 satellites at 10.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T09:37:57.762 >> Analyzing: 5 planes with 4 satellites at 15.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 2754.0 ms, memory usage: 562 MB
+2021-10-15T09:37:57.762 >> Discarded: 5 planes with 4 satellites at 15.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T09:38:00.887 >> Analyzing: 5 planes with 4 satellites at 20.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 2608.0 ms, memory usage: 756 MB
+2021-10-15T09:38:00.887 >> Discarded: 5 planes with 4 satellites at 20.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T09:38:04.250 >> Analyzing: 5 planes with 4 satellites at 25.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 2724.0 ms, memory usage: 316 MB
+2021-10-15T09:38:04.250 >> Discarded: 5 planes with 4 satellites at 25.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T09:38:07.560 >> Analyzing: 5 planes with 4 satellites at 30.0 degrees. Complexity level: 0 > MCG: 34.13277 - computation time: 2778.0 ms, memory usage: 704 MB
+2021-10-15T09:38:21.563 >> Analyzing: 5 planes with 4 satellites at 30.0 degrees. Complexity level: 1 > MCG: 58.96207 - computation time: 11681.0 ms, memory usage: 1413 MB
+2021-10-15T09:43:44.157 >> Analyzing: 5 planes with 4 satellites at 30.0 degrees. Complexity level: 2 > MCG: 83.83088 - computation time: 313184.0 ms, memory usage: 2431 MB
+2021-10-15T10:05:48.144 >> Analyzing: 5 planes with 4 satellites at 30.0 degrees. Complexity level: 3 > MCG: 83.8637 - computation time: 1287743.0 ms, memory usage: 1804 MB
+2021-10-15T10:05:48.144 >> SOLUTION!: 5 planes with 4 satellites at 30.0 degrees. MCG: 83.8637
+2021-10-15T10:05:52.077 >> Analyzing: 5 planes with 5 satellites at 0.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 3379.0 ms, memory usage: 2202 MB
+2021-10-15T10:05:52.077 >> Discarded: 5 planes with 5 satellites at 0.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T10:05:56.004 >> Analyzing: 5 planes with 5 satellites at 5.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 3395.0 ms, memory usage: 887 MB
+2021-10-15T10:05:56.004 >> Discarded: 5 planes with 5 satellites at 5.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T10:05:59.853 >> Analyzing: 5 planes with 5 satellites at 10.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 3258.0 ms, memory usage: 1273 MB
+2021-10-15T10:05:59.853 >> Discarded: 5 planes with 5 satellites at 10.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T10:06:03.729 >> Analyzing: 5 planes with 5 satellites at 15.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 3275.0 ms, memory usage: 1674 MB
+2021-10-15T10:06:03.729 >> Discarded: 5 planes with 5 satellites at 15.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T10:06:07.607 >> Analyzing: 5 planes with 5 satellites at 20.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 3325.0 ms, memory usage: 2089 MB
+2021-10-15T10:06:07.607 >> Discarded: 5 planes with 5 satellites at 20.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T10:06:11.603 >> Analyzing: 5 planes with 5 satellites at 25.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 3464.0 ms, memory usage: 883 MB
+2021-10-15T10:06:11.603 >> Discarded: 5 planes with 5 satellites at 25.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T10:06:15.647 >> Analyzing: 5 planes with 5 satellites at 30.0 degrees. Complexity level: 0 > MCG: 43.3526 - computation time: 3481.0 ms, memory usage: 1503 MB
+2021-10-15T10:06:32.604 >> Analyzing: 5 planes with 5 satellites at 30.0 degrees. Complexity level: 1 > MCG: 63.71147 - computation time: 14565.0 ms, memory usage: 1901 MB
+2021-10-15T10:13:15.773 >> Analyzing: 5 planes with 5 satellites at 30.0 degrees. Complexity level: 2 > MCG: 64.29078 - computation time: 393950.0 ms, memory usage: 3118 MB
+2021-10-15T10:43:57.571 >> Analyzing: 5 planes with 5 satellites at 30.0 degrees. Complexity level: 3 > MCG: 64.34705 - computation time: 1805897.0 ms, memory usage: 739 MB
+2021-10-15T10:43:57.571 >> SOLUTION!: 5 planes with 5 satellites at 30.0 degrees. MCG: 64.34705
+2021-10-15T10:44:02.195 >> Analyzing: 5 planes with 6 satellites at 0.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 4075.0 ms, memory usage: 1066 MB
+2021-10-15T10:44:02.195 >> Discarded: 5 planes with 6 satellites at 0.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T10:44:06.679 >> Analyzing: 5 planes with 6 satellites at 5.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 3850.0 ms, memory usage: 1411 MB
+2021-10-15T10:44:06.679 >> Discarded: 5 planes with 6 satellites at 5.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T10:44:11.119 >> Analyzing: 5 planes with 6 satellites at 10.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 3881.0 ms, memory usage: 1749 MB
+2021-10-15T10:44:11.119 >> Discarded: 5 planes with 6 satellites at 10.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T10:44:15.752 >> Analyzing: 5 planes with 6 satellites at 15.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 4085.0 ms, memory usage: 2089 MB
+2021-10-15T10:44:15.752 >> Discarded: 5 planes with 6 satellites at 15.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T10:44:20.384 >> Analyzing: 5 planes with 6 satellites at 20.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 4102.0 ms, memory usage: 838 MB
+2021-10-15T10:44:20.385 >> Discarded: 5 planes with 6 satellites at 20.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T10:44:25.397 >> Analyzing: 5 planes with 6 satellites at 25.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 4175.0 ms, memory usage: 1302 MB
+2021-10-15T10:44:25.397 >> Discarded: 5 planes with 6 satellites at 25.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T10:44:29.984 >> Analyzing: 5 planes with 6 satellites at 30.0 degrees. Complexity level: 0 > MCG: 33.67483 - computation time: 4047.0 ms, memory usage: 1921 MB
+2021-10-15T10:44:50.618 >> Analyzing: 5 planes with 6 satellites at 30.0 degrees. Complexity level: 1 > MCG: 50.78432 - computation time: 18301.0 ms, memory usage: 1132 MB
+2021-10-15T10:53:52.390 >> Analyzing: 5 planes with 6 satellites at 30.0 degrees. Complexity level: 2 > MCG: 67.4899 - computation time: 532387.0 ms, memory usage: 1571 MB
+2021-10-15T11:30:17.672 >> Analyzing: 5 planes with 6 satellites at 30.0 degrees. Complexity level: 3 > MCG: 67.5257 - computation time: 2143515.0 ms, memory usage: 507 MB
+2021-10-15T11:30:17.672 >> SOLUTION!: 5 planes with 6 satellites at 30.0 degrees. MCG: 67.5257
+2021-10-15T11:30:20.772 >> Analyzing: 6 planes with 3 satellites at 0.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 2435.0 ms, memory usage: 346 MB
+2021-10-15T11:30:20.772 >> Discarded: 6 planes with 3 satellites at 0.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T11:30:23.790 >> Analyzing: 6 planes with 3 satellites at 5.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 2408.0 ms, memory usage: 824 MB
+2021-10-15T11:30:23.790 >> Discarded: 6 planes with 3 satellites at 5.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T11:30:26.876 >> Analyzing: 6 planes with 3 satellites at 10.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 2396.0 ms, memory usage: 762 MB
+2021-10-15T11:30:26.877 >> Discarded: 6 planes with 3 satellites at 10.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T11:30:29.820 >> Analyzing: 6 planes with 3 satellites at 15.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 2379.0 ms, memory usage: 688 MB
+2021-10-15T11:30:29.820 >> Discarded: 6 planes with 3 satellites at 15.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T11:30:32.875 >> Analyzing: 6 planes with 3 satellites at 20.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 2401.0 ms, memory usage: 706 MB
+2021-10-15T11:30:32.876 >> Discarded: 6 planes with 3 satellites at 20.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T11:30:35.989 >> Analyzing: 6 planes with 3 satellites at 25.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 2503.0 ms, memory usage: 822 MB
+2021-10-15T11:30:35.989 >> Discarded: 6 planes with 3 satellites at 25.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T11:30:39.005 >> Analyzing: 6 planes with 3 satellites at 30.0 degrees. Complexity level: 0 > MCG: 29.24568 - computation time: 2412.0 ms, memory usage: 1060 MB
+2021-10-15T11:30:52.195 >> Analyzing: 6 planes with 3 satellites at 30.0 degrees. Complexity level: 1 > MCG: 30.39647 - computation time: 10597.0 ms, memory usage: 698 MB
+2021-10-15T11:35:48.860 >> Analyzing: 6 planes with 3 satellites at 30.0 degrees. Complexity level: 2 > MCG: 51.80568 - computation time: 286876.0 ms, memory usage: 2528 MB
+2021-10-15T11:54:55.066 >> Analyzing: 6 planes with 3 satellites at 30.0 degrees. Complexity level: 3 > MCG: 51.8316 - computation time: 1108996.0 ms, memory usage: 4896 MB
+2021-10-15T11:54:55.066 >> SOLUTION!: 6 planes with 3 satellites at 30.0 degrees. MCG: 51.8316
+2021-10-15T11:54:58.495 >> Analyzing: 6 planes with 4 satellites at 0.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 2944.0 ms, memory usage: 5346 MB
+2021-10-15T11:54:58.495 >> Discarded: 6 planes with 4 satellites at 0.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T11:55:01.950 >> Analyzing: 6 planes with 4 satellites at 5.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 2932.0 ms, memory usage: 4900 MB
+2021-10-15T11:55:01.950 >> Discarded: 6 planes with 4 satellites at 5.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T11:55:05.345 >> Analyzing: 6 planes with 4 satellites at 10.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 2862.0 ms, memory usage: 5017 MB
+2021-10-15T11:55:05.345 >> Discarded: 6 planes with 4 satellites at 10.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T11:55:08.787 >> Analyzing: 6 planes with 4 satellites at 15.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 2972.0 ms, memory usage: 5091 MB
+2021-10-15T11:55:08.787 >> Discarded: 6 planes with 4 satellites at 15.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T11:55:12.193 >> Analyzing: 6 planes with 4 satellites at 20.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 2911.0 ms, memory usage: 5219 MB
+2021-10-15T11:55:12.193 >> Discarded: 6 planes with 4 satellites at 20.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T11:55:15.657 >> Analyzing: 6 planes with 4 satellites at 25.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 2925.0 ms, memory usage: 4879 MB
+2021-10-15T11:55:15.657 >> Discarded: 6 planes with 4 satellites at 25.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T11:55:19.214 >> Analyzing: 6 planes with 4 satellites at 30.0 degrees. Complexity level: 0 > MCG: 20.90867 - computation time: 3072.0 ms, memory usage: 5463 MB
+2021-10-15T11:55:34.130 >> Analyzing: 6 planes with 4 satellites at 30.0 degrees. Complexity level: 1 > MCG: 22.10987 - computation time: 12924.0 ms, memory usage: 5789 MB
+2021-10-15T12:01:33.890 >> Analyzing: 6 planes with 4 satellites at 30.0 degrees. Complexity level: 2 > MCG: 35.33117 - computation time: 350994.0 ms, memory usage: 1102 MB
+2021-10-15T12:25:33.541 >> Analyzing: 6 planes with 4 satellites at 30.0 degrees. Complexity level: 3 > MCG: 35.36307 - computation time: 1408416.0 ms, memory usage: 3756 MB
+2021-10-15T12:25:33.541 >> SOLUTION!: 6 planes with 4 satellites at 30.0 degrees. MCG: 35.36307
+2021-10-15T12:25:37.683 >> Analyzing: 6 planes with 5 satellites at 0.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 3640.0 ms, memory usage: 3742 MB
+2021-10-15T12:25:37.683 >> Discarded: 6 planes with 5 satellites at 0.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T12:25:41.849 >> Analyzing: 6 planes with 5 satellites at 5.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 3664.0 ms, memory usage: 3910 MB
+2021-10-15T12:25:41.849 >> Discarded: 6 planes with 5 satellites at 5.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T12:25:45.972 >> Analyzing: 6 planes with 5 satellites at 10.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 3655.0 ms, memory usage: 3755 MB
+2021-10-15T12:25:45.972 >> Discarded: 6 planes with 5 satellites at 10.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T12:25:50.046 >> Analyzing: 6 planes with 5 satellites at 15.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 3504.0 ms, memory usage: 3761 MB
+2021-10-15T12:25:50.046 >> Discarded: 6 planes with 5 satellites at 15.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T12:25:54.274 >> Analyzing: 6 planes with 5 satellites at 20.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 3635.0 ms, memory usage: 3811 MB
+2021-10-15T12:25:54.274 >> Discarded: 6 planes with 5 satellites at 20.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T12:25:58.486 >> Analyzing: 6 planes with 5 satellites at 25.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 3710.0 ms, memory usage: 4188 MB
+2021-10-15T12:25:58.486 >> Discarded: 6 planes with 5 satellites at 25.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T12:26:02.783 >> Analyzing: 6 planes with 5 satellites at 30.0 degrees. Complexity level: 0 > MCG: 15.9051 - computation time: 3811.0 ms, memory usage: 4508 MB
+2021-10-15T12:26:21.037 >> Analyzing: 6 planes with 5 satellites at 30.0 degrees. Complexity level: 1 > MCG: 17.15985 - computation time: 16253.0 ms, memory usage: 4859 MB
+2021-10-15T12:33:46.058 >> Analyzing: 6 planes with 5 satellites at 30.0 degrees. Complexity level: 2 > MCG: 25.51258 - computation time: 436743.0 ms, memory usage: 5296 MB
+2021-10-15T13:03:38.732 >> Analyzing: 6 planes with 5 satellites at 30.0 degrees. Complexity level: 3 > MCG: 25.54845 - computation time: 1760522.0 ms, memory usage: 3840 MB
+2021-10-15T13:03:38.732 >> SOLUTION!: 6 planes with 5 satellites at 30.0 degrees. MCG: 25.54845
+2021-10-15T13:03:43.561 >> Analyzing: 6 planes with 6 satellites at 0.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 4343.0 ms, memory usage: 3910 MB
+2021-10-15T13:03:43.561 >> Discarded: 6 planes with 6 satellites at 0.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T13:03:48.422 >> Analyzing: 6 planes with 6 satellites at 5.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 4391.0 ms, memory usage: 4108 MB
+2021-10-15T13:03:48.422 >> Discarded: 6 planes with 6 satellites at 5.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T13:03:53.275 >> Analyzing: 6 planes with 6 satellites at 10.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 4383.0 ms, memory usage: 4374 MB
+2021-10-15T13:03:53.276 >> Discarded: 6 planes with 6 satellites at 10.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T13:03:58.149 >> Analyzing: 6 planes with 6 satellites at 15.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 4406.0 ms, memory usage: 2334 MB
+2021-10-15T13:03:58.149 >> Discarded: 6 planes with 6 satellites at 15.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T13:04:03.031 >> Analyzing: 6 planes with 6 satellites at 20.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 4386.0 ms, memory usage: 4070 MB
+2021-10-15T13:04:03.031 >> Discarded: 6 planes with 6 satellites at 20.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T13:04:07.983 >> Analyzing: 6 planes with 6 satellites at 25.0 degrees. Complexity level: 0 > MCG: 1440.0 - computation time: 4482.0 ms, memory usage: 2435 MB
+2021-10-15T13:04:07.983 >> Discarded: 6 planes with 6 satellites at 25.0 degrees. Complexity level: 0 > MCG: 1440.0
+2021-10-15T13:04:13.012 >> Analyzing: 6 planes with 6 satellites at 30.0 degrees. Complexity level: 0 > MCG: 12.59445 - computation time: 4566.0 ms, memory usage: 3216 MB
+2021-10-15T13:04:34.257 >> Analyzing: 6 planes with 6 satellites at 30.0 degrees. Complexity level: 1 > MCG: 13.87123 - computation time: 19324.0 ms, memory usage: 4481 MB
+2021-10-15T13:15:17.435 >> Analyzing: 6 planes with 6 satellites at 30.0 degrees. Complexity level: 2 > MCG: 19.00513 - computation time: 635044.0 ms, memory usage: 3070 MB
+2021-10-15T13:57:14.191 >> Analyzing: 6 planes with 6 satellites at 30.0 degrees. Complexity level: 3 > MCG: 19.0442 - computation time: 2473285.0 ms, memory usage: 581 MB
+2021-10-15T13:57:14.191 >> SOLUTION!: 6 planes with 6 satellites at 30.0 degrees. MCG: 19.0442
+====================================================================== STATISTICS ======================================================================
+Total compute time: 29005800 ms.
+16 Solutions found
+Solutions rejected at each complexity step: / 0: 100 / 1: 4 / 2: 2 / 3: 0 / 
+====================================================================== SOLUTIONS ======================================================================
+3 planes with 3 satellites each, at 40.0 degrees of inclination. MCG: 40.674
+3 planes with 4 satellites each, at 40.0 degrees of inclination. MCG: 25.0559
+3 planes with 5 satellites each, at 35.0 degrees of inclination. MCG: 115.65443
+3 planes with 6 satellites each, at 35.0 degrees of inclination. MCG: 109.33752
+4 planes with 3 satellites each, at 35.0 degrees of inclination. MCG: 28.8899
+4 planes with 4 satellites each, at 35.0 degrees of inclination. MCG: 20.67062
+4 planes with 5 satellites each, at 35.0 degrees of inclination. MCG: 15.79313
+4 planes with 6 satellites each, at 35.0 degrees of inclination. MCG: 12.18837
+5 planes with 3 satellites each, at 30.0 degrees of inclination. MCG: 83.93967
+5 planes with 4 satellites each, at 30.0 degrees of inclination. MCG: 83.8637
+5 planes with 5 satellites each, at 30.0 degrees of inclination. MCG: 64.34705
+5 planes with 6 satellites each, at 30.0 degrees of inclination. MCG: 67.5257
+6 planes with 3 satellites each, at 30.0 degrees of inclination. MCG: 51.8316
+6 planes with 4 satellites each, at 30.0 degrees of inclination. MCG: 35.36307
+6 planes with 5 satellites each, at 30.0 degrees of inclination. MCG: 25.54845
+6 planes with 6 satellites each, at 30.0 degrees of inclination. MCG: 19.0442
