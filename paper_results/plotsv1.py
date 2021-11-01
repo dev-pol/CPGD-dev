@@ -2,6 +2,11 @@ import matplotlib
 import matplotlib.pyplot as plt
 from datetime import datetime
 
+# const. size   rect=larg, mesh=low  (sats/planes)
+# inclination   rect=high, mesh=low
+# compl. lvls   rect=high, mesh=few
+# memory/time   rect=low , mesh=high
+
 # fig, axs = plt.subplots(nrows=4, ncols=6, figsize=(17, 10), sharey=True, sharex=True)
 fig, axs = plt.subplots(nrows=2, ncols=2, figsize=(16, 16), sharey=True, sharex=True)
 
@@ -66,5 +71,5 @@ for p, place in enumerate(places):
         for t, time in enumerate(time_stamps_solu):
             axs[m][p].annotate("p:{} i:{:.1f}\nmcg:{:.1f}".format(solu_planes[t], solu_incl[t], solu_mcg[t]), (time, solu_sats_total[t] + 0.5), ha='center')
 
-plt.savefig("./paper_results/" + "plots.png", format='png', dpi=300)
-plt.savefig("./paper_results/" + "plots.pdf", format='pdf')
+plt.savefig("./paper_results/" + "plotsv1.png", format='png', dpi=300)
+plt.savefig("./paper_results/" + "plotsv1.pdf", format='pdf')
