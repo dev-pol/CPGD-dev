@@ -10,10 +10,12 @@ from statistics import mean
 # compl. lvls   rect=high, mesh=few
 # memory/time   rect=low , mesh=high
 
-fig, axs = plt.subplots(nrows=2, ncols=2, figsize=(14, 14))
+fig, axs = plt.subplots(nrows=1, ncols=4, figsize=(15, 5), sharey=True)
 
 places = ["Africa", "Europe"]
 models = ["Extreme", "Mesh"]
+
+axes_to_join = []
 
 for p, place in enumerate(places):
     for m, model in enumerate(models):
@@ -131,36 +133,36 @@ for p, place in enumerate(places):
         ################### 
 
         if model == "Extreme":
-            axs[p][m].set_title(place + " Rect")
+            axs[p+2*m].set_title(place + " Rect")
         else:
-            axs[p][m].set_title(place + " Mesh")
+            axs[p+2*m].set_title(place + " Mesh")
 
-        axs[p][m].grid(axis='x', which='both', color='0.95')
-        axs[p][m].grid(axis='y', which='major', color='0.93')
-        axs[p][m].grid(axis='y', which='minor', color='0.96')
+        axs[p+2*m].grid(axis='x', which='both', color='0.95')
+        axs[p+2*m].grid(axis='y', which='major', color='0.93')
+        axs[p+2*m].grid(axis='y', which='minor', color='0.96')
 
         dim = 0.75
         dimw = 0.75/2
 
         # Twin1
-        #axs[p][m].set_xlim([7, 38])
-        axs[p][m].set_ylim([0, 10.5])
+        #axs[p+2*m].set_xlim([7, 38])
+        axs[p+2*m].set_ylim([0, 10.5])
 
-        axs[p][m].set_xlabel("Complexity level")
-        axs[p][m].set_ylabel("Compute time [hrs]", color='blue')
+        axs[p+2*m].set_xlabel("Complexity level")
+        axs[p+2*m].set_ylabel("Compute time [hrs]", color='blue')
 
-        axs[p][m].bar(0 - dimw/2, compute_time_hrs_cl0, dimw, color='blue',  zorder=10),
-        axs[p][m].bar(1 - dimw/2, compute_time_hrs_cl1, dimw, color='blue', zorder=10),
-        axs[p][m].bar(2 - dimw/2, compute_time_hrs_cl2, dimw, color='blue', zorder=10),
-        axs[p][m].bar(3 - dimw/2, compute_time_hrs_cl3, dimw, color='blue', zorder=10),
-        axs[p][m].bar(4 - dimw/2, compute_time_hrs_cl4, dimw, color='blue', zorder=10),
+        axs[p+2*m].bar(0 - dimw/2, compute_time_hrs_cl0, dimw, color='blue',  zorder=10),
+        axs[p+2*m].bar(1 - dimw/2, compute_time_hrs_cl1, dimw, color='blue', zorder=10),
+        axs[p+2*m].bar(2 - dimw/2, compute_time_hrs_cl2, dimw, color='blue', zorder=10),
+        axs[p+2*m].bar(3 - dimw/2, compute_time_hrs_cl3, dimw, color='blue', zorder=10),
+        axs[p+2*m].bar(4 - dimw/2, compute_time_hrs_cl4, dimw, color='blue', zorder=10),
 
-        axs[p][m].annotate("Total compute time: {:.1f}hrs".format((compute_time_hrs_cl0 + compute_time_hrs_cl1 + compute_time_hrs_cl2 + compute_time_hrs_cl3 + compute_time_hrs_cl4)), 
-                    (0, 0), xytext=(0.05, 0.95), textcoords=axs[p][m].transAxes,
+        axs[p+2*m].annotate("Total compute time: {:.1f}hrs".format((compute_time_hrs_cl0 + compute_time_hrs_cl1 + compute_time_hrs_cl2 + compute_time_hrs_cl3 + compute_time_hrs_cl4)), 
+                    (0, 0), xytext=(0.05, 0.95), textcoords=axs[p+2*m].transAxes,
                     zorder=12, ha='left', va='center', color='blue')  
 
         # Twin2
-        axs2 = axs[p][m].twinx()
+        axs2 = axs[p+2*m].twinx()
 
         axs2.set_ylim([0, 2300])
         axs2.set_ylabel("Average memory [MB]", color='purple')
@@ -171,8 +173,8 @@ for p, place in enumerate(places):
         axs2.bar(3 + dimw/2, avg_memory_mb_cl3, dimw, color='purple', zorder=10),
         axs2.bar(4 + dimw/2, avg_memory_mb_cl4, dimw, color='purple', zorder=10),
 
-        axs[p][m].annotate("Max memory usage: {:.1f}MB".format(max(avg_memory_mb_cl0, avg_memory_mb_cl1, avg_memory_mb_cl2, avg_memory_mb_cl3, avg_memory_mb_cl4)), 
-                    (0, 0), xytext=(0.05, 0.9), textcoords=axs[p][m].transAxes,
+        axs[p+2*m].annotate("Max memory usage: {:.1f}MB".format(max(avg_memory_mb_cl0, avg_memory_mb_cl1, avg_memory_mb_cl2, avg_memory_mb_cl3, avg_memory_mb_cl4)), 
+                    (0, 0), xytext=(0.05, 0.9), textcoords=axs[p+2*m].transAxes,
                     zorder=12, ha='left', va='center', color='purple')  
         
 plt.tight_layout()

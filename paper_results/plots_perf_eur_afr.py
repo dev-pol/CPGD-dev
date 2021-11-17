@@ -9,7 +9,7 @@ from datetime import datetime
 # compl. lvls   rect=high, mesh=few
 # memory/time   rect=low , mesh=high
 
-fig, axs = plt.subplots(nrows=2, ncols=2, figsize=(14, 14))
+fig, axs = plt.subplots(nrows=1, ncols=4, figsize=(15, 5), sharey=True)
 
 places = ["Africa", "Europe"]
 models = ["Extreme", "Mesh"]
@@ -87,25 +87,25 @@ for p, place in enumerate(places):
         # Plot Solutions
         ###################
 
-        axs[p][m].grid(axis='x', which='both', color='0.95')
-        axs[p][m].grid(axis='y', which='major', color='0.93')
-        axs[p][m].grid(axis='y', which='minor', color='0.96')
+        axs[p+2*m].grid(axis='x', which='both', color='0.95')
+        axs[p+2*m].grid(axis='y', which='major', color='0.93')
+        axs[p+2*m].grid(axis='y', which='minor', color='0.96')
 
-        # axs[p][m].set_yscale('log')
+        # axs[p+2*m].set_yscale('log')
 
-        axs[p][m].set_xlim([7, 38])
-        axs[p][m].set_ylim([5, 125])
+        axs[p+2*m].set_xlim([7, 38])
+        axs[p+2*m].set_ylim([5, 125])
 
-        axs[p][m].axhline(y=120, color='gray', linestyle=':')
+        axs[p+2*m].axhline(y=120, color='gray', linestyle=':')
 
         if model == "Extreme":
-            axs[p][m].set_title(place + " Rect")
+            axs[p+2*m].set_title(place + " Rect")
         else:
-            axs[p][m].set_title(place + " Mesh")
-        axs[p][m].set_xlabel("Total satellites in costellation [#]")
-        axs[p][m].set_ylabel("Maximum Contact Gap [min]")
+            axs[p+2*m].set_title(place + " Mesh")
+        axs[p+2*m].set_xlabel("Total satellites in costellation [#]")
+        axs[p+2*m].set_ylabel("Maximum Contact Gap [min]")
 
-        axs[p][m].scatter(solu_sats_total, solu_mcg, zorder=10, c=solu_planes, marker="o", s=300, label="Solution")
+        axs[p+2*m].scatter(solu_sats_total, solu_mcg, zorder=10, c=solu_planes, marker="o", s=300, label="Solution")
         
         # Annotations
         for s, _ in enumerate(solu_sats_total):
@@ -114,37 +114,38 @@ for p, place in enumerate(places):
                 color = 'white'
             else:
                 color = 'black'
-            axs[p][m].annotate("{}".format(solu_planes[s]), 
+            axs[p+2*m].annotate("{}".format(solu_planes[s]), 
                               (solu_sats_total[s], solu_mcg[s]), color=color,
                               zorder=12, ha='center', va='center')
 
             # inclination
-            axs[p][m].annotate("i:{:.1f}".format(solu_incl[s]), 
+            axs[p+2*m].annotate("i:{:.1f}".format(solu_incl[s]), 
                               (solu_sats_total[s], solu_mcg[s] + 5), 
                               zorder=12, ha='center', va='center')
 
         # Tutorial
         if p == 0 and m == 0:
             s = 6
-            axs[p][m].annotate("Number of planes", (solu_sats_total[s], solu_mcg[s] - 1),
-                    xytext=(0.25, 0.4), textcoords=axs[p][m].transAxes,
+            axs[p+2*m].annotate("Number of planes", (solu_sats_total[s], solu_mcg[s] - 1),
+                    xytext=(0.25, 0.4), textcoords=axs[p+2*m].transAxes,
                     zorder=12, ha='center', va='center',
                     arrowprops=dict(arrowstyle="->",
                         connectionstyle="arc, rad=1",
                         ls='-', lw=1))
-            axs[p][m].annotate("Inclination", (solu_sats_total[s], solu_mcg[s] + 6),
-                    xytext=(0.25, 0.65), textcoords=axs[p][m].transAxes,
+            axs[p+2*m].annotate("Inclination", (solu_sats_total[s], solu_mcg[s] + 6),
+                    xytext=(0.25, 0.65), textcoords=axs[p+2*m].transAxes,
                     zorder=12, ha='center', va='center',
                     arrowprops=dict(arrowstyle="->",
                         connectionstyle="arc, rad=1",
                         ls='-', lw=1))
-            axs[p][m].annotate("Maximum contact\ngap threshold", (25, 120),
-                    xytext=(0.7, 0.85), textcoords=axs[p][m].transAxes,
+            axs[p+2*m].annotate("Maximum contact\ngap threshold", (25, 120),
+                    xytext=(0.7, 0.85), textcoords=axs[p+2*m].transAxes,
                     zorder=12, ha='center', va='center',
                     arrowprops=dict(arrowstyle="->",
                         connectionstyle="arc, rad=1",
                         ls='-', lw=1))
 
+plt.tight_layout()
 
 plt.savefig("./paper_results/" + "plots_perf_eur_afr.png", format='png', dpi=300)
 plt.savefig("./paper_results/" + "plots_perf_eur_afr.pdf", format='pdf')
