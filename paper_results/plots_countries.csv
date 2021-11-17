@@ -1,0 +1,25 @@
+Region (metric),        Total sats,     Planes,     Inclination
+
+Greenland (min sats.),  6,              2,          70.0
+Greenland (min incl.),  12,             4,          65.0
+
+SouthKorea (min sats.), 6,              2,          50.0
+SouthKorea (min incl.), 15,             5,          20.0
+
+Lebanon (min sats.),    9,              3,          25.0
+Lebanon (min incl.),    12,             4,          20.0
+
+Brazil (min sats.),     9,              3,          20.0
+Brazil (min incl.),     12,             4,          15.0
+
+Italy (min sats.),      9,              3,          40.0
+Italy (min incl.),      15,             5,          30.0
+
+Australia (min sats.),  12,             3,          90.0
+Australia (min incl.),  15,             5,          25.0
+
+WMountains (min sats.), 12,             3,          90.0
+WMountains (min incl.), 15,             5,          60.0
+
+
+
