@@ -91,7 +91,7 @@ for p, place in enumerate(places):
     min_sats_planes = solu_planes[min_sats_index]
     min_sats_incl = solu_incl[min_sats_index]
 
-    print("{} (min sats.),{},{},{}".format(place,min_sats,min_sats_planes,min_sats_incl,min_sats_mcg))
+    print("{} (min sats.),{},{},{},{}".format(place,min_sats,min_sats_planes,min_sats_incl,min_sats_mcg))
 
     min_incl = min(solu_incl)
     min_incl_index = solu_incl.index(min_incl)
@@ -100,6 +100,6 @@ for p, place in enumerate(places):
     min_incl_planes = solu_planes[min_incl_index]
     min_incl_sats = solu_sats_total[min_incl_index]
 
-    print("{} (min incl.),{},{},{}".format(place,min_incl_sats,min_incl_planes,min_incl,min_incl_mcg))
+    print("{} (min incl.),{},{},{},{}".format(place,min_incl_sats,min_incl_planes,min_incl,min_incl_mcg))
 
 
