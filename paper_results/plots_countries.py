@@ -4,7 +4,7 @@ from datetime import datetime
 
 fig, axs = plt.subplots(nrows=1, ncols=4, figsize=(15, 5), sharey=True)
 
-places = ["Lebanon", "Italy", "Brazil", "Australia", "SouthKorea", "Greenland", "WorldMountains"]
+places = ["Greenland", "SouthKorea", "Lebanon", "Brazil", "Italy", "Australia", "WorldMountains"]
 model = "Mesh"
 
 print("Region (metric), Total sats, Planes, Inclination")
@@ -23,6 +23,15 @@ for p, place in enumerate(places):
     with open("./paper_results/" + file_name + ".log") as f:
         lines = f.readlines()
     lines = [line[:-1] for line in lines]
+
+    if model == "Mesh":
+        # Read lines from short
+        lines2 = []
+        with open("./paper_results/ShortConst/" + file_name + "_Short.log") as f:
+            lines2 = f.readlines()
+        lines2 = [line[:-1] for line in lines2]
+
+        lines = lines + lines2
 
     # Time stamps
     time_stamp_0 = None

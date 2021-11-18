@@ -29,6 +29,16 @@ for p, place in enumerate(places):
             lines = f.readlines()
         lines = [line[:-1] for line in lines]
 
+        if model == "Mesh":
+            # Read lines from short
+            lines2 = []
+            with open("./paper_results/ShortConst/" + file_name + "_Short.log") as f:
+                lines2 = f.readlines()
+            lines2 = [line[:-1] for line in lines2]
+
+            lines = lines + lines2
+
+
         # Time stamps
         time_stamp_0 = None
         time_stamps_analizing = []
@@ -93,7 +103,7 @@ for p, place in enumerate(places):
 
         # axs[p+2*m].set_yscale('log')
 
-        axs[p+2*m].set_xlim([7, 38])
+        axs[p+2*m].set_xlim([1, 38])
         axs[p+2*m].set_ylim([5, 125])
 
         axs[p+2*m].axhline(y=120, color='gray', linestyle=':')
@@ -139,7 +149,7 @@ for p, place in enumerate(places):
                         connectionstyle="arc, rad=1",
                         ls='-', lw=1))
             axs[p+2*m].annotate("Maximum contact\ngap threshold", (25, 120),
-                    xytext=(0.7, 0.85), textcoords=axs[p+2*m].transAxes,
+                    xytext=(0.75, 0.85), textcoords=axs[p+2*m].transAxes,
                     zorder=12, ha='center', va='center',
                     arrowprops=dict(arrowstyle="->",
                         connectionstyle="arc, rad=1",
