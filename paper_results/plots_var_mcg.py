@@ -29,6 +29,15 @@ for p, place in enumerate(places):
             lines = f.readlines()
         lines = [line[:-1] for line in lines]
 
+        if model == "Mesh":
+            # Read lines from short
+            lines2 = []
+            with open("./paper_results/ShortConst/" + file_name + "_Short.log") as f:
+                lines2 = f.readlines()
+            lines2 = [line[:-1] for line in lines2]
+
+            lines = lines + lines2
+
         # Time stamps
         time_stamp_0 = None
         time_stamps_analizing = []
