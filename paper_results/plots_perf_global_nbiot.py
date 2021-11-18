@@ -92,6 +92,7 @@ with open("./paper_results/" + file_name + ".log") as f:
     #axs.set_ylim([5, 125])
 
     axs.axhline(y=186, color='gray', linestyle=':')
+    axs.axhline(y=120, color='gray', linestyle=':')
 
     axs.set_title("Global Mesh")
     
