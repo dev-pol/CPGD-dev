@@ -137,13 +137,13 @@ for p, place in enumerate(places):
         if p == 0 and m == 0:
             s = 6
             axs[p+2*m].annotate("Number of planes", (solu_sats_total[s], solu_mcg[s] - 1),
-                    xytext=(0.25, 0.4), textcoords=axs[p+2*m].transAxes,
+                    xytext=(0.25, 0.42), textcoords=axs[p+2*m].transAxes,
                     zorder=12, ha='center', va='center',
                     arrowprops=dict(arrowstyle="->",
                         connectionstyle="arc, rad=1",
                         ls='-', lw=1))
-            axs[p+2*m].annotate("Inclination", (solu_sats_total[s], solu_mcg[s] + 6),
-                    xytext=(0.25, 0.65), textcoords=axs[p+2*m].transAxes,
+            axs[p+2*m].annotate("Inclination", (solu_sats_total[s] + 2, solu_mcg[s] + 6),
+                    xytext=(0.75, 0.6), textcoords=axs[p+2*m].transAxes,
                     zorder=12, ha='center', va='center',
                     arrowprops=dict(arrowstyle="->",
                         connectionstyle="arc, rad=1",
