@@ -146,7 +146,7 @@ for p, place in enumerate(places):
 
         # Twin1
         #axs[p+2*m].set_xlim([7, 38])
-        axs[p+2*m].set_ylim([0, 10.5])
+        axs[p+2*m].set_ylim([0, 11.5])
 
         axs[p+2*m].set_xlabel("Complexity level")
         axs[p+2*m].set_ylabel("Compute time [hrs]", color='blue')
@@ -164,7 +164,9 @@ for p, place in enumerate(places):
         # Twin2
         axs2 = axs[p+2*m].twinx()
 
-        axs2.set_ylim([0, 2300])
+        # axs2.get_shared_y_axes().join(axs2, axs[3])
+
+        axs2.set_ylim([0, 2400])
         axs2.set_ylabel("Average memory [MB]", color='purple')
 
         axs2.bar(0 + dimw/2, avg_memory_mb_cl0, dimw, color='purple', zorder=10),
@@ -173,9 +175,13 @@ for p, place in enumerate(places):
         axs2.bar(3 + dimw/2, avg_memory_mb_cl3, dimw, color='purple', zorder=10),
         axs2.bar(4 + dimw/2, avg_memory_mb_cl4, dimw, color='purple', zorder=10),
 
+        
+
         axs[p+2*m].annotate("Max memory usage: {:.1f}MB".format(max(avg_memory_mb_cl0, avg_memory_mb_cl1, avg_memory_mb_cl2, avg_memory_mb_cl3, avg_memory_mb_cl4)), 
                     (0, 0), xytext=(0.05, 0.9), textcoords=axs[p+2*m].transAxes,
                     zorder=12, ha='left', va='center', color='purple')  
+
+        
         
 plt.tight_layout()
 

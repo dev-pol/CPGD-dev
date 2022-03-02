@@ -117,6 +117,27 @@ with open("./paper_results/" + file_name + ".log") as f:
                             (solu_sats_total[s], solu_mcg[s] + 5), 
                             zorder=12, ha='center', va='center')
 
+    # Tutorials
+    s = 6
+    axs.annotate("Number of planes", (solu_sats_total[s], solu_mcg[s] - 1),
+                xytext=(0.25, 0.30), textcoords=axs.transAxes,
+                zorder=12, ha='center', va='center',
+                arrowprops=dict(arrowstyle="->",
+                    connectionstyle="arc, rad=1",
+                    ls='-', lw=1))
+    axs.annotate("Inclination", (solu_sats_total[s] + 2, solu_mcg[s] + 6),
+            xytext=(0.55, 0.6), textcoords=axs.transAxes,
+            zorder=12, ha='center', va='center',
+            arrowprops=dict(arrowstyle="->",
+                connectionstyle="arc, rad=1",
+                ls='-', lw=1))
+    axs.annotate("Maximum contact\ngap threshold", (25, 186),
+            xytext=(0.75, 0.85), textcoords=axs.transAxes,
+            zorder=12, ha='center', va='center',
+            arrowprops=dict(arrowstyle="->",
+                connectionstyle="arc, rad=1",
+                ls='-', lw=1))
+
 plt.tight_layout()
 
 plt.savefig("./paper_results/" + "plots_perf_global_nbiot.png", format='png', dpi=300)
