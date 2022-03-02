@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import org.apache.commons.lang3.ObjectUtils.Null;
+// import org.apache.commons.lang3.ObjectUtils.Null;
 
 public class CPGD {
     // Load configuration file
@@ -21,6 +21,8 @@ public class CPGD {
     static final String OUTPUT_PATH = (String) properties.get("output_path");
     static final String START_DATE = (String) properties.get("start_date");
     static final String END_DATE = (String) properties.get("end_date");
+    static final String VERIFY_START_DATE = (String) properties.get("verify_start_date");
+    static final String VERIFY_END_DATE = (String) properties.get("verify_end_date");
     static final String SEARCH_DATE = (String) properties.get("search_date");
     static final double TIME_STEP = Double.parseDouble((String) properties.get("time_step"));
     static final double VISIBILITY_THRESHOLD = Double.parseDouble((String) properties.get("visibility_threshold"));
@@ -30,12 +32,27 @@ public class CPGD {
     static final int MIN_SATS_IN_PLANE = Integer.parseInt((String) properties.get("min_sats_in_plane"));
     static final int MAX_SATS_IN_PLANE = Integer.parseInt((String) properties.get("max_sats_in_plane"));
     static final double MAX_INCLINATION = Double.parseDouble((String) properties.get("max_inclination"));
+    static final double MIN_INCLINATION = Double.parseDouble((String) properties.get("min_inclination"));
     static final double INCLINATION_STEP = Double.parseDouble((String) properties.get("inclination_step"));
     static final int COMPLEXITY_LEVELS = Integer.parseInt((String) properties.get("complexity_levels"));
     static final double SEMI_MAJOR_AXIS = Double.parseDouble((String) properties.get("semi_major_axis"));
     static final double ECCENTRICITY = Double.parseDouble((String) properties.get("eccentricity"));
     static final double PERIGEE_ARGUMENT = Double.parseDouble((String) properties.get("perigee_argument"));
     static final double DEVICES_HEIGHT = Double.parseDouble((String) properties.get("devices_height"));
+    static final String ConstellationConfiguration = (String) properties.get("ConstellationConfiguration");
+    static final int MIN_PETALS = Integer.parseInt((String) properties.get("min_petals"));
+    static final int MAX_PETALS = Integer.parseInt((String) properties.get("max_petals"));
+    static final int MIN_DAYS = Integer.parseInt((String) properties.get("min_days"));
+    static final int MAX_DAYS = Integer.parseInt((String) properties.get("max_days"));
+    static final int MIN_PD = Integer.parseInt((String) properties.get("min_plane_phasing_d"));
+    static final int MAX_PD = Integer.parseInt((String) properties.get("max_plane_phasing_d"));
+    static final int MIN_PN = Integer.parseInt((String) properties.get("min_plane_phasing_n"));
+    static final int MAX_PN = Integer.parseInt((String) properties.get("max_plane_phasing_n"));
+    static final int MIN_SATS = Integer.parseInt((String) properties.get("min_sats"));
+    static final int MAX_SATS = Integer.parseInt((String) properties.get("max_sats"));
+    static final double raan_spread = Double.parseDouble((String) properties.get("raan_spread"));
+
+    // useConstellation=1 provides an initial guess
 
     static final double StartingMeshGridResolution = Double
             .parseDouble((String) properties.get("StartingMeshGridResolution"));
@@ -62,6 +79,12 @@ public class CPGD {
         int complexity = 0;
         int currentPlanes = MIN_PLANES;
         int currentSatsInPlane = MIN_SATS_IN_PLANE;
+        int currentPetals = MIN_PETALS;
+        int currentPD = MIN_PD;
+        int currentPN = MIN_PN;
+        int currentDays = MIN_DAYS;
+        int currentSats = MIN_SATS;
+
         double MAX_LAT = 0, MIN_LAT = 0, MAX_LON = 0, MIN_LON = 0;
         double currentInclination = 0;
         double longitudeResolution = MAX_MCG * 0.1; // grid resolution longitude
@@ -157,8 +180,15 @@ public class CPGD {
             // If the maximum device latitude is known (global or progressive-rect methods),
             // start from
             // a minimum inclination
-            minInclination = getInclination(SEMI_MAJOR_AXIS, ECCENTRICITY, VISIBILITY_THRESHOLD, MAX_LAT);
-            currentInclination = minInclination;
+            if (MIN_INCLINATION == 0) {
+                // If we do not have a specific min inclination in mind
+                minInclination = getInclination(SEMI_MAJOR_AXIS, ECCENTRICITY, VISIBILITY_THRESHOLD, MAX_LAT);
+                currentInclination = minInclination;
+            } else {
+                minInclination = MIN_INCLINATION;
+                currentInclination = minInclination;
+            }
+
         }
 
         startLog(MAX_LAT);
@@ -173,7 +203,8 @@ public class CPGD {
             constellationAccess.setScenarioParams(START_DATE, SEARCH_DATE, TIME_STEP, VISIBILITY_THRESHOLD);
 
             // Populate the candidate constellation
-            populateConstellation(satellites, currentPlanes, currentSatsInPlane, currentInclination);
+            populateConstellation(satellites, currentPlanes, currentSatsInPlane, currentInclination,
+                    ConstellationConfiguration, currentSats, currentPetals, currentDays, currentPD, currentPN, raan_spread);
             constellationAccess.setSatellites(satellites);
 
             if (cases == 0) { // global || *.csv + progressive-rect
@@ -196,24 +227,37 @@ public class CPGD {
                     if (candidateMCG > MAX_MCG) {
                         exceededMCG = true;
                     }
-                    logProgress(currentPlanes, currentSatsInPlane, currentInclination, complexity, candidateMCG,
-                    constellationAccess.getLastSimTime());
-
+                    if (ConstellationConfiguration.equals("flower")) {
+                        logProgressFlower(currentSats, currentDays, currentPetals, currentPD, currentPN, currentInclination, complexity, candidateMCG, constellationAccess.getLastSimTime());
+                    }
+                    else {
+                        logProgress(currentPlanes, currentSatsInPlane, currentInclination, complexity, candidateMCG,
+                        constellationAccess.getLastSimTime());
+                    }
                     complexity = complexity + 1;
 
                 }
                 // Exceeded MCG or complexity
                 if (exceededMCG) { // Exceeded MCG at any complexity > log failed attempt
-                    discarded[complexity-1] += 1;
+                    discarded[complexity - 1] += 1;
+                    if (ConstellationConfiguration.equals("walker")) {
                     log("Discarded: " + currentPlanes + " planes with " + currentSatsInPlane + " satellites at "
-                            + currentInclination + " degrees. Complexity level: " + (complexity-1) + " > MCG: "
+                            + currentInclination + " degrees. Complexity level: " + (complexity - 1) + " > MCG: "
                             + candidateMCG);
+                    }
                 } else { // Satisfied MCG at maximum complexity
                     solutionFound = true;
+                    if (ConstellationConfiguration.equals("walker")) {
                     solutions.add(new Solution(currentPlanes, currentSatsInPlane, currentInclination, candidateMCG,
                             devices, satellites, discarded));
                     log("SOLUTION!: " + currentPlanes + " planes with " + currentSatsInPlane + " satellites at "
                             + currentInclination + " degrees. MCG: " + candidateMCG);
+                    }
+                    else {
+                        log("SOLUTION!: NumSats " + currentSats + " NumDays " + currentDays + " NumPetals "
+                            + currentPetals + " PD " + currentPD + " PN " + currentPN + " inclination:" + currentInclination + 
+                            " MCG: " + candidateMCG);
+                    }
                 }
 
             } else if (cases == 1) { // *.csv + all
@@ -296,11 +340,12 @@ public class CPGD {
                 }
                 // Exceeded MCG or complexity
                 if (exceededMCG) { // Exceeded MCG at any complexity > log failed attempt
-                    discarded[complexity-1] += 1;
+                    discarded[complexity - 1] += 1;
                     log("Discarded: " + currentPlanes + " planes with " + currentSatsInPlane + " satellites at "
                             + currentInclination + " degrees. Complexity level: " + (complexity - 1) + " > MCG: "
                             + candidateMCG);
                 } else { // Satisfied MCG at maximum complexity
+                    /* If a solution is found for the initial time span, we look at the */
                     solutionFound = true;
                     solutions.add(new Solution(currentPlanes, currentSatsInPlane, currentInclination, candidateMCG,
                             devices, satellites, discarded));
@@ -312,20 +357,52 @@ public class CPGD {
             currentInclination += INCLINATION_STEP;
 
             if ((currentInclination > MAX_INCLINATION) || (solutionFound)) {
-
-                solutionFound = false;
+                // First inclination
+                solutionFound = false; 
                 currentInclination = minInclination;
-                currentSatsInPlane++;
 
-                if (currentSatsInPlane > MAX_SATS_IN_PLANE) {
-                    currentSatsInPlane = MIN_SATS_IN_PLANE;
-                    currentPlanes++;
+                if (ConstellationConfiguration.equals("walker")) {
+                    currentSatsInPlane++;
+
+                    if (currentSatsInPlane > MAX_SATS_IN_PLANE) {
+                        currentSatsInPlane = MIN_SATS_IN_PLANE;
+                        currentPlanes++;
+                    }
+
+                    if (currentPlanes > MAX_PLANES) {
+                        allCandidatesTested = true;
+                    }
                 }
+                else if (ConstellationConfiguration.equals("flower")) {
+                    // Then sweep PD/PN
+                    currentPD = currentPD + 1;
+                    if (currentPD > MAX_PD) {
+                        currentPD = MIN_PD;
+                        currentPN = currentPN + 1;
 
-                if (currentPlanes > MAX_PLANES) {
-                    allCandidatesTested = true;
+                        if (currentPN > MAX_PN) {
+                            // Then increase petals
+                            currentPN = MIN_PN;
+                            currentPetals = currentPetals + 1;
+                            if (currentPetals > MAX_PETALS) {
+                                currentPetals = MIN_PETALS;
+                                currentDays = currentDays + 1; 
+                                // Then Days
+                                if (currentDays > MAX_DAYS) {
+                                    // Then sats
+                                    currentDays = MIN_DAYS;
+                                    currentSats = currentSats + 1;
+                                    if (currentSats > MAX_SATS) {
+                                        allCandidatesTested = true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                
                 }
             }
+
         }
         // Produce report with constellation candidates that satisfy requirements
         Reports.saveSolutionCSV(solutions, OUTPUT_PATH + RUN_DATE + CSV_EXTENSION);
@@ -354,21 +431,92 @@ public class CPGD {
      * number of planes, sats per plane, and plane inclination
      **/
     private static void populateConstellation(List<Satellite> satellites, int planes, int satsPerPlane,
-            double inclination) {
+            double inclination, String ConstellationConfiguration, int num_assets, int num_petals, int num_days, int plane_phasing_d,
+            int plane_phasing_n,
+            double raan_spread) {
 
         satellites.clear();
+        if (ConstellationConfiguration.equals("walker")) {
+            double planePhase = 360.0 / planes;
+            double satsPhase = 360.0 / satsPerPlane;
 
-        double planePhase = 360.0 / planes;
-        double satsPhase = 360.0 / satsPerPlane;
-
-        // Generate the constellation
-        int satId = 0;
-        for (int plane = 0; plane < planes; plane++) { // Plane
-            for (int sat = 0; sat < satsPerPlane; sat++) { // Satellites
-                satellites.add(new Satellite(satId++, START_DATE, SEMI_MAJOR_AXIS, ECCENTRICITY, inclination,
-                        plane * planePhase, PERIGEE_ARGUMENT, sat * satsPhase)); // - plane * (planePhase /
-                                                                                 // currentSatsInPlane)
+            // Generate the constellation
+            int satId = 0;
+            for (int plane = 0; plane < planes; plane++) { // Plane
+                for (int sat = 0; sat < satsPerPlane; sat++) { // Satellites
+                    satellites.add(new Satellite(satId++, START_DATE, SEMI_MAJOR_AXIS, ECCENTRICITY, inclination,
+                            plane * planePhase, PERIGEE_ARGUMENT, sat * satsPhase)); // - plane * (planePhase /
+                                                                                     // currentSatsInPlane)
+                }
             }
+        } else if (ConstellationConfiguration.equals("flower")) {
+            /*
+             * Class for describing and holding a flower constellation of satellites
+             * 
+             * :param params: A dict with the following arameters
+             * - num_petals: Number of petals formed when viewing the relative orbits
+             * - num_days: The number of days for the constellation to completely repeat its
+             * orbit
+             * - num_assets: The desired number of satellites involved in the constellation
+             * - phasing_n: Phasing parameter n, effects allowable satellite positions
+             * - inclination: Inclination of orbit relative to equatorial plane [degrees]
+             * - raan_spread: Interval where the orbital planes are distributed (180 for
+             * Star, 360 for Delta)
+             * - perigee_argument: Argument of perigee for satellite orbits [degrees]
+             */
+            /*
+             * https://www.esa.int/gsp/ACT/doc/ACTAFUTURA/AF02/papers/AF02.2006.7.pdf
+             * Ns = Nso Fd ≤ Nd Fd
+             * after Np orbital periods
+             * the rotating reference frame has performed Nd complete
+             * rotations and, consequently, the satellite and the rotating
+             * reference frame come back to their initial positions.
+             */
+            /*
+             * theory the two integers, Np
+             * and Nd, are identified as the Number of Petals and the
+             * Number of Days, respectively.
+             * en Nd really represents the
+             * number of days to repeat the relative trajectory, while the
+             * Number of Petals Np, that actually represent the number of
+             * orbit revolutions, finds its origin because of the petal-like
+             * shape of the relative trajectory
+             * The number of admissible locations per orbit in
+             * Flower Constellation is Nd
+             */
+
+            int max_assets = plane_phasing_d * num_days; // maximum assets
+            if (max_assets < num_assets) {
+                num_assets = max_assets;
+            }
+            double raan_spacing = -raan_spread * plane_phasing_n / plane_phasing_d;
+
+            double mean_anomaly_spacing = -1 * raan_spacing * num_petals / num_days;
+            if (Math.abs(mean_anomaly_spacing) > 360) {
+                mean_anomaly_spacing = mean_anomaly_spacing % 360;
+            }
+
+            if (Math.abs(raan_spacing) > 360) {
+                raan_spacing %= 360;
+            }
+
+            int satId = 0;
+            double raan_i = 0;
+            double M_i = 0;
+            for (int idx = 1; idx < Math.min(max_assets, num_assets); idx++)
+                raan_i = raan_i + raan_spacing;
+
+            if (raan_i < 0) {
+                raan_i = 360 + raan_i;
+            }
+
+            M_i = M_i + mean_anomaly_spacing;
+            if (Math.abs(M_i) > 360) {
+                M_i = M_i % 360;
+            }
+            satellites.add(new Satellite(satId++, START_DATE, SEMI_MAJOR_AXIS, ECCENTRICITY, inclination,
+                    raan_i, PERIGEE_ARGUMENT, M_i)); // - plane * (planePhase /
+                                                     // currentSatsInPlane)
         }
     }
 
@@ -464,6 +612,17 @@ public class CPGD {
                 + " - computation time: " + simTime + " ms, memory usage: "
                 + (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / (1024 * 1024) + " MB");
     }
+
+    private static void logProgressFlower(int currentSats, int currentDays, int currentPetals, 
+    int currentPD, int currentPN,  double currentInclination, int complexity, double mcg, double simTime) {
+// Get runtime memory
+
+log("Analyzing: Current sats: " + currentSats + " numDays  " + currentDays + " numPetals "
+        + currentPetals + " PD " + currentPD + " PN " + currentPN + " inclination " + currentInclination + 
+        ". degrees. Complexity level: " + complexity + " > MCG: " + mcg
+        + " - computation time: " + simTime + " ms, memory usage: "
+        + (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / (1024 * 1024) + " MB");
+}
 
     /**
      * This method appends a timestamp to a log entry and adds it to the List of

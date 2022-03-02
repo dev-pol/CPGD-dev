@@ -100,7 +100,7 @@ public class ConstellationAccess {
     }
 
     public double getMaxMCGMinutes() {
-        return Math.round((this.maxMCG / (60.0 * 1000.0)) * 100000.0) / 100000.0;
+        return Math.abs(Math.round((this.maxMCG / (60.0 * 1000.0)) * 100000.0) / 100000.0);
     }
 
     public long getLastSimTime() {
@@ -366,7 +366,7 @@ public class ConstellationAccess {
             switch (povOption) {
                 case 0:
                     maxMCGInterval = Collections.max(list.stream().filter(interval -> interval.getToAssets().isEmpty()).collect(Collectors.toList()),
-                            (d1, d2) -> (int) (d1.getDuration() - d2.getDuration()));
+                            (d1, d2) -> (int) ((double) d1.getDuration() - (double) d2.getDuration()));
                     break;
                 case 1:
                 default:
