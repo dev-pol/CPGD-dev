@@ -1,0 +1,288 @@
+Starting analysis at 2022-03-03T09-35-57.336
+Scenario start: 2020-03-20T11:00:00.000 - Scenario end: 2020-03-27T11:00:00.000
+Target MCG: 180.0 - Maximum latitude band: 80.0 Degrees - complexity 0 - Search date 2020-03-21T11:00:00.000
+Minimum number of planes: 1 - Maximum number of planes: 6
+Minimum sats per plane: 1 - Maximum sats per planes: 6
+Minimum inclination: 60.0 - Maximum inclination: 90.0
+Inclination step: 10.0 Degrees
+====================================================================== PROGRESS ======================================================================
+2022-03-03T09:36:05.656 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 10 PN 1 inclination 60.0. degrees. Complexity level: 0 > MCG: 1082.33035 - computation time: 7614.0 ms, memory usage: 222 MB
+2022-03-03T09:36:12.713 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 10 PN 1 inclination 70.0. degrees. Complexity level: 0 > MCG: 575.40152 - computation time: 7056.0 ms, memory usage: 40 MB
+2022-03-03T09:36:19.970 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 10 PN 1 inclination 80.0. degrees. Complexity level: 0 > MCG: 526.24633 - computation time: 7255.0 ms, memory usage: 80 MB
+2022-03-03T09:36:27.321 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 10 PN 1 inclination 90.0. degrees. Complexity level: 0 > MCG: 526.26447 - computation time: 7350.0 ms, memory usage: 115 MB
+2022-03-03T09:36:34.191 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 11 PN 11 inclination 60.0. degrees. Complexity level: 0 > MCG: 202.116 - computation time: 6869.0 ms, memory usage: 164 MB
+2022-03-03T09:36:41.307 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 11 PN 11 inclination 70.0. degrees. Complexity level: 0 > MCG: 202.68652 - computation time: 7115.0 ms, memory usage: 323 MB
+2022-03-03T09:36:48.586 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 11 PN 11 inclination 80.0. degrees. Complexity level: 0 > MCG: 203.2279 - computation time: 7277.0 ms, memory usage: 330 MB
+2022-03-03T09:36:55.837 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 11 PN 11 inclination 90.0. degrees. Complexity level: 0 > MCG: 203.72123 - computation time: 7250.0 ms, memory usage: 336 MB
+2022-03-03T09:37:02.702 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 12 PN 12 inclination 60.0. degrees. Complexity level: 0 > MCG: 202.116 - computation time: 6865.0 ms, memory usage: 27 MB
+2022-03-03T09:37:09.587 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 12 PN 12 inclination 70.0. degrees. Complexity level: 0 > MCG: 202.68652 - computation time: 6885.0 ms, memory usage: 185 MB
+2022-03-03T09:37:16.716 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 12 PN 12 inclination 80.0. degrees. Complexity level: 0 > MCG: 203.2279 - computation time: 7127.0 ms, memory usage: 192 MB
+2022-03-03T09:37:23.566 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 12 PN 12 inclination 90.0. degrees. Complexity level: 0 > MCG: 203.72123 - computation time: 6850.0 ms, memory usage: 199 MB
+2022-03-03T09:37:30.264 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 13 PN 13 inclination 60.0. degrees. Complexity level: 0 > MCG: 202.116 - computation time: 6697.0 ms, memory usage: 249 MB
+2022-03-03T09:37:37.027 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 13 PN 13 inclination 70.0. degrees. Complexity level: 0 > MCG: 202.68652 - computation time: 6762.0 ms, memory usage: 47 MB
+2022-03-03T09:37:43.858 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 13 PN 13 inclination 80.0. degrees. Complexity level: 0 > MCG: 203.2279 - computation time: 6830.0 ms, memory usage: 54 MB
+2022-03-03T09:37:50.707 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 13 PN 13 inclination 90.0. degrees. Complexity level: 0 > MCG: 203.72123 - computation time: 6847.0 ms, memory usage: 61 MB
+2022-03-03T09:37:57.339 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 14 PN 14 inclination 60.0. degrees. Complexity level: 0 > MCG: 202.116 - computation time: 6631.0 ms, memory usage: 111 MB
+2022-03-03T09:38:04.038 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 14 PN 14 inclination 70.0. degrees. Complexity level: 0 > MCG: 202.68652 - computation time: 6699.0 ms, memory usage: 267 MB
+2022-03-03T09:38:11.226 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 14 PN 14 inclination 80.0. degrees. Complexity level: 0 > MCG: 203.2279 - computation time: 7188.0 ms, memory usage: 274 MB
+2022-03-03T09:38:18.426 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 14 PN 14 inclination 90.0. degrees. Complexity level: 0 > MCG: 203.72123 - computation time: 7200.0 ms, memory usage: 283 MB
+2022-03-03T09:38:25.441 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 15 PN 15 inclination 60.0. degrees. Complexity level: 0 > MCG: 202.116 - computation time: 7015.0 ms, memory usage: 331 MB
+2022-03-03T09:38:32.552 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 15 PN 15 inclination 70.0. degrees. Complexity level: 0 > MCG: 202.68652 - computation time: 7110.0 ms, memory usage: 130 MB
+2022-03-03T09:38:39.769 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 15 PN 15 inclination 80.0. degrees. Complexity level: 0 > MCG: 203.2279 - computation time: 7216.0 ms, memory usage: 136 MB
+2022-03-03T09:38:47.597 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 15 PN 15 inclination 90.0. degrees. Complexity level: 0 > MCG: 203.72123 - computation time: 7812.0 ms, memory usage: 143 MB
+2022-03-03T09:38:55.161 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 16 PN 16 inclination 60.0. degrees. Complexity level: 0 > MCG: 202.116 - computation time: 7562.0 ms, memory usage: 193 MB
+2022-03-03T09:39:02.121 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 16 PN 16 inclination 70.0. degrees. Complexity level: 0 > MCG: 202.68652 - computation time: 6959.0 ms, memory usage: 350 MB
+2022-03-03T09:39:09.508 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 16 PN 16 inclination 80.0. degrees. Complexity level: 0 > MCG: 203.2279 - computation time: 7385.0 ms, memory usage: 356 MB
+2022-03-03T09:39:16.884 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 16 PN 16 inclination 90.0. degrees. Complexity level: 0 > MCG: 203.72123 - computation time: 7375.0 ms, memory usage: 365 MB
+2022-03-03T09:39:23.810 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 17 PN 17 inclination 60.0. degrees. Complexity level: 0 > MCG: 202.116 - computation time: 6925.0 ms, memory usage: 55 MB
+2022-03-03T09:39:30.706 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 17 PN 17 inclination 70.0. degrees. Complexity level: 0 > MCG: 202.68652 - computation time: 6896.0 ms, memory usage: 212 MB
+2022-03-03T09:39:37.628 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 17 PN 17 inclination 80.0. degrees. Complexity level: 0 > MCG: 203.2279 - computation time: 6920.0 ms, memory usage: 218 MB
+2022-03-03T09:39:44.709 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 17 PN 17 inclination 90.0. degrees. Complexity level: 0 > MCG: 203.72123 - computation time: 7081.0 ms, memory usage: 225 MB
+2022-03-03T09:39:51.735 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 18 PN 18 inclination 60.0. degrees. Complexity level: 0 > MCG: 202.116 - computation time: 7025.0 ms, memory usage: 275 MB
+2022-03-03T09:39:58.658 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 18 PN 18 inclination 70.0. degrees. Complexity level: 0 > MCG: 202.68652 - computation time: 6921.0 ms, memory usage: 74 MB
+2022-03-03T09:40:05.745 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 18 PN 18 inclination 80.0. degrees. Complexity level: 0 > MCG: 203.2279 - computation time: 7086.0 ms, memory usage: 79 MB
+2022-03-03T09:40:12.712 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 18 PN 18 inclination 90.0. degrees. Complexity level: 0 > MCG: 203.72123 - computation time: 6965.0 ms, memory usage: 87 MB
+2022-03-03T09:40:19.492 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 19 PN 19 inclination 60.0. degrees. Complexity level: 0 > MCG: 202.116 - computation time: 6780.0 ms, memory usage: 137 MB
+2022-03-03T09:40:26.676 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 19 PN 19 inclination 70.0. degrees. Complexity level: 0 > MCG: 202.68652 - computation time: 7183.0 ms, memory usage: 294 MB
+2022-03-03T09:40:34.410 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 19 PN 19 inclination 80.0. degrees. Complexity level: 0 > MCG: 203.2279 - computation time: 7733.0 ms, memory usage: 301 MB
+2022-03-03T09:40:42.087 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 19 PN 19 inclination 90.0. degrees. Complexity level: 0 > MCG: 203.72123 - computation time: 7675.0 ms, memory usage: 307 MB
+2022-03-03T09:40:49.277 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 20 PN 20 inclination 60.0. degrees. Complexity level: 0 > MCG: 202.116 - computation time: 7190.0 ms, memory usage: 357 MB
+2022-03-03T09:40:56.205 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 20 PN 20 inclination 70.0. degrees. Complexity level: 0 > MCG: 202.68652 - computation time: 6928.0 ms, memory usage: 156 MB
+2022-03-03T09:41:03.398 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 20 PN 20 inclination 80.0. degrees. Complexity level: 0 > MCG: 203.2279 - computation time: 7192.0 ms, memory usage: 163 MB
+2022-03-03T09:41:11.269 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 20 PN 20 inclination 90.0. degrees. Complexity level: 0 > MCG: 203.72123 - computation time: 7870.0 ms, memory usage: 169 MB
+2022-03-03T09:41:18.435 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 21 PN 21 inclination 60.0. degrees. Complexity level: 0 > MCG: 202.116 - computation time: 7166.0 ms, memory usage: 219 MB
+2022-03-03T09:41:25.262 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 21 PN 21 inclination 70.0. degrees. Complexity level: 0 > MCG: 202.68652 - computation time: 6827.0 ms, memory usage: 376 MB
+2022-03-03T09:41:32.186 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 21 PN 21 inclination 80.0. degrees. Complexity level: 0 > MCG: 203.2279 - computation time: 6924.0 ms, memory usage: 383 MB
+2022-03-03T09:41:39.085 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 21 PN 21 inclination 90.0. degrees. Complexity level: 0 > MCG: 203.72123 - computation time: 6899.0 ms, memory usage: 391 MB
+2022-03-03T09:41:45.765 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 22 PN 22 inclination 60.0. degrees. Complexity level: 0 > MCG: 202.116 - computation time: 6664.0 ms, memory usage: 81 MB
+2022-03-03T09:41:52.505 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 22 PN 22 inclination 70.0. degrees. Complexity level: 0 > MCG: 202.68652 - computation time: 6740.0 ms, memory usage: 238 MB
+2022-03-03T09:41:59.339 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 22 PN 22 inclination 80.0. degrees. Complexity level: 0 > MCG: 203.2279 - computation time: 6833.0 ms, memory usage: 245 MB
+2022-03-03T09:42:06.172 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 22 PN 22 inclination 90.0. degrees. Complexity level: 0 > MCG: 203.72123 - computation time: 6833.0 ms, memory usage: 251 MB
+2022-03-03T09:42:12.890 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 23 PN 23 inclination 60.0. degrees. Complexity level: 0 > MCG: 202.116 - computation time: 6718.0 ms, memory usage: 301 MB
+2022-03-03T09:42:19.641 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 23 PN 23 inclination 70.0. degrees. Complexity level: 0 > MCG: 202.68652 - computation time: 6749.0 ms, memory usage: 100 MB
+2022-03-03T09:42:26.542 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 23 PN 23 inclination 80.0. degrees. Complexity level: 0 > MCG: 203.2279 - computation time: 6901.0 ms, memory usage: 105 MB
+2022-03-03T09:42:33.422 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 23 PN 23 inclination 90.0. degrees. Complexity level: 0 > MCG: 203.72123 - computation time: 6879.0 ms, memory usage: 113 MB
+2022-03-03T09:42:40.140 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 24 PN 24 inclination 60.0. degrees. Complexity level: 0 > MCG: 202.116 - computation time: 6718.0 ms, memory usage: 164 MB
+2022-03-03T09:42:46.941 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 24 PN 24 inclination 70.0. degrees. Complexity level: 0 > MCG: 202.68652 - computation time: 6800.0 ms, memory usage: 320 MB
+2022-03-03T09:42:53.793 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 24 PN 24 inclination 80.0. degrees. Complexity level: 0 > MCG: 203.2279 - computation time: 6851.0 ms, memory usage: 327 MB
+2022-03-03T09:43:00.639 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 24 PN 24 inclination 90.0. degrees. Complexity level: 0 > MCG: 203.72123 - computation time: 6845.0 ms, memory usage: 333 MB
+2022-03-03T09:43:07.295 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 25 PN 25 inclination 60.0. degrees. Complexity level: 0 > MCG: 202.116 - computation time: 6656.0 ms, memory usage: 384 MB
+2022-03-03T09:43:14.023 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 25 PN 25 inclination 70.0. degrees. Complexity level: 0 > MCG: 202.68652 - computation time: 6727.0 ms, memory usage: 182 MB
+2022-03-03T09:43:20.828 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 25 PN 25 inclination 80.0. degrees. Complexity level: 0 > MCG: 203.2279 - computation time: 6805.0 ms, memory usage: 189 MB
+2022-03-03T09:43:27.657 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 25 PN 25 inclination 90.0. degrees. Complexity level: 0 > MCG: 203.72123 - computation time: 6829.0 ms, memory usage: 196 MB
+2022-03-03T09:43:34.261 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 26 PN 26 inclination 60.0. degrees. Complexity level: 0 > MCG: 202.116 - computation time: 6602.0 ms, memory usage: 246 MB
+2022-03-03T09:43:41.128 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 26 PN 26 inclination 70.0. degrees. Complexity level: 0 > MCG: 202.68652 - computation time: 6867.0 ms, memory usage: 402 MB
+2022-03-03T09:43:47.907 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 26 PN 26 inclination 80.0. degrees. Complexity level: 0 > MCG: 203.2279 - computation time: 6778.0 ms, memory usage: 49 MB
+2022-03-03T09:43:54.741 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 26 PN 26 inclination 90.0. degrees. Complexity level: 0 > MCG: 203.72123 - computation time: 6834.0 ms, memory usage: 58 MB
+2022-03-03T09:44:01.356 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 27 PN 27 inclination 60.0. degrees. Complexity level: 0 > MCG: 202.116 - computation time: 6615.0 ms, memory usage: 106 MB
+2022-03-03T09:44:08.081 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 27 PN 27 inclination 70.0. degrees. Complexity level: 0 > MCG: 202.68652 - computation time: 6725.0 ms, memory usage: 265 MB
+2022-03-03T09:44:14.978 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 27 PN 27 inclination 80.0. degrees. Complexity level: 0 > MCG: 203.2279 - computation time: 6897.0 ms, memory usage: 271 MB
+2022-03-03T09:44:21.781 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 27 PN 27 inclination 90.0. degrees. Complexity level: 0 > MCG: 203.72123 - computation time: 6803.0 ms, memory usage: 278 MB
+2022-03-03T09:44:28.416 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 28 PN 28 inclination 60.0. degrees. Complexity level: 0 > MCG: 202.116 - computation time: 6635.0 ms, memory usage: 328 MB
+2022-03-03T09:44:35.107 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 28 PN 28 inclination 70.0. degrees. Complexity level: 0 > MCG: 202.68652 - computation time: 6691.0 ms, memory usage: 125 MB
+2022-03-03T09:44:41.913 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 28 PN 28 inclination 80.0. degrees. Complexity level: 0 > MCG: 203.2279 - computation time: 6806.0 ms, memory usage: 131 MB
+2022-03-03T09:44:48.698 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 28 PN 28 inclination 90.0. degrees. Complexity level: 0 > MCG: 203.72123 - computation time: 6785.0 ms, memory usage: 140 MB
+2022-03-03T09:44:55.349 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 29 PN 29 inclination 60.0. degrees. Complexity level: 0 > MCG: 202.116 - computation time: 6651.0 ms, memory usage: 190 MB
+2022-03-03T09:45:01.987 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 29 PN 29 inclination 70.0. degrees. Complexity level: 0 > MCG: 202.68652 - computation time: 6638.0 ms, memory usage: 347 MB
+2022-03-03T09:45:08.797 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 29 PN 29 inclination 80.0. degrees. Complexity level: 0 > MCG: 203.2279 - computation time: 6810.0 ms, memory usage: 353 MB
+2022-03-03T09:45:15.600 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 29 PN 29 inclination 90.0. degrees. Complexity level: 0 > MCG: 203.72123 - computation time: 6803.0 ms, memory usage: 360 MB
+2022-03-03T09:45:22.250 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 30 PN 30 inclination 60.0. degrees. Complexity level: 0 > MCG: 202.116 - computation time: 6650.0 ms, memory usage: 410 MB
+2022-03-03T09:45:28.951 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 30 PN 30 inclination 70.0. degrees. Complexity level: 0 > MCG: 202.68652 - computation time: 6701.0 ms, memory usage: 209 MB
+2022-03-03T09:45:35.779 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 30 PN 30 inclination 80.0. degrees. Complexity level: 0 > MCG: 203.2279 - computation time: 6828.0 ms, memory usage: 214 MB
+2022-03-03T09:45:42.577 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 30 PN 30 inclination 90.0. degrees. Complexity level: 0 > MCG: 203.72123 - computation time: 6798.0 ms, memory usage: 222 MB
+2022-03-03T09:45:49.192 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 31 PN 31 inclination 60.0. degrees. Complexity level: 0 > MCG: 202.116 - computation time: 6615.0 ms, memory usage: 272 MB
+2022-03-03T09:45:55.885 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 31 PN 31 inclination 70.0. degrees. Complexity level: 0 > MCG: 202.68652 - computation time: 6693.0 ms, memory usage: 69 MB
+2022-03-03T09:46:02.664 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 31 PN 31 inclination 80.0. degrees. Complexity level: 0 > MCG: 203.2279 - computation time: 6779.0 ms, memory usage: 76 MB
+2022-03-03T09:46:09.497 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 31 PN 31 inclination 90.0. degrees. Complexity level: 0 > MCG: 203.72123 - computation time: 6833.0 ms, memory usage: 82 MB
+2022-03-03T09:46:16.154 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 32 PN 32 inclination 60.0. degrees. Complexity level: 0 > MCG: 202.116 - computation time: 6657.0 ms, memory usage: 132 MB
+2022-03-03T09:46:22.803 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 32 PN 32 inclination 70.0. degrees. Complexity level: 0 > MCG: 202.68652 - computation time: 6649.0 ms, memory usage: 291 MB
+2022-03-03T09:46:29.589 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 32 PN 32 inclination 80.0. degrees. Complexity level: 0 > MCG: 203.2279 - computation time: 6786.0 ms, memory usage: 298 MB
+2022-03-03T09:46:36.346 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 32 PN 32 inclination 90.0. degrees. Complexity level: 0 > MCG: 203.72123 - computation time: 6757.0 ms, memory usage: 304 MB
+2022-03-03T09:46:42.973 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 33 PN 33 inclination 60.0. degrees. Complexity level: 0 > MCG: 202.116 - computation time: 6627.0 ms, memory usage: 354 MB
+2022-03-03T09:46:49.655 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 33 PN 33 inclination 70.0. degrees. Complexity level: 0 > MCG: 202.68652 - computation time: 6682.0 ms, memory usage: 151 MB
+2022-03-03T09:46:58.128 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 33 PN 33 inclination 80.0. degrees. Complexity level: 0 > MCG: 203.2279 - computation time: 8473.0 ms, memory usage: 158 MB
+2022-03-03T09:47:05.006 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 33 PN 33 inclination 90.0. degrees. Complexity level: 0 > MCG: 203.72123 - computation time: 6878.0 ms, memory usage: 166 MB
+2022-03-03T09:47:11.494 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 34 PN 34 inclination 60.0. degrees. Complexity level: 0 > MCG: 202.116 - computation time: 6488.0 ms, memory usage: 216 MB
+2022-03-03T09:47:17.978 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 34 PN 34 inclination 70.0. degrees. Complexity level: 0 > MCG: 202.68652 - computation time: 6484.0 ms, memory usage: 373 MB
+2022-03-03T09:47:24.588 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 34 PN 34 inclination 80.0. degrees. Complexity level: 0 > MCG: 203.2279 - computation time: 6608.0 ms, memory usage: 380 MB
+2022-03-03T09:47:31.410 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 34 PN 34 inclination 90.0. degrees. Complexity level: 0 > MCG: 203.72123 - computation time: 6822.0 ms, memory usage: 386 MB
+2022-03-03T09:47:37.945 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 35 PN 35 inclination 60.0. degrees. Complexity level: 0 > MCG: 202.116 - computation time: 6535.0 ms, memory usage: 77 MB
+2022-03-03T09:47:44.415 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 35 PN 35 inclination 70.0. degrees. Complexity level: 0 > MCG: 202.68652 - computation time: 6469.0 ms, memory usage: 235 MB
+2022-03-03T09:47:51.010 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 35 PN 35 inclination 80.0. degrees. Complexity level: 0 > MCG: 203.2279 - computation time: 6594.0 ms, memory usage: 240 MB
+2022-03-03T09:47:57.622 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 35 PN 35 inclination 90.0. degrees. Complexity level: 0 > MCG: 203.72123 - computation time: 6611.0 ms, memory usage: 249 MB
+2022-03-03T09:48:04.086 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 36 PN 36 inclination 60.0. degrees. Complexity level: 0 > MCG: 202.116 - computation time: 6462.0 ms, memory usage: 299 MB
+2022-03-03T09:48:10.543 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 36 PN 36 inclination 70.0. degrees. Complexity level: 0 > MCG: 202.68652 - computation time: 6457.0 ms, memory usage: 95 MB
+2022-03-03T09:48:17.109 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 36 PN 36 inclination 80.0. degrees. Complexity level: 0 > MCG: 203.2279 - computation time: 6566.0 ms, memory usage: 102 MB
+2022-03-03T09:48:23.652 >> Analyzing: Current sats: 10 numDays  1 numPetals 1 PD 36 PN 36 inclination 90.0. degrees. Complexity level: 0 > MCG: 203.72123 - computation time: 6543.0 ms, memory usage: 109 MB
+2022-03-03T09:48:30.032 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 10 PN 10 inclination 60.0. degrees. Complexity level: 0 > MCG: 117.4881 - computation time: 6380.0 ms, memory usage: 155 MB
+2022-03-03T09:48:40.661 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 10 PN 10 inclination 60.0. degrees. Complexity level: 1 > MCG: 117.4881 - computation time: 10629.0 ms, memory usage: 154 MB
+2022-03-03T09:50:54.430 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 10 PN 10 inclination 60.0. degrees. Complexity level: 2 > MCG: 119.03635 - computation time: 133769.0 ms, memory usage: 281 MB
+2022-03-03T09:55:07.783 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 10 PN 10 inclination 60.0. degrees. Complexity level: 3 > MCG: 119.03635 - computation time: 253322.0 ms, memory usage: 332 MB
+2022-03-03T09:55:07.783 >> SOLUTION!: NumSats 10 NumDays 1 NumPetals 2 PD 10 PN 10 inclination:60.0 MCG: 119.03635
+2022-03-03T09:55:14.216 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 11 PN 11 inclination 60.0. degrees. Complexity level: 0 > MCG: 117.4881 - computation time: 6433.0 ms, memory usage: 379 MB
+2022-03-03T09:55:24.851 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 11 PN 11 inclination 60.0. degrees. Complexity level: 1 > MCG: 117.4881 - computation time: 10635.0 ms, memory usage: 378 MB
+2022-03-03T09:57:38.283 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 11 PN 11 inclination 60.0. degrees. Complexity level: 2 > MCG: 119.03635 - computation time: 133417.0 ms, memory usage: 483 MB
+2022-03-03T10:01:50.873 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 11 PN 11 inclination 60.0. degrees. Complexity level: 3 > MCG: 119.03635 - computation time: 252574.0 ms, memory usage: 390 MB
+2022-03-03T10:01:50.873 >> SOLUTION!: NumSats 10 NumDays 1 NumPetals 2 PD 11 PN 11 inclination:60.0 MCG: 119.03635
+2022-03-03T10:01:57.213 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 12 PN 12 inclination 60.0. degrees. Complexity level: 0 > MCG: 117.4881 - computation time: 6340.0 ms, memory usage: 333 MB
+2022-03-03T10:02:07.847 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 12 PN 12 inclination 60.0. degrees. Complexity level: 1 > MCG: 117.4881 - computation time: 10634.0 ms, memory usage: 420 MB
+2022-03-03T10:04:21.335 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 12 PN 12 inclination 60.0. degrees. Complexity level: 2 > MCG: 119.03635 - computation time: 133488.0 ms, memory usage: 213 MB
+2022-03-03T10:08:34.038 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 12 PN 12 inclination 60.0. degrees. Complexity level: 3 > MCG: 119.03635 - computation time: 252703.0 ms, memory usage: 296 MB
+2022-03-03T10:08:34.038 >> SOLUTION!: NumSats 10 NumDays 1 NumPetals 2 PD 12 PN 12 inclination:60.0 MCG: 119.03635
+2022-03-03T10:08:40.410 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 13 PN 13 inclination 60.0. degrees. Complexity level: 0 > MCG: 117.4881 - computation time: 6372.0 ms, memory usage: 407 MB
+2022-03-03T10:08:51.079 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 13 PN 13 inclination 60.0. degrees. Complexity level: 1 > MCG: 117.4881 - computation time: 10669.0 ms, memory usage: 438 MB
+2022-03-03T10:11:05.117 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 13 PN 13 inclination 60.0. degrees. Complexity level: 2 > MCG: 119.03635 - computation time: 134038.0 ms, memory usage: 459 MB
+2022-03-03T10:15:18.459 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 13 PN 13 inclination 60.0. degrees. Complexity level: 3 > MCG: 119.03635 - computation time: 253342.0 ms, memory usage: 314 MB
+2022-03-03T10:15:18.459 >> SOLUTION!: NumSats 10 NumDays 1 NumPetals 2 PD 13 PN 13 inclination:60.0 MCG: 119.03635
+2022-03-03T10:15:24.840 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 14 PN 14 inclination 60.0. degrees. Complexity level: 0 > MCG: 117.4881 - computation time: 6381.0 ms, memory usage: 97 MB
+2022-03-03T10:15:35.494 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 14 PN 14 inclination 60.0. degrees. Complexity level: 1 > MCG: 117.4881 - computation time: 10654.0 ms, memory usage: 320 MB
+2022-03-03T10:17:49.211 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 14 PN 14 inclination 60.0. degrees. Complexity level: 2 > MCG: 119.03635 - computation time: 133717.0 ms, memory usage: 129 MB
+2022-03-03T10:22:02.144 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 14 PN 14 inclination 60.0. degrees. Complexity level: 3 > MCG: 119.03635 - computation time: 252933.0 ms, memory usage: 136 MB
+2022-03-03T10:22:02.144 >> SOLUTION!: NumSats 10 NumDays 1 NumPetals 2 PD 14 PN 14 inclination:60.0 MCG: 119.03635
+2022-03-03T10:22:08.557 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 15 PN 15 inclination 60.0. degrees. Complexity level: 0 > MCG: 117.4881 - computation time: 6413.0 ms, memory usage: 191 MB
+2022-03-03T10:22:19.229 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 15 PN 15 inclination 60.0. degrees. Complexity level: 1 > MCG: 117.4881 - computation time: 10672.0 ms, memory usage: 142 MB
+2022-03-03T10:24:33.464 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 15 PN 15 inclination 60.0. degrees. Complexity level: 2 > MCG: 119.03635 - computation time: 134204.0 ms, memory usage: 309 MB
+2022-03-03T10:28:47.344 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 15 PN 15 inclination 60.0. degrees. Complexity level: 3 > MCG: 119.03635 - computation time: 253880.0 ms, memory usage: 432 MB
+2022-03-03T10:28:47.344 >> SOLUTION!: NumSats 10 NumDays 1 NumPetals 2 PD 15 PN 15 inclination:60.0 MCG: 119.03635
+2022-03-03T10:28:53.739 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 16 PN 16 inclination 60.0. degrees. Complexity level: 0 > MCG: 117.4881 - computation time: 6395.0 ms, memory usage: 439 MB
+2022-03-03T10:29:04.377 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 16 PN 16 inclination 60.0. degrees. Complexity level: 1 > MCG: 117.4881 - computation time: 10638.0 ms, memory usage: 302 MB
+2022-03-03T10:31:18.017 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 16 PN 16 inclination 60.0. degrees. Complexity level: 2 > MCG: 119.03635 - computation time: 133625.0 ms, memory usage: 283 MB
+2022-03-03T10:35:31.537 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 16 PN 16 inclination 60.0. degrees. Complexity level: 3 > MCG: 119.03635 - computation time: 253520.0 ms, memory usage: 302 MB
+2022-03-03T10:35:31.537 >> SOLUTION!: NumSats 10 NumDays 1 NumPetals 2 PD 16 PN 16 inclination:60.0 MCG: 119.03635
+2022-03-03T10:35:37.926 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 17 PN 17 inclination 60.0. degrees. Complexity level: 0 > MCG: 117.4881 - computation time: 6389.0 ms, memory usage: 331 MB
+2022-03-03T10:35:48.584 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 17 PN 17 inclination 60.0. degrees. Complexity level: 1 > MCG: 117.4881 - computation time: 10658.0 ms, memory usage: 328 MB
+2022-03-03T10:38:02.375 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 17 PN 17 inclination 60.0. degrees. Complexity level: 2 > MCG: 119.03635 - computation time: 133791.0 ms, memory usage: 172 MB
+2022-03-03T10:42:15.463 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 17 PN 17 inclination 60.0. degrees. Complexity level: 3 > MCG: 119.03635 - computation time: 253072.0 ms, memory usage: 347 MB
+2022-03-03T10:42:15.463 >> SOLUTION!: NumSats 10 NumDays 1 NumPetals 2 PD 17 PN 17 inclination:60.0 MCG: 119.03635
+2022-03-03T10:42:21.824 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 18 PN 18 inclination 60.0. degrees. Complexity level: 0 > MCG: 117.4881 - computation time: 6361.0 ms, memory usage: 168 MB
+2022-03-03T10:42:32.459 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 18 PN 18 inclination 60.0. degrees. Complexity level: 1 > MCG: 117.4881 - computation time: 10635.0 ms, memory usage: 197 MB
+2022-03-03T10:44:46.094 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 18 PN 18 inclination 60.0. degrees. Complexity level: 2 > MCG: 119.03635 - computation time: 133635.0 ms, memory usage: 166 MB
+2022-03-03T10:48:58.609 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 18 PN 18 inclination 60.0. degrees. Complexity level: 3 > MCG: 119.03635 - computation time: 252515.0 ms, memory usage: 369 MB
+2022-03-03T10:48:58.609 >> SOLUTION!: NumSats 10 NumDays 1 NumPetals 2 PD 18 PN 18 inclination:60.0 MCG: 119.03635
+2022-03-03T10:49:04.975 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 19 PN 19 inclination 60.0. degrees. Complexity level: 0 > MCG: 117.4881 - computation time: 6366.0 ms, memory usage: 190 MB
+2022-03-03T10:49:15.634 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 19 PN 19 inclination 60.0. degrees. Complexity level: 1 > MCG: 117.4881 - computation time: 10659.0 ms, memory usage: 219 MB
+2022-03-03T10:51:29.159 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 19 PN 19 inclination 60.0. degrees. Complexity level: 2 > MCG: 119.03635 - computation time: 133525.0 ms, memory usage: 300 MB
+2022-03-03T10:55:42.115 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 19 PN 19 inclination 60.0. degrees. Complexity level: 3 > MCG: 119.03635 - computation time: 252956.0 ms, memory usage: 404 MB
+2022-03-03T10:55:42.115 >> SOLUTION!: NumSats 10 NumDays 1 NumPetals 2 PD 19 PN 19 inclination:60.0 MCG: 119.03635
+2022-03-03T10:55:48.506 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 20 PN 20 inclination 60.0. degrees. Complexity level: 0 > MCG: 117.4881 - computation time: 6391.0 ms, memory usage: 272 MB
+2022-03-03T10:55:59.250 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 20 PN 20 inclination 60.0. degrees. Complexity level: 1 > MCG: 117.4881 - computation time: 10744.0 ms, memory usage: 342 MB
+2022-03-03T10:58:13.060 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 20 PN 20 inclination 60.0. degrees. Complexity level: 2 > MCG: 119.03635 - computation time: 133807.0 ms, memory usage: 395 MB
+2022-03-03T11:02:26.057 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 20 PN 20 inclination 60.0. degrees. Complexity level: 3 > MCG: 119.03635 - computation time: 252997.0 ms, memory usage: 246 MB
+2022-03-03T11:02:26.057 >> SOLUTION!: NumSats 10 NumDays 1 NumPetals 2 PD 20 PN 20 inclination:60.0 MCG: 119.03635
+2022-03-03T11:02:32.444 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 21 PN 21 inclination 60.0. degrees. Complexity level: 0 > MCG: 117.4881 - computation time: 6387.0 ms, memory usage: 306 MB
+2022-03-03T11:02:43.083 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 21 PN 21 inclination 60.0. degrees. Complexity level: 1 > MCG: 117.4881 - computation time: 10639.0 ms, memory usage: 280 MB
+2022-03-03T11:04:56.754 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 21 PN 21 inclination 60.0. degrees. Complexity level: 2 > MCG: 119.03635 - computation time: 133655.0 ms, memory usage: 449 MB
+2022-03-03T11:09:09.927 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 21 PN 21 inclination 60.0. degrees. Complexity level: 3 > MCG: 119.03635 - computation time: 253173.0 ms, memory usage: 133 MB
+2022-03-03T11:09:09.927 >> SOLUTION!: NumSats 10 NumDays 1 NumPetals 2 PD 21 PN 21 inclination:60.0 MCG: 119.03635
+2022-03-03T11:09:16.300 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 22 PN 22 inclination 60.0. degrees. Complexity level: 0 > MCG: 117.4881 - computation time: 6373.0 ms, memory usage: 117 MB
+2022-03-03T11:09:27.008 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 22 PN 22 inclination 60.0. degrees. Complexity level: 1 > MCG: 117.4881 - computation time: 10708.0 ms, memory usage: 290 MB
+2022-03-03T11:11:40.952 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 22 PN 22 inclination 60.0. degrees. Complexity level: 2 > MCG: 119.03635 - computation time: 133942.0 ms, memory usage: 247 MB
+2022-03-03T11:15:54.174 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 22 PN 22 inclination 60.0. degrees. Complexity level: 3 > MCG: 119.03635 - computation time: 253221.0 ms, memory usage: 303 MB
+2022-03-03T11:15:54.174 >> SOLUTION!: NumSats 10 NumDays 1 NumPetals 2 PD 22 PN 22 inclination:60.0 MCG: 119.03635
+2022-03-03T11:16:00.577 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 23 PN 23 inclination 60.0. degrees. Complexity level: 0 > MCG: 117.4881 - computation time: 6403.0 ms, memory usage: 287 MB
+2022-03-03T11:16:11.209 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 23 PN 23 inclination 60.0. degrees. Complexity level: 1 > MCG: 117.4881 - computation time: 10632.0 ms, memory usage: 217 MB
+2022-03-03T11:18:24.868 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 23 PN 23 inclination 60.0. degrees. Complexity level: 2 > MCG: 119.03635 - computation time: 133643.0 ms, memory usage: 318 MB
+2022-03-03T11:22:37.696 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 23 PN 23 inclination 60.0. degrees. Complexity level: 3 > MCG: 119.03635 - computation time: 252812.0 ms, memory usage: 285 MB
+2022-03-03T11:22:37.696 >> SOLUTION!: NumSats 10 NumDays 1 NumPetals 2 PD 23 PN 23 inclination:60.0 MCG: 119.03635
+2022-03-03T11:22:44.066 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 24 PN 24 inclination 60.0. degrees. Complexity level: 0 > MCG: 117.4881 - computation time: 6370.0 ms, memory usage: 177 MB
+2022-03-03T11:22:54.729 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 24 PN 24 inclination 60.0. degrees. Complexity level: 1 > MCG: 117.4881 - computation time: 10663.0 ms, memory usage: 263 MB
+2022-03-03T11:25:08.787 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 24 PN 24 inclination 60.0. degrees. Complexity level: 2 > MCG: 119.03635 - computation time: 134058.0 ms, memory usage: 216 MB
+2022-03-03T11:29:21.886 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 24 PN 24 inclination 60.0. degrees. Complexity level: 3 > MCG: 119.03635 - computation time: 253099.0 ms, memory usage: 227 MB
+2022-03-03T11:29:21.886 >> SOLUTION!: NumSats 10 NumDays 1 NumPetals 2 PD 24 PN 24 inclination:60.0 MCG: 119.03635
+2022-03-03T11:29:28.244 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 25 PN 25 inclination 60.0. degrees. Complexity level: 0 > MCG: 117.4881 - computation time: 6358.0 ms, memory usage: 347 MB
+2022-03-03T11:29:38.940 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 25 PN 25 inclination 60.0. degrees. Complexity level: 1 > MCG: 117.4881 - computation time: 10696.0 ms, memory usage: 277 MB
+2022-03-03T11:31:52.350 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 25 PN 25 inclination 60.0. degrees. Complexity level: 2 > MCG: 119.03635 - computation time: 133410.0 ms, memory usage: 450 MB
+2022-03-03T11:36:05.177 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 25 PN 25 inclination 60.0. degrees. Complexity level: 3 > MCG: 119.03635 - computation time: 252827.0 ms, memory usage: 475 MB
+2022-03-03T11:36:05.177 >> SOLUTION!: NumSats 10 NumDays 1 NumPetals 2 PD 25 PN 25 inclination:60.0 MCG: 119.03635
+2022-03-03T11:36:11.587 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 26 PN 26 inclination 60.0. degrees. Complexity level: 0 > MCG: 117.4881 - computation time: 6410.0 ms, memory usage: 341 MB
+2022-03-03T11:36:22.195 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 26 PN 26 inclination 60.0. degrees. Complexity level: 1 > MCG: 117.4881 - computation time: 10608.0 ms, memory usage: 335 MB
+2022-03-03T11:38:35.886 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 26 PN 26 inclination 60.0. degrees. Complexity level: 2 > MCG: 119.03635 - computation time: 133691.0 ms, memory usage: 472 MB
+2022-03-03T11:42:49.664 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 26 PN 26 inclination 60.0. degrees. Complexity level: 3 > MCG: 119.03635 - computation time: 253763.0 ms, memory usage: 500 MB
+2022-03-03T11:42:49.664 >> SOLUTION!: NumSats 10 NumDays 1 NumPetals 2 PD 26 PN 26 inclination:60.0 MCG: 119.03635
+2022-03-03T11:42:56.081 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 27 PN 27 inclination 60.0. degrees. Complexity level: 0 > MCG: 117.4881 - computation time: 6416.0 ms, memory usage: 607 MB
+2022-03-03T11:43:06.825 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 27 PN 27 inclination 60.0. degrees. Complexity level: 1 > MCG: 117.4881 - computation time: 10744.0 ms, memory usage: 425 MB
+2022-03-03T11:45:20.679 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 27 PN 27 inclination 60.0. degrees. Complexity level: 2 > MCG: 119.03635 - computation time: 133853.0 ms, memory usage: 574 MB
+2022-03-03T11:49:33.737 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 27 PN 27 inclination 60.0. degrees. Complexity level: 3 > MCG: 119.03635 - computation time: 253026.0 ms, memory usage: 477 MB
+2022-03-03T11:49:33.737 >> SOLUTION!: NumSats 10 NumDays 1 NumPetals 2 PD 27 PN 27 inclination:60.0 MCG: 119.03635
+2022-03-03T11:49:40.112 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 28 PN 28 inclination 60.0. degrees. Complexity level: 0 > MCG: 117.4881 - computation time: 6375.0 ms, memory usage: 461 MB
+2022-03-03T11:49:50.774 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 28 PN 28 inclination 60.0. degrees. Complexity level: 1 > MCG: 117.4881 - computation time: 10662.0 ms, memory usage: 583 MB
+2022-03-03T11:52:04.630 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 28 PN 28 inclination 60.0. degrees. Complexity level: 2 > MCG: 119.03635 - computation time: 133856.0 ms, memory usage: 576 MB
+2022-03-03T11:56:18.522 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 28 PN 28 inclination 60.0. degrees. Complexity level: 3 > MCG: 119.03635 - computation time: 253877.0 ms, memory usage: 493 MB
+2022-03-03T11:56:18.522 >> SOLUTION!: NumSats 10 NumDays 1 NumPetals 2 PD 28 PN 28 inclination:60.0 MCG: 119.03635
+2022-03-03T11:56:24.938 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 29 PN 29 inclination 60.0. degrees. Complexity level: 0 > MCG: 117.4881 - computation time: 6416.0 ms, memory usage: 476 MB
+2022-03-03T11:56:35.691 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 29 PN 29 inclination 60.0. degrees. Complexity level: 1 > MCG: 117.4881 - computation time: 10753.0 ms, memory usage: 612 MB
+2022-03-03T11:58:49.959 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 29 PN 29 inclination 60.0. degrees. Complexity level: 2 > MCG: 119.03635 - computation time: 134268.0 ms, memory usage: 757 MB
+2022-03-03T12:03:02.958 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 29 PN 29 inclination 60.0. degrees. Complexity level: 3 > MCG: 119.03635 - computation time: 252984.0 ms, memory usage: 523 MB
+2022-03-03T12:03:02.958 >> SOLUTION!: NumSats 10 NumDays 1 NumPetals 2 PD 29 PN 29 inclination:60.0 MCG: 119.03635
+2022-03-03T12:03:09.337 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 30 PN 30 inclination 60.0. degrees. Complexity level: 0 > MCG: 117.4881 - computation time: 6379.0 ms, memory usage: 550 MB
+2022-03-03T12:03:20.012 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 30 PN 30 inclination 60.0. degrees. Complexity level: 1 > MCG: 117.4881 - computation time: 10675.0 ms, memory usage: 622 MB
+2022-03-03T12:05:33.916 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 30 PN 30 inclination 60.0. degrees. Complexity level: 2 > MCG: 119.03635 - computation time: 133904.0 ms, memory usage: 611 MB
+2022-03-03T12:09:47.496 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 30 PN 30 inclination 60.0. degrees. Complexity level: 3 > MCG: 119.03635 - computation time: 253564.0 ms, memory usage: 738 MB
+2022-03-03T12:09:47.496 >> SOLUTION!: NumSats 10 NumDays 1 NumPetals 2 PD 30 PN 30 inclination:60.0 MCG: 119.03635
+2022-03-03T12:09:53.900 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 31 PN 31 inclination 60.0. degrees. Complexity level: 0 > MCG: 117.4881 - computation time: 6404.0 ms, memory usage: 577 MB
+2022-03-03T12:10:04.585 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 31 PN 31 inclination 60.0. degrees. Complexity level: 1 > MCG: 117.4881 - computation time: 10685.0 ms, memory usage: 613 MB
+2022-03-03T12:12:18.916 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 31 PN 31 inclination 60.0. degrees. Complexity level: 2 > MCG: 119.03635 - computation time: 134331.0 ms, memory usage: 654 MB
+2022-03-03T12:16:33.125 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 31 PN 31 inclination 60.0. degrees. Complexity level: 3 > MCG: 119.03635 - computation time: 254209.0 ms, memory usage: 744 MB
+2022-03-03T12:16:33.125 >> SOLUTION!: NumSats 10 NumDays 1 NumPetals 2 PD 31 PN 31 inclination:60.0 MCG: 119.03635
+2022-03-03T12:16:39.497 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 32 PN 32 inclination 60.0. degrees. Complexity level: 0 > MCG: 117.4881 - computation time: 6372.0 ms, memory usage: 703 MB
+2022-03-03T12:16:50.152 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 32 PN 32 inclination 60.0. degrees. Complexity level: 1 > MCG: 117.4881 - computation time: 10655.0 ms, memory usage: 775 MB
+2022-03-03T12:19:03.599 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 32 PN 32 inclination 60.0. degrees. Complexity level: 2 > MCG: 119.03635 - computation time: 133447.0 ms, memory usage: 871 MB
+2022-03-03T12:23:16.762 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 32 PN 32 inclination 60.0. degrees. Complexity level: 3 > MCG: 119.03635 - computation time: 253163.0 ms, memory usage: 758 MB
+2022-03-03T12:23:16.762 >> SOLUTION!: NumSats 10 NumDays 1 NumPetals 2 PD 32 PN 32 inclination:60.0 MCG: 119.03635
+2022-03-03T12:23:23.146 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 33 PN 33 inclination 60.0. degrees. Complexity level: 0 > MCG: 117.4881 - computation time: 6384.0 ms, memory usage: 925 MB
+2022-03-03T12:23:33.790 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 33 PN 33 inclination 60.0. degrees. Complexity level: 1 > MCG: 117.4881 - computation time: 10644.0 ms, memory usage: 833 MB
+2022-03-03T12:25:47.882 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 33 PN 33 inclination 60.0. degrees. Complexity level: 2 > MCG: 119.03635 - computation time: 134092.0 ms, memory usage: 758 MB
+2022-03-03T12:30:01.555 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 33 PN 33 inclination 60.0. degrees. Complexity level: 3 > MCG: 119.03635 - computation time: 253673.0 ms, memory usage: 753 MB
+2022-03-03T12:30:01.555 >> SOLUTION!: NumSats 10 NumDays 1 NumPetals 2 PD 33 PN 33 inclination:60.0 MCG: 119.03635
+2022-03-03T12:30:07.967 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 34 PN 34 inclination 60.0. degrees. Complexity level: 0 > MCG: 117.4881 - computation time: 6412.0 ms, memory usage: 800 MB
+2022-03-03T12:30:18.635 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 34 PN 34 inclination 60.0. degrees. Complexity level: 1 > MCG: 117.4881 - computation time: 10668.0 ms, memory usage: 799 MB
+2022-03-03T12:32:32.852 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 34 PN 34 inclination 60.0. degrees. Complexity level: 2 > MCG: 119.03635 - computation time: 134217.0 ms, memory usage: 844 MB
+2022-03-03T12:36:47.772 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 34 PN 34 inclination 60.0. degrees. Complexity level: 3 > MCG: 119.03635 - computation time: 254888.0 ms, memory usage: 864 MB
+2022-03-03T12:36:47.772 >> SOLUTION!: NumSats 10 NumDays 1 NumPetals 2 PD 34 PN 34 inclination:60.0 MCG: 119.03635
+2022-03-03T12:36:54.224 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 35 PN 35 inclination 60.0. degrees. Complexity level: 0 > MCG: 117.4881 - computation time: 6452.0 ms, memory usage: 811 MB
+2022-03-03T12:37:04.974 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 35 PN 35 inclination 60.0. degrees. Complexity level: 1 > MCG: 117.4881 - computation time: 10750.0 ms, memory usage: 811 MB
+2022-03-03T12:39:18.955 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 35 PN 35 inclination 60.0. degrees. Complexity level: 2 > MCG: 119.03635 - computation time: 133965.0 ms, memory usage: 1104 MB
+2022-03-03T12:43:32.600 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 35 PN 35 inclination 60.0. degrees. Complexity level: 3 > MCG: 119.03635 - computation time: 253640.0 ms, memory usage: 1082 MB
+2022-03-03T12:43:32.600 >> SOLUTION!: NumSats 10 NumDays 1 NumPetals 2 PD 35 PN 35 inclination:60.0 MCG: 119.03635
+2022-03-03T12:43:39.032 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 36 PN 36 inclination 60.0. degrees. Complexity level: 0 > MCG: 117.4881 - computation time: 6430.0 ms, memory usage: 881 MB
+2022-03-03T12:43:49.724 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 36 PN 36 inclination 60.0. degrees. Complexity level: 1 > MCG: 117.4881 - computation time: 10692.0 ms, memory usage: 917 MB
+2022-03-03T12:46:03.492 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 36 PN 36 inclination 60.0. degrees. Complexity level: 2 > MCG: 119.03635 - computation time: 133768.0 ms, memory usage: 922 MB
+2022-03-03T12:50:17.002 >> Analyzing: Current sats: 10 numDays  1 numPetals 2 PD 36 PN 36 inclination 60.0. degrees. Complexity level: 3 > MCG: 119.03635 - computation time: 253510.0 ms, memory usage: 1089 MB
+2022-03-03T12:50:17.002 >> SOLUTION!: NumSats 10 NumDays 1 NumPetals 2 PD 36 PN 36 inclination:60.0 MCG: 119.03635
+2022-03-03T12:50:23.456 >> Analyzing: Current sats: 10 numDays  1 numPetals 3 PD 10 PN 10 inclination 60.0. degrees. Complexity level: 0 > MCG: 135.11145 - computation time: 6454.0 ms, memory usage: 1020 MB
+2022-03-03T12:50:34.130 >> Analyzing: Current sats: 10 numDays  1 numPetals 3 PD 10 PN 10 inclination 60.0. degrees. Complexity level: 1 > MCG: 135.11145 - computation time: 10674.0 ms, memory usage: 942 MB
+2022-03-03T12:52:48.646 >> Analyzing: Current sats: 10 numDays  1 numPetals 3 PD 10 PN 10 inclination 60.0. degrees. Complexity level: 2 > MCG: 135.13805 - computation time: 134516.0 ms, memory usage: 989 MB
+2022-03-03T12:57:03.697 >> Analyzing: Current sats: 10 numDays  1 numPetals 3 PD 10 PN 10 inclination 60.0. degrees. Complexity level: 3 > MCG: 135.13805 - computation time: 255036.0 ms, memory usage: 1000 MB
+2022-03-03T12:57:03.697 >> SOLUTION!: NumSats 10 NumDays 1 NumPetals 3 PD 10 PN 10 inclination:60.0 MCG: 135.13805
+2022-03-03T12:57:10.198 >> Analyzing: Current sats: 10 numDays  1 numPetals 3 PD 11 PN 11 inclination 60.0. degrees. Complexity level: 0 > MCG: 135.11145 - computation time: 6501.0 ms, memory usage: 1075 MB
+2022-03-03T12:57:20.972 >> Analyzing: Current sats: 10 numDays  1 numPetals 3 PD 11 PN 11 inclination 60.0. degrees. Complexity level: 1 > MCG: 135.11145 - computation time: 10774.0 ms, memory usage: 1111 MB
+2022-03-03T12:59:36.496 >> Analyzing: Current sats: 10 numDays  1 numPetals 3 PD 11 PN 11 inclination 60.0. degrees. Complexity level: 2 > MCG: 135.13805 - computation time: 135524.0 ms, memory usage: 1032 MB
+2022-03-03T13:03:51.230 >> Analyzing: Current sats: 10 numDays  1 numPetals 3 PD 11 PN 11 inclination 60.0. degrees. Complexity level: 3 > MCG: 135.13805 - computation time: 254718.0 ms, memory usage: 1180 MB
+2022-03-03T13:03:51.230 >> SOLUTION!: NumSats 10 NumDays 1 NumPetals 3 PD 11 PN 11 inclination:60.0 MCG: 135.13805
+2022-03-03T13:03:57.613 >> Analyzing: Current sats: 10 numDays  1 numPetals 3 PD 12 PN 12 inclination 60.0. degrees. Complexity level: 0 > MCG: 135.11145 - computation time: 6383.0 ms, memory usage: 1310 MB
+2022-03-03T13:04:08.269 >> Analyzing: Current sats: 10 numDays  1 numPetals 3 PD 12 PN 12 inclination 60.0. degrees. Complexity level: 1 > MCG: 135.11145 - computation time: 10656.0 ms, memory usage: 1090 MB
+2022-03-03T13:06:21.985 >> Analyzing: Current sats: 10 numDays  1 numPetals 3 PD 12 PN 12 inclination 60.0. degrees. Complexity level: 2 > MCG: 135.13805 - computation time: 133716.0 ms, memory usage: 1098 MB
+2022-03-03T13:10:41.515 >> Analyzing: Current sats: 10 numDays  1 numPetals 3 PD 12 PN 12 inclination 60.0. degrees. Complexity level: 3 > MCG: 135.13805 - computation time: 259510.0 ms, memory usage: 1247 MB
+2022-03-03T13:10:41.516 >> SOLUTION!: NumSats 10 NumDays 1 NumPetals 3 PD 12 PN 12 inclination:60.0 MCG: 135.13805
+2022-03-03T13:10:48.063 >> Analyzing: Current sats: 10 numDays  1 numPetals 3 PD 13 PN 13 inclination 60.0. degrees. Complexity level: 0 > MCG: 135.11145 - computation time: 6547.0 ms, memory usage: 1178 MB
+2022-03-03T13:10:59.055 >> Analyzing: Current sats: 10 numDays  1 numPetals 3 PD 13 PN 13 inclination 60.0. degrees. Complexity level: 1 > MCG: 135.11145 - computation time: 10989.0 ms, memory usage: 1208 MB
+2022-03-03T13:13:29.618 >> Analyzing: Current sats: 10 numDays  1 numPetals 3 PD 13 PN 13 inclination 60.0. degrees. Complexity level: 2 > MCG: 135.13805 - computation time: 150560.0 ms, memory usage: 1197 MB
+2022-03-03T13:18:18.684 >> Analyzing: Current sats: 10 numDays  1 numPetals 3 PD 13 PN 13 inclination 60.0. degrees. Complexity level: 3 > MCG: 135.13805 - computation time: 289059.0 ms, memory usage: 1218 MB
+2022-03-03T13:18:18.685 >> SOLUTION!: NumSats 10 NumDays 1 NumPetals 3 PD 13 PN 13 inclination:60.0 MCG: 135.13805
+2022-03-03T13:18:25.853 >> Analyzing: Current sats: 10 numDays  1 numPetals 3 PD 14 PN 14 inclination 60.0. degrees. Complexity level: 0 > MCG: 135.11145 - computation time: 7167.0 ms, memory usage: 1269 MB
+2022-03-03T13:18:37.395 >> Analyzing: Current sats: 10 numDays  1 numPetals 3 PD 14 PN 14 inclination 60.0. degrees. Complexity level: 1 > MCG: 135.11145 - computation time: 11541.0 ms, memory usage: 1271 MB
+2022-03-03T13:20:52.741 >> Analyzing: Current sats: 10 numDays  1 numPetals 3 PD 14 PN 14 inclination 60.0. degrees. Complexity level: 2 > MCG: 135.13805 - computation time: 135343.0 ms, memory usage: 1206 MB
+2022-03-03T13:25:29.047 >> Analyzing: Current sats: 10 numDays  1 numPetals 3 PD 14 PN 14 inclination 60.0. degrees. Complexity level: 3 > MCG: 135.13805 - computation time: 276300.0 ms, memory usage: 1294 MB
+2022-03-03T13:25:29.047 >> SOLUTION!: NumSats 10 NumDays 1 NumPetals 3 PD 14 PN 14 inclination:60.0 MCG: 135.13805
+2022-03-03T13:25:35.487 >> Analyzing: Current sats: 10 numDays  1 numPetals 3 PD 15 PN 15 inclination 60.0. degrees. Complexity level: 0 > MCG: 135.11145 - computation time: 6438.0 ms, memory usage: 1270 MB
+2022-03-03T13:25:46.472 >> Analyzing: Current sats: 10 numDays  1 numPetals 3 PD 15 PN 15 inclination 60.0. degrees. Complexity level: 1 > MCG: 135.11145 - computation time: 10985.0 ms, memory usage: 1272 MB
+2022-03-03T13:28:11.976 >> Analyzing: Current sats: 10 numDays  1 numPetals 3 PD 15 PN 15 inclination 60.0. degrees. Complexity level: 2 > MCG: 135.13805 - computation time: 145501.0 ms, memory usage: 1257 MB
+2022-03-03T13:32:48.899 >> Analyzing: Current sats: 10 numDays  1 numPetals 3 PD 15 PN 15 inclination 60.0. degrees. Complexity level: 3 > MCG: 135.13805 - computation time: 276914.0 ms, memory usage: 1529 MB
+2022-03-03T13:32:48.899 >> SOLUTION!: NumSats 10 NumDays 1 NumPetals 3 PD 15 PN 15 inclination:60.0 MCG: 135.13805
+2022-03-03T13:32:55.592 >> Analyzing: Current sats: 10 numDays  1 numPetals 3 PD 16 PN 16 inclination 60.0. degrees. Complexity level: 0 > MCG: 135.11145 - computation time: 6692.0 ms, memory usage: 1340 MB
+2022-03-03T13:33:06.697 >> Analyzing: Current sats: 10 numDays  1 numPetals 3 PD 16 PN 16 inclination 60.0. degrees. Complexity level: 1 > MCG: 135.11145 - computation time: 11104.0 ms, memory usage: 1461 MB
+2022-03-03T13:35:32.778 >> Analyzing: Current sats: 10 numDays  1 numPetals 3 PD 16 PN 16 inclination 60.0. degrees. Complexity level: 2 > MCG: 135.13805 - computation time: 146078.0 ms, memory usage: 1390 MB
+2022-03-03T13:40:37.189 >> Analyzing: Current sats: 10 numDays  1 numPetals 3 PD 16 PN 16 inclination 60.0. degrees. Complexity level: 3 > MCG: 135.13805 - computation time: 304411.0 ms, memory usage: 1351 MB
+2022-03-03T13:40:37.204 >> SOLUTION!: NumSats 10 NumDays 1 NumPetals 3 PD 16 PN 16 inclination:60.0 MCG: 135.13805
+2022-03-03T13:40:45.289 >> Analyzing: Current sats: 10 numDays  1 numPetals 3 PD 17 PN 17 inclination 60.0. degrees. Complexity level: 0 > MCG: 135.11145 - computation time: 8085.0 ms, memory usage: 1354 MB
+2022-03-03T13:40:58.829 >> Analyzing: Current sats: 10 numDays  1 numPetals 3 PD 17 PN 17 inclination 60.0. degrees. Complexity level: 1 > MCG: 135.11145 - computation time: 13540.0 ms, memory usage: 1356 MB

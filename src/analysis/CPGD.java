@@ -379,7 +379,7 @@ public class CPGD {
                     currentPD = currentPD + 1;
                     // Symmetry condition
                     currentPN = currentPD;
-                    if ((currentPD > MAX_PD) || (currentPD == currentSats)){ // Symmetry condition
+                    if ((currentPD > MAX_PD) || (currentPD > currentSats)){ // Symmetry condition
                         currentPD = MIN_PD;
                         currentPN = currentPD; // Symmetry condition
                         //currentPN = currentPN + 1;
@@ -389,7 +389,7 @@ public class CPGD {
                         }
                         //if (currentPN > MAX_PN) {
                             // Then increase petals
-                        //    currentPN = MIN_PN;
+                            //currentPN = MIN_PN;
                             currentPetals = currentPetals + 1;
                             if (currentPetals > MAX_PETALS) {
                                 currentPetals = MIN_PETALS;
@@ -407,7 +407,7 @@ public class CPGD {
                                     }
                                 }
                             }
-                        //}
+                        }
                     }
 
                 }
